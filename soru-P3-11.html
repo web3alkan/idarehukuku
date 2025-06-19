@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru P3-11: İstinaf ve Temyiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Soru P3-11: İstinaf ve Temyiz</h1>
+        
+        <div class="question-box">
+            <div class="question">
+                <p>Aşağıdaki cümlelerde boş bırakılan yerleri uygun kelime veya kelime grupları ile doldurunuz:</p>
+                
+                <div class="fill-blanks">
+                    <p>1. İdare mahkemesi kararlarına karşı <input type="text" id="blank1" placeholder="________"> mahkemesine istinaf başvurusu yapılır.</p>
+                    
+                    <p>2. İstinaf başvurusu, kararın tebliğinden itibaren <input type="text" id="blank2" placeholder="________"> gün içinde yapılmalıdır.</p>
+                    
+                    <p>3. Bölge idare mahkemesi kararlarına karşı <input type="text" id="blank3" placeholder="________"> temyiz başvurusu yapılır.</p>
+                    
+                    <p>4. Temyiz başvurusu sadece <input type="text" id="blank4" placeholder="________"> nedenlerle yapılabilir.</p>
+                    
+                    <p>5. Danıştay'ın ilk derece kararlarına karşı <input type="text" id="blank5" placeholder="________"> başvurusu yapılır.</p>
+                    
+                    <p>6. İstinaf mahkemesi hem <input type="text" id="blank6" placeholder="________"> hem de <input type="text" id="blank7" placeholder="________"> incelemesi yapabilir.</p>
+                    
+                    <p>7. Temyiz mahkemesi kararı bozarsa dosya <input type="text" id="blank8" placeholder="________"> mahkemesine geri gönderilir.</p>
+                </div>
+            </div>
+            
+            <button onclick="gosterCozum()" class="cozum-button">Çözümü Göster</button>
+            
+            <div id="cozum" class="cozum-box" style="display: none;">
+                <h3>Çözüm:</h3>
+                <div class="cevap-listesi">
+                    <p><strong>1.</strong> İdare mahkemesi kararlarına karşı <span class="cevap">bölge idare</span> mahkemesine istinaf başvurusu yapılır.</p>
+                    
+                    <p><strong>2.</strong> İstinaf başvurusu, kararın tebliğinden itibaren <span class="cevap">30</span> gün içinde yapılmalıdır.</p>
+                    
+                    <p><strong>3.</strong> Bölge idare mahkemesi kararlarına karşı <span class="cevap">Danıştay'a</span> temyiz başvurusu yapılır.</p>
+                    
+                    <p><strong>4.</strong> Temyiz başvurusu sadece <span class="cevap">hukuki</span> nedenlerle yapılabilir.</p>
+                    
+                    <p><strong>5.</strong> Danıştay'ın ilk derece kararlarına karşı <span class="cevap">itiraz</span> başvurusu yapılır.</p>
+                    
+                    <p><strong>6.</strong> İstinaf mahkemesi hem <span class="cevap">hukuki</span> hem de <span class="cevap">fiili</span> incelemesi yapabilir.</p>
+                    
+                    <p><strong>7.</strong> Temyiz mahkemesi kararı bozarsa dosya <span class="cevap">istinaf</span> mahkemesine geri gönderilir.</p>
+                </div>
+                
+                <div class="yargi-duzeni">
+                    <h4>İdari Yargı Düzeni:</h4>
+                    <ol>
+                        <li><strong>İdare Mahkemeleri:</strong> İlk derece mahkemesi</li>
+                        <li><strong>Bölge İdare Mahkemeleri:</strong> İstinaf mahkemesi</li>
+                        <li><strong>Danıştay:</strong> Temyiz mahkemesi + İlk derece (bazı konularda)</li>
+                    </ol>
+                </div>
+                
+                <div class="istinaf-temyiz">
+                    <h4>İstinaf vs Temyiz:</h4>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Kriter</th>
+                            <th>İstinaf</th>
+                            <th>Temyiz</th>
+                        </tr>
+                        <tr>
+                            <td>İnceleme Türü</td>
+                            <td>Hem hukuki hem fiili</td>
+                            <td>Sadece hukuki</td>
+                        </tr>
+                        <tr>
+                            <td>Yeni Delil</td>
+                            <td>Kabul edilebilir</td>
+                            <td>Kabul edilmez</td>
+                        </tr>
+                        <tr>
+                            <td>Süre</td>
+                            <td>30 gün</td>
+                            <td>30 gün</td>
+                        </tr>
+                        <tr>
+                            <td>Mahkeme</td>
+                            <td>Bölge İdare Mah.</td>
+                            <td>Danıştay</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="ozel-durumlar">
+                    <h4>Özel Durumlar:</h4>
+                    <ul>
+                        <li><strong>Danıştay İlk Derece:</strong> İtiraz yolu (Danıştay İdari Daireler Kurulu)</li>
+                        <li><strong>Kesin Kararlar:</strong> Bazı düşük değerli kararlar kesindir</li>
+                        <li><strong>Zorunlu İstinaf:</strong> Tüm kararlar için istinaf zorunludur</li>
+                        <li><strong>İzin Sistemli Temyiz:</strong> Danıştay temyize izin verebilir</li>
+                    </ul>
+                </div>
+                
+                <div class="kaynak">
+                    <p><strong>Kaynak:</strong> İdare hukuku notu 2.dönem 3.part.pdf</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P3-10.html" class="nav-button">← Önceki Soru</a>
+            <a href="soru-P3-12.html" class="nav-button">Sonraki Soru →</a>
+        </div>
+    </div>
+    
+    <script>
+        function gosterCozum() {
+            document.getElementById('cozum').style.display = 'block';
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            cozumler['soru-P3-11'] = true;
+            localStorage.setItem('gosterilenCozumler', JSON.stringify(cozumler));
+        }
+        
+        window.onload = function() {
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            if (cozumler['soru-P3-11']) {
+                document.getElementById('cozum').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

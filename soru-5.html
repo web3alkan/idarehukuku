@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru 5</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="window.location.href='soru-4.html'">&larr; Önceki</button>
+            <button onclick="window.location.href='index.html'">Ana Sayfa</button>
+            <button onclick="window.location.href='soru-6.html'">Sonraki &rarr;</button>
+        </div>
+
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0005.jpg" alt="Sayfa 5" class="source-image">
+            
+            <div class="question">
+                <h2>Soru 5</h2>
+                <p>Aşağıdaki ifade doğru mu yanlış mı?</p>
+                <p class="statement">"İdarenin her türlü işlemi 'idari' nitelik taşır."</p>
+                
+                <div class="true-false">
+                    <button class="tf-button" onclick="selectAnswer(true)">DOĞRU</button>
+                    <button class="tf-button" onclick="selectAnswer(false)">YANLIŞ</button>
+                </div>
+                
+                <div id="feedback" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedAnswer = null;
+
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('soru5_completed') === 'true') {
+                document.getElementById('feedback').innerHTML = '<span class="correct">✓ Bu soruyu daha önce doğru cevapladınız.</span>';
+                document.querySelectorAll('.tf-button').forEach(btn => btn.disabled = true);
+                document.querySelectorAll('.tf-button')[1].classList.add('selected');
+            }
+        });
+
+        function selectAnswer(answer) {
+            selectedAnswer = answer;
+            const feedback = document.getElementById('feedback');
+            
+            if (answer === false) {
+                feedback.innerHTML = '<span class="correct">✓ Doğru! Sayfada belirtildiği gibi, idarenin her türlü işleminin "idari" nitelik taşıdığını söylemek yaygın bir hatadır. İdare, özel hukuk işlemleri de yapabilir.</span>';
+                localStorage.setItem('soru5_completed', 'true');
+                document.querySelectorAll('.tf-button').forEach(btn => btn.disabled = true);
+                document.querySelectorAll('.tf-button')[1].classList.add('selected');
+            } else {
+                feedback.innerHTML = '<span class="incorrect">✗ Yanlış. Metinde bu ifadenin yaygın bir hata olduğu belirtilmektedir.</span>';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 183</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Sayfa 183</h1>
+            <div class="progress-indicator">Soru 183 / 220</div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn" onclick="goToPrevious()" >← Önceki</button>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <button class="nav-btn" onclick="goToNext()" >Sonraki →</button>
+        </div>
+        
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0183.jpg" alt="Sayfa 183" />
+            </div>
+            
+            <div class="question-section">
+                <div class="question-title">
+                    Kamulaştırmanın satın alma usulü ile yapılamaması halinde idare, topladığı bilgi ve belgeleri bir dilekçeye ekleyerek taşınmaz malın bulunduğu yer asliye hukuk mahkemesine müracaat eder ve taşınmaz malın kamulaştırma bedelinin tespitiyle, idare adına tesciline karar verilmesini ister. Bu başvuru için önemli olan süre nedir?
+                </div>
+                
+                <div class="fill-blank">
+                    <p>Mahkeme, idarenin başvuru tarihinden itibaren en geç _____ gün sonrası için belirlediği duruşma gününü dava dilekçesi ve idare tarafından verilen belgelerin birer örneği de eklenerek taşınmaz malın malikine tebliğ eder.</p>
+                </div>
+                
+                <div class="answer-section">
+                    <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <div id="result" class="result" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedOption = null;
+        let answered = false;
+
+        const correctAnswer = "30";
+
+        function checkAnswer() {
+            if (answered) return;
+            
+            const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+            const resultDiv = document.getElementById('result');
+            
+            answered = true;
+
+            if (userAnswer === correctAnswer.toLowerCase()) {
+                resultDiv.innerHTML = '✅ Doğru! Mahkeme en geç 30 gün sonrası için duruşma günü belirler.';
+                resultDiv.className = 'result correct';
+                updateProgress(183, true);
+            } else {
+                resultDiv.innerHTML = `❌ Yanlış! Doğru cevap "${correctAnswer}"dır. Mahkeme en geç 30 gün sonrası için duruşma günü belirler.`;
+                resultDiv.className = 'result incorrect';
+                updateProgress(183, false);
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        // Allow enter key to submit
+        document.addEventListener('DOMContentLoaded', function() {
+            const answerInput = document.getElementById('answer');
+            if (answerInput) {
+                answerInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        checkAnswer();
+                    }
+                });
+            }
+        });
+
+        function updateProgress(questionNumber, isCorrect) {
+            let progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            progress[questionNumber] = {
+                completed: true,
+                correct: isCorrect,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('examProgress', JSON.stringify(progress));
+        }
+
+        function goToPrevious() {
+            window.location.href = "soru-182.html";
+        }
+
+        function goToNext() {
+            window.location.href = "soru-184.html";
+        }
+
+        window.onload = function() {
+            const progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            if (progress[183] && progress[183].completed) {
+                document.querySelector('.header h1').innerHTML += ' <span class="completed-badge">Tamamlandı</span>';
+            }
+        }
+    </script>
+</body>
+</html>

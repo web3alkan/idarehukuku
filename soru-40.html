@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 40 - Merkezi ve Yerinden Yönetim</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="previousQuestion()" class="nav-btn">← Önceki</button>
+            <button onclick="goHome()" class="nav-btn home">🏠 Ana Sayfa</button>
+            <button onclick="nextQuestion()" class="nav-btn">Sonraki →</button>
+        </div>
+
+        <div class="question-container">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0040.jpg" alt="Sayfa 40" class="page-image">
+            </div>
+
+            <div class="question-content">
+                <h2>Soru 40</h2>
+                <p class="question-text">
+                    "Merkezi Yönetim" ve "Yerinden Yönetim" kavramları ile ilgili aşağıdaki örgütlenme şeması ile ilgili soruları cevaplayınız:
+                </p>
+
+                <div class="fill-blanks-exercise">
+                    <div class="schema-description">
+                        <p><strong>İdari Teşkilat Şeması:</strong></p>
+                        <div class="schema-text">
+                            <p>Ülkenin ana ihtiyaçları planlaması ve sunuluğu birimler: <span class="blank" id="blank1" onclick="showBlankOptions(1)">_______</span></p>
+                            
+                            <p>Başkent Teşkilatı: Ana planlayıcılar, karar alıcılar - <span class="blank" id="blank2" onclick="showBlankOptions(2)">_______</span></p>
+                            
+                            <p>Taşra Teşkilatı: Bölgesel uygulayıcılar - <span class="blank" id="blank3" onclick="showBlankOptions(3)">_______</span></p>
+                            
+                            <p>Yerel Yönetimler: Mahalli müşterek her türlü ihtiyaçları sorumlu birimler. Hepsinin kendi tüzel kişiliği var. - <span class="blank" id="blank4" onclick="showBlankOptions(4)">_______</span></p>
+                            
+                            <p>Hizmetsel Kuruluşlar: Teknik uzmanlık gerektiren hizmetlerini ilgili kişiler için sunan - <span class="blank" id="blank5" onclick="showBlankOptions(5)">_______</span></p>
+                        </div>
+                    </div>
+
+                    <div id="optionsModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal()">&times;</span>
+                            <h3 id="modalTitle">Seçenek Seçiniz:</h3>
+                            <div id="modalOptions"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer-section">
+                    <button onclick="checkAnswer()" class="check-btn">Cevabı Kontrol Et</button>
+                    <div id="result" class="result"></div>
+                    <div id="explanation" class="explanation"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            1: 'DEVLET',
+            2: 'İL',
+            3: 'İL Müdirleri',
+            4: 'İl Özel İdaresi, Belediye ve Köy',
+            5: 'TRT, SGK, TCDD, TÜBİTAK, YÖK'
+        };
+
+        const options = {
+            1: ['DEVLET', 'CB Yardımcıları', 'Bakanlıklar', 'Sayıştay', 'MGKGS'],
+            2: ['İL', 'İLÇE', 'Cumhurbaşkanlığı', 'CB Yardımcıları', 'Bakanlıklar'],
+            3: ['İl Müdirleri', 'İl Valısi', 'İLGE Kaymakamı', 'İl Genel Meclisi', 'İl Özel İdaresi'],
+            4: ['İl Özel İdaresi, Belediye ve Köy', 'TRT, SGK, TCDD, TÜBİTAK, YÖK', 'İl Valısi', 'İl Müdirleri', 'Bakanlıklar'],
+            5: ['TRT, SGK, TCDD, TÜBİTAK, YÖK', 'İl Özel İdaresi, Belediye ve Köy', 'İl Müdirleri', 'Bakanlıklar', 'CB Yardımcıları']
+        };
+
+        let userAnswers = {};
+        let currentBlank = null;
+
+        function showBlankOptions(blankNumber) {
+            currentBlank = blankNumber;
+            const modal = document.getElementById('optionsModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalOptions = document.getElementById('modalOptions');
+            
+            modalTitle.textContent = `Boşluk ${blankNumber} için seçenek seçiniz:`;
+            
+            modalOptions.innerHTML = '';
+            options[blankNumber].forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.className = 'option-button';
+                button.onclick = () => selectOption(option);
+                modalOptions.appendChild(button);
+            });
+            
+            modal.style.display = 'block';
+        }
+
+        function selectOption(option) {
+            userAnswers[currentBlank] = option;
+            document.getElementById(`blank${currentBlank}`).textContent = option;
+            document.getElementById(`blank${currentBlank}`).classList.add('filled');
+            closeModal();
+        }
+
+        function closeModal() {
+            document.getElementById('optionsModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('optionsModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function checkAnswer() {
+            const resultDiv = document.getElementById('result');
+            const explanationDiv = document.getElementById('explanation');
+            
+            const totalBlanks = Object.keys(correctAnswers).length;
+            const filledBlanks = Object.keys(userAnswers).length;
+            
+            if (filledBlanks < totalBlanks) {
+                resultDiv.innerHTML = '<p style="color: orange;">Lütfen tüm boşlukları doldurunuz.</p>';
+                return;
+            }
+            
+            let correctCount = 0;
+            for (let blankNum in correctAnswers) {
+                if (userAnswers[blankNum] === correctAnswers[blankNum]) {
+                    correctCount++;
+                }
+            }
+            
+            const percentage = Math.round((correctCount / totalBlanks) * 100);
+            
+            if (percentage >= 80) {
+                resultDiv.innerHTML = `<p style="color: green;">✓ Mükemmel! ${correctCount}/${totalBlanks} doğru cevap. (${percentage}%)</p>`;
+                localStorage.setItem('soru40_completed', 'true');
+            } else if (percentage >= 60) {
+                resultDiv.innerHTML = `<p style="color: orange;">İyi! ${correctCount}/${totalBlanks} doğru cevap. (${percentage}%)</p>`;
+            } else {
+                resultDiv.innerHTML = `<p style="color: red;">✗ ${correctCount}/${totalBlanks} doğru cevap. (${percentage}%) Tekrar deneyin.</p>`;
+            }
+            
+            const explanation = `
+                <div class="explanation-content">
+                    <strong>Doğru Cevaplar:</strong><br><br>
+                    
+                    1. Ülkenin ana ihtiyaçları planlaması ve sunuluğu birimler: <strong>DEVLET</strong><br>
+                    2. Başkent Teşkilatı: Ana planlayıcılar, karar alıcılar: <strong>İL</strong><br>
+                    3. Taşra Teşkilatı: Bölgesel uygulayıcılar: <strong>İl Müdirleri</strong><br>
+                    4. Yerel Yönetimler: <strong>İl Özel İdaresi, Belediye ve Köy</strong><br>
+                    5. Hizmetsel Kuruluşlar: <strong>TRT, SGK, TCDD, TÜBİTAK, YÖK</strong><br><br>
+                    
+                    <strong>Merkezi Yönetim ve Yerinden Yönetim İlkesi:</strong><br>
+                    Merkezi yönetim ulkenin ana hizmetlerinin planlanması ve koordine edilmesi,
+                    yerinden yönetim ise yerel ihtiyaçların yerel organlar tarafından karşılanması 
+                    ilkesine dayanır. Bu sistem devletin erklerı ile özel idarenin erklerı arasında 
+                    denge kurar.
+                </div>
+            `;
+            
+            explanationDiv.innerHTML = explanation;
+        }
+
+        function previousQuestion() {
+            window.location.href = 'soru-39.html';
+        }
+
+        function nextQuestion() {
+            window.location.href = 'soru-41.html';
+        }
+
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+
+        // Load completion status
+        window.onload = function() {
+            if (localStorage.getItem('soru40_completed') === 'true') {
+                document.getElementById('result').innerHTML = '<p style="color: blue;">Bu soruyu daha önce doğru cevapladınız.</p>';
+            }
+        }
+
+        // CSS for fill-in-the-blanks styling
+        const style = document.createElement('style');
+        style.textContent = `
+            .fill-blanks-exercise {
+                margin: 20px 0;
+            }
+            .schema-description {
+                background-color: #f9f9f9;
+                padding: 20px;
+                border-radius: 10px;
+                border: 1px solid #ddd;
+            }
+            .schema-text {
+                line-height: 1.8;
+            }
+            .schema-text p {
+                margin: 15px 0;
+                font-size: 16px;
+            }
+            .blank {
+                display: inline-block;
+                min-width: 150px;
+                padding: 5px 10px;
+                border: 2px dashed #2196F3;
+                background-color: #fff;
+                cursor: pointer;
+                border-radius: 5px;
+                transition: all 0.3s;
+            }
+            .blank:hover {
+                background-color: #e3f2fd;
+            }
+            .blank.filled {
+                border: 2px solid #4CAF50;
+                background-color: #e8f5e8;
+                font-weight: bold;
+            }
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.5);
+            }
+            .modal-content {
+                background-color: #fefefe;
+                margin: 15% auto;
+                padding: 20px;
+                border: none;
+                border-radius: 10px;
+                width: 80%;
+                max-width: 500px;
+                position: relative;
+            }
+            .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            .close:hover {
+                color: #000;
+            }
+            .option-button {
+                display: block;
+                width: 100%;
+                padding: 12px;
+                margin: 5px 0;
+                border: 1px solid #ddd;
+                background-color: #f9f9f9;
+                cursor: pointer;
+                border-radius: 5px;
+                transition: all 0.3s;
+                text-align: left;
+            }
+            .option-button:hover {
+                background-color: #e3f2fd;
+                border-color: #2196F3;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

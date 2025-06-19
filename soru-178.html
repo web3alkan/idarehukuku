@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 178</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Sayfa 178</h1>
+            <div class="progress-indicator">Soru 178 / 220</div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn" onclick="goToPrevious()">← Önceki</button>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <button class="nav-btn" onclick="goToNext()">Sonraki →</button>
+        </div>
+        
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0178.jpg" alt="Sayfa 178" />
+            </div>
+            
+            <div class="question-section">
+                <div class="question-title">
+                    Kamulaştırma kararının alınmasından sonra kamulaştırmayı yapacak idare taşınmaz malın tahmini bedelini tespit etmek üzere kendi bünyesi içinden en az _______ kişiden teşekkül eden bir veya birden fazla kıymet takdir komisyonunu görevlendirir.
+                </div>
+                
+                <div class="fill-blank">
+                    <p>Cevabınızı rakam olarak yazınız: <input type="number" id="answer" min="1" max="10" placeholder="Sayı"></p>
+                </div>
+                
+                <div class="answer-section">
+                    <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <div id="result" class="result" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let answered = false;
+        const correctAnswer = 3;
+
+        function checkAnswer() {
+            if (answered) return;
+            
+            const userAnswer = parseInt(document.getElementById('answer').value);
+            const resultDiv = document.getElementById('result');
+            
+            answered = true;
+
+            if (userAnswer === correctAnswer) {
+                resultDiv.innerHTML = '✅ Doğru! Kıymet takdir komisyonu en az 3 kişiden teşekkül eder.';
+                resultDiv.className = 'result correct';
+                updateProgress(178, true);
+            } else {
+                resultDiv.innerHTML = `❌ Yanlış! Doğru cevap ${correctAnswer}'tür. Kıymet takdir komisyonu en az üç kişiden oluşur.`;
+                resultDiv.className = 'result incorrect';
+                updateProgress(178, false);
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        function updateProgress(questionNumber, isCorrect) {
+            let progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            progress[questionNumber] = {
+                completed: true,
+                correct: isCorrect,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('examProgress', JSON.stringify(progress));
+        }
+
+        function goToPrevious() {
+            window.location.href = 'soru-177.html';
+        }
+
+        function goToNext() {
+            window.location.href = 'soru-179.html';
+        }
+
+        document.getElementById('answer').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkAnswer();
+            }
+        });
+
+        window.onload = function() {
+            const progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            if (progress[178] && progress[178].completed) {
+                document.querySelector('.header h1').innerHTML += ' <span class="completed-badge">Tamamlandı</span>';
+            }
+        }
+    </script>
+</body>
+</html>

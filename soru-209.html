@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 209</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Sayfa 209</h1>
+            <div class="progress-indicator">Soru 209 / 220</div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn" onclick="goToPrevious()" >← Önceki</button>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <button class="nav-btn" onclick="goToNext()" >Sonraki →</button>
+        </div>
+        
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0209.jpg" alt="Sayfa 209" />
+            </div>
+            
+            <div class="question-section">
+                <div class="question-title">
+                    İdari başvuru süreleri genel olarak hak düşürücü sürelerdir.
+                </div>
+                
+                <div class="true-false">
+                    <div class="tf-option" onclick="selectTF(this, true)">DOĞRU</div>
+                    <div class="tf-option" onclick="selectTF(this, false)">YANLIŞ</div>
+                </div>
+                
+                <div class="answer-section">
+                    <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <div id="result" class="result" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedOption = null;
+        let answered = false;
+
+        function selectTF(element, isCorrect) {
+            if (answered) return;
+            
+            document.querySelectorAll('.tf-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            element.classList.add('selected');
+            selectedOption = { element, isCorrect };
+        }
+
+        function checkAnswer() {
+            if (!selectedOption) {
+                alert('Lütfen DOĞRU veya YANLIŞ seçeneğini seçiniz!');
+                return;
+            }
+            
+            if (answered) return;
+            answered = true;
+
+            const resultDiv = document.getElementById('result');
+            const options = document.querySelectorAll('.tf-option');
+            
+            options.forEach(opt => {
+                const isCorrect = opt.onclick.toString().includes('true');
+                if (isCorrect) {
+                    opt.classList.add('correct');
+                } else if (opt.classList.contains('selected') && !selectedOption.isCorrect) {
+                    opt.classList.add('incorrect');
+                }
+            });
+
+            if (selectedOption.isCorrect) {
+                resultDiv.innerHTML = '✅ Doğru! ' + 'Doğru. İdari başvuru süreleri genellikle hak düşürücü niteliktedir.';
+                resultDiv.className = 'result correct';
+                updateProgress(209, true);
+            } else {
+                resultDiv.innerHTML = '❌ Yanlış! ' + 'Doğru. İdari başvuru süreleri genellikle hak düşürücü niteliktedir.';
+                resultDiv.className = 'result incorrect';
+                updateProgress(209, false);
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        function updateProgress(questionNumber, isCorrect) {
+            let progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            progress[questionNumber] = {
+                completed: true,
+                correct: isCorrect,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('examProgress', JSON.stringify(progress));
+        }
+
+        function goToPrevious() {
+            window.location.href = "soru-208.html";
+        }
+
+        function goToNext() {
+            window.location.href = "soru-210.html";
+        }
+
+        window.onload = function() {
+            const progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            if (progress[209] && progress[209].completed) {
+                document.querySelector('.header h1').innerHTML += ' <span class="completed-badge">Tamamlandı</span>';
+            }
+        }
+    </script>
+</body>
+</html>

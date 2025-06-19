@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru 302</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>İdare Hukuku Soruları</h1>
+            <div class="question-number">Soru 302</div>
+        </header>
+
+        <nav class="navigation">
+            <a href="soru-301.html" class="nav-btn">← Önceki</a>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <a href="soru-303.html" class="nav-btn">Sonraki →</a>
+        </nav>
+
+        <div class="content">
+            <div class="image-container">
+                <img src="Kamusal Alan İdare Hukuku_page-0302.jpg" alt="Sayfa 302" class="page-image">
+            </div>
+
+            <div class="question-container">
+                <h2>Soru</h2>
+                <p class="question-text">
+                    Cumhurbaşkanı Özel Kalem Müdürlüğü'nün görevleri arasında hangisi yer ALMAZ?
+                </p>
+
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="answer" value="A">
+                        <span>A) Cumhurbaşkanı makamına ilişkin hizmetleri yürütmek</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="B">
+                        <span>B) Cumhurbaşkanının resmi ve özel yazışmalarını yürütmek</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="C">
+                        <span>C) Cumhurbaşkanının tören, yurtiçi ve yurtdışı gezi işlerini düzenlemek ve yürütmek</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="D">
+                        <span>D) Cumhurbaşkanlığı makamının protokol, halkla ilişkiler ve kurumsal iletişim hizmetlerini bünyesindeki birimler aracılığıyla yürütmek</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="E">
+                        <span>E) Cumhurbaşkanının Milli Saraylar ve Devlet Arşivlerine ilişkin talimat, iş ve işlemlerini yürütmek</span>
+                    </label>
+                </div>
+
+                <button onclick="checkAnswer()" class="submit-btn">Cevabı Kontrol Et</button>
+                <div id="result" class="result"></div>
+                <div id="explanation" class="explanation" style="display: none;">
+                    <strong>Açıklama:</strong> Cumhurbaşkanının Milli Saraylar ve Devlet Arşivlerine ilişkin görevler Cumhurbaşkanı Özel Kalem Müdürlüğü'nün değil, başka birimlerin görevleri arasındadır.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            const resultDiv = document.getElementById('result');
+            const explanationDiv = document.getElementById('explanation');
+            
+            if (!selectedAnswer) {
+                resultDiv.innerHTML = '<p style="color: orange;">Lütfen bir seçenek işaretleyin.</p>';
+                return;
+            }
+            
+            const answer = selectedAnswer.value;
+            if (answer === 'E') {
+                resultDiv.innerHTML = '<p style="color: green;">✓ Doğru! Tebrikler.</p>';
+                localStorage.setItem('soru302', 'completed');
+            } else {
+                resultDiv.innerHTML = '<p style="color: red;">✗ Yanlış. Doğru cevap: E</p>';
+            }
+            
+            explanationDiv.style.display = 'block';
+        }
+
+        window.onload = function() {
+            if (localStorage.getItem('soru302') === 'completed') {
+                document.body.classList.add('completed');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru 306</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>İdare Hukuku Soruları</h1>
+            <div class="question-number">Soru 306</div>
+        </header>
+
+        <nav class="navigation">
+            <a href="soru-305.html" class="nav-btn">← Önceki</a>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <a href="soru-307.html" class="nav-btn">Sonraki →</a>
+        </nav>
+
+        <div class="content">
+            <div class="image-container">
+                <img src="Kamusal Alan İdare Hukuku_page-0306.jpg" alt="Sayfa 306" class="page-image">
+            </div>
+
+            <div class="question-container">
+                <h2>Soru</h2>
+                <p class="question-text">
+                    Cumhurbaşkanlığına bağlı kurum ve kuruluşlar ile ilgili olarak verilen bilgilerden hangisi YANLIŞTIR?
+                </p>
+
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="answer" value="A">
+                        <span>A) Devlet Arşivleri Başkanlığı</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="B">
+                        <span>B) Devlet Denetleme Kurulu</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="C">
+                        <span>C) Diyanet İşleri Başkanlığı</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="D">
+                        <span>D) Milli İstihbarat Teşkilatı Başkanlığı</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="E">
+                        <span>E) 7 sayılı CBK ile Cumhurbaşkanına bağlı ve tüzel kişiliği haiz Savunma Sanayii Başkanlığı kurulmuştur</span>
+                    </label>
+                </div>
+
+                <button onclick="checkAnswer()" class="submit-btn">Cevabı Kontrol Et</button>
+                <div id="result" class="result"></div>
+                <div id="explanation" class="explanation" style="display: none;">
+                    <strong>Açıklama:</strong> Tüm seçeneklerde belirtilen kurumlar Cumhurbaşkanlığına bağlı kurumlardır. 7 sayılı CBK ile Savunma Sanayii Başkanlığı da gerçekten kurulmuştur. Sorudaki tüm bilgiler doğrudur.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            const resultDiv = document.getElementById('result');
+            const explanationDiv = document.getElementById('explanation');
+            
+            if (!selectedAnswer) {
+                resultDiv.innerHTML = '<p style="color: orange;">Lütfen bir seçenek işaretleyin.</p>';
+                return;
+            }
+            
+            const answer = selectedAnswer.value;
+            // Bu soruda tüm seçenekler doğru bilgi veriyor, yanlış bir eşleştirme yok
+            // Soru "hangisi YANLIŞTIR" diye soruyor ama hepsi doğru
+            resultDiv.innerHTML = '<p style="color: blue;">Bu soruda tüm seçenekler doğru bilgi içermektedir. Soru metni gözden geçirilmelidir.</p>';
+            localStorage.setItem('soru306', 'completed');
+            
+            explanationDiv.style.display = 'block';
+        }
+
+        window.onload = function() {
+            if (localStorage.getItem('soru306') === 'completed') {
+                document.body.classList.add('completed');
+            }
+        }
+    </script>
+</body>
+</html>

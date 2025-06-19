@@ -1,0 +1,120 @@
+<\!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru P3-14: Personel Davaları</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Soru P3-14: Personel Davaları</h1>
+        
+        <div class="question-box">
+            <div class="question">
+                <p>Personel davaları ile ilgili aşağıdaki ifadelerin doğru (D) veya yanlış (Y) olduğunu işaretleyiniz:</p>
+                
+                <div class="true-false-container">
+                    <div class="tf-item">
+                        <label>Personel davaları 2577 sayılı Kanun'un 24-33. maddelerinde düzenlenmiştir.</label>
+                        <div class="tf-options">
+                            <label><input type="radio" name="soru1" value="D"> Doğru</label>
+                            <label><input type="radio" name="soru1" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+                    
+                    <div class="tf-item">
+                        <label>Personel davaları sadece memurlara ilişkin işlemler için açılabilir.</label>
+                        <div class="tf-options">
+                            <label><input type="radio" name="soru2" value="D"> Doğru</label>
+                            <label><input type="radio" name="soru2" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+                    
+                    <div class="tf-item">
+                        <label>Personel davalarında dava süresi genel kurala göre 60 gündür.</label>
+                        <div class="tf-options">
+                            <label><input type="radio" name="soru3" value="D"> Doğru</label>
+                            <label><input type="radio" name="soru3" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+                    
+                    <div class="tf-item">
+                        <label>Personel davalarında ön inceleme usulü uygulanmaz.</label>
+                        <div class="tf-options">
+                            <label><input type="radio" name="soru4" value="D"> Doğru</label>
+                            <label><input type="radio" name="soru4" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button onclick="gosterCozum()" class="cozum-button">Çözümü Göster</button>
+            
+            <div id="cozum" class="cozum-box" style="display: none;">
+                <h3>Çözüm:</h3>
+                <div class="cevap-listesi">
+                    <p><strong>1. İfade:</strong> <span class="dogru">DOĞRU</span></p>
+                    <p>Personel davaları 2577 sayılı İdari Yargılama Usulü Kanunu'nun 24-33. maddelerinde özel olarak düzenlenmiştir.</p>
+                    
+                    <p><strong>2. İfade:</strong> <span class="yanlis">YANLIŞ</span></p>
+                    <p>Personel davaları sadece memurlara değil, tüm kamu personeline (işçi, sözleşmeli personel vb.) ilişkin işlemler için açılabilir.</p>
+                    
+                    <p><strong>3. İfade:</strong> <span class="dogru">DOĞRU</span></p>
+                    <p>Personel davalarında da genel dava açma süresi olan 60 gün uygulanır. İşlemden haberdar olma tarihinden itibaren 60 gün.</p>
+                    
+                    <p><strong>4. İfade:</strong> <span class="yanlis">YANLIŞ</span></p>
+                    <p>Personel davalarında da ön inceleme usulü uygulanır. Mahkeme önce dava şartlarını inceler.</p>
+                </div>
+                
+                <div class="personel-davalari-ozellikleri">
+                    <h4>Personel Davalarının Özellikleri:</h4>
+                    <ul>
+                        <li><strong>Özel Usul:</strong> 2577 sayılı Kanun'da özel düzenleme</li>
+                        <li><strong>Geniş Kapsam:</strong> Tüm kamu personeli (memur, işçi, sözleşmeli)</li>
+                        <li><strong>Süre:</strong> 60 gün (genel kural)</li>
+                        <li><strong>Ön İnceleme:</strong> Dava şartları incelenir</li>
+                        <li><strong>İstinaf:</strong> Bölge idare mahkemelerine yapılır</li>
+                    </ul>
+                </div>
+                
+                <div class="personel-davalari-turleri">
+                    <h4>Personel Davalarının Türleri:</h4>
+                    <ul>
+                        <li><strong>Atama Davaları:</strong> Atama işlemlerine karşı</li>
+                        <li><strong>Terfi Davaları:</strong> Terfi işlemlerine karşı</li>
+                        <li><strong>Disiplin Davaları:</strong> Disiplin cezalarına karşı</li>
+                        <li><strong>Özlük Hakları:</strong> Maaş, izin, ödül vb.</li>
+                        <li><strong>Görev Değişikliği:</strong> Yer değiştirme, nakil</li>
+                    </ul>
+                </div>
+                
+                <div class="kaynak">
+                    <p><strong>Kaynak:</strong> İdare hukuku notu 2.dönem 3.part.pdf</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P3-13.html" class="nav-button">← Önceki Soru</a>
+            <a href="soru-P3-15.html" class="nav-button">Sonraki Soru →</a>
+        </div>
+    </div>
+    
+    <script>
+        function gosterCozum() {
+            document.getElementById('cozum').style.display = 'block';
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            cozumler['soru-P3-14'] = true;
+            localStorage.setItem('gosterilenCozumler', JSON.stringify(cozumler));
+        }
+        
+        window.onload = function() {
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            if (cozumler['soru-P3-14']) {
+                document.getElementById('cozum').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

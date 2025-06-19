@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru 6</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="window.location.href='soru-5.html'">&larr; Önceki</button>
+            <button onclick="window.location.href='index.html'">Ana Sayfa</button>
+            <button onclick="window.location.href='soru-7.html'">Sonraki &rarr;</button>
+        </div>
+
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0006.jpg" alt="Sayfa 6" class="source-image">
+            
+            <div class="question">
+                <h2>Soru 6</h2>
+                <p>İdarenin yaptığı işlemin TEK TARAFLI olması ve senin onurunu alma gereksinimi duymaması durumunda, bu işlem hangi niteliği taşır?</p>
+                
+                <div class="options">
+                    <label>
+                        <input type="radio" name="q6" value="a">
+                        <span>A) Özel hukuk niteliği</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="q6" value="b">
+                        <span>B) İdari nitelik</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="q6" value="c">
+                        <span>C) Karma nitelik</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="q6" value="d">
+                        <span>D) Sözleşme niteliği</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="q6" value="e">
+                        <span>E) Yargısal nitelik</span>
+                    </label>
+                </div>
+                
+                <button onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <div id="feedback" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('soru6_completed') === 'true') {
+                document.getElementById('feedback').innerHTML = '<span class="correct">✓ Bu soruyu daha önce doğru cevapladınız.</span>';
+                document.querySelector('input[value="b"]').checked = true;
+                const radios = document.querySelectorAll('input[name="q6"]');
+                radios.forEach(radio => radio.disabled = true);
+            }
+        });
+
+        function checkAnswer() {
+            const selectedOption = document.querySelector('input[name="q6"]:checked');
+            const feedback = document.getElementById('feedback');
+            
+            if (!selectedOption) {
+                feedback.innerHTML = '<span class="incorrect">Lütfen bir seçenek seçiniz.</span>';
+                return;
+            }
+            
+            if (selectedOption.value === 'b') {
+                feedback.innerHTML = '<span class="correct">✓ Doğru! İdarenin yaptığı işlem tek taraflı ise ve onay alma gereksinimi duymuyorsa, şüphesiz o işlem "idari" nitelikli olan işlemdir.</span>';
+                localStorage.setItem('soru6_completed', 'true');
+                const radios = document.querySelectorAll('input[name="q6"]');
+                radios.forEach(radio => radio.disabled = true);
+            } else {
+                feedback.innerHTML = '<span class="incorrect">✗ Yanlış. Tek taraflı ve onay gerektirmeyen işlemler idari nitelik taşır.</span>';
+            }
+        }
+    </script>
+</body>
+</html>

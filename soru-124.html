@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 124</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Sayfa 124</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-123.html" class="nav-button" id="prevBtn">← Önceki</a>
+            <div class="page-info">Sayfa 124 / 170</div>
+            <a href="soru-125.html" class="nav-button" id="nextBtn">Sonraki →</a>
+        </div>
+        
+        <div class="content">
+            <div class="completion-status" id="completionStatus">
+                <span class="not-completed">Bu soru henüz tamamlanmadı</span>
+            </div>
+            
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0124.jpg" alt="Sayfa 124 - İdari Hizmet Sözleşmeleri">
+            </div>
+            
+            <div class="question-section">
+                <div class="question-title">Soru 124</div>
+                <div class="question-text">
+                    İdari hizmet sözleşmeleri ile ilgili aşağıdaki boşluğu doldurunuz:
+                </div>
+                
+                <div class="fill-blank">
+                    <p>İdari hizmet sözleşmeleri, idarenin işçi niteliği taşımayan kamu görevlileri ile yaptığı sözleşmelerdir. Sözleşmeli personel; genel idare esasları dışında yürütülen görevlerde sözleşme ile istihdam olunan ve fakat <input type="text" id="answer" placeholder="cevabınızı buraya yazın"> sayılmayan personeldir.</p>
+                </div>
+                
+                <div class="button-container">
+                    <button class="check-button" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="reset-button" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+                
+                <div class="result-message" id="result" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = ['işçi', 'İşçi', 'isci', 'İsci'];
+        let answered = false;
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        document.addEventListener('DOMContentLoaded', function() {
+            const completed = localStorage.getItem('question_124_completed');
+            const completionStatus = document.getElementById('completionStatus');
+            
+            if (completed === 'true') {
+                completionStatus.innerHTML = '<span class="completed">✓ Bu soru tamamlandı</span>';
+            }
+        });
+        
+        function checkAnswer() {
+            const answerInput = document.getElementById('answer');
+            const resultDiv = document.getElementById('result');
+            const userAnswer = answerInput.value.trim();
+            
+            if (!userAnswer) {
+                alert('Lütfen cevabınızı yazın!');
+                return;
+            }
+            
+            answered = true;
+            
+            // Cevabı kontrol et
+            const isCorrect = correctAnswers.some(answer => 
+                answer.toLowerCase() === userAnswer.toLowerCase()
+            );
+            
+            if (isCorrect) {
+                resultDiv.innerHTML = 'Tebrikler! Doğru cevap. Sözleşmeli personel işçi sayılmayan personeldir. Bu personelin idare ile akdettiği hizmet sözleşmesi Anayasa Mahkemesi\'nce idari hizmet sözleşmesi olarak nitelendirilmiştir.';
+                resultDiv.className = 'result-message correct';
+                answerInput.style.borderColor = '#10B981';
+                answerInput.style.backgroundColor = '#D1FAE5';
+                
+                // Tamamlandı olarak işaretle
+                localStorage.setItem('question_124_completed', 'true');
+                document.getElementById('completionStatus').innerHTML = '<span class="completed">✓ Bu soru tamamlandı</span>';
+            } else {
+                resultDiv.innerHTML = 'Yanlış cevap. Doğru cevap: "işçi". Sözleşmeli personel, genel idare esasları dışında yürütülen görevlerde sözleşme ile istihdam olunan ve fakat işçi sayılmayan personeldir.';
+                resultDiv.className = 'result-message incorrect';
+                answerInput.style.borderColor = '#EF4444';
+                answerInput.style.backgroundColor = '#FEE2E2';
+            }
+            
+            resultDiv.style.display = 'block';
+            answerInput.disabled = true;
+        }
+        
+        function resetQuestion() {
+            answered = false;
+            const answerInput = document.getElementById('answer');
+            const resultDiv = document.getElementById('result');
+            
+            answerInput.value = '';
+            answerInput.disabled = false;
+            answerInput.style.borderColor = '#e0e0e0';
+            answerInput.style.backgroundColor = 'white';
+            resultDiv.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

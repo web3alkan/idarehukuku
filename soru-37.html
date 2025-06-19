@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 37 - Düzenleyici ve Sosyal Güvenlik Kurumları</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="previousQuestion()" class="nav-btn">← Önceki</button>
+            <button onclick="goHome()" class="nav-btn home">🏠 Ana Sayfa</button>
+            <button onclick="nextQuestion()" class="nav-btn">Sonraki →</button>
+        </div>
+
+        <div class="question-container">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0037.jpg" alt="Sayfa 37" class="page-image">
+            </div>
+
+            <div class="question-content">
+                <h2>Soru 37</h2>
+                <p class="question-text">
+                    Aşağıdaki kurumlardan hangileri "Düzenleyici ve Denetleyici Kamu Kurumları" kategorisinde yer almaktadır?
+                </p>
+
+                <div class="checkbox-group">
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="institutions" value="RTUK">
+                        <span class="checkmark"></span>
+                        <span class="option-text">Radyo ve Televizyon Üst Kurulu (RTÜK)</span>
+                    </label>
+                    
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="institutions" value="BTIK">
+                        <span class="checkmark"></span>
+                        <span class="option-text">Bilgi Teknolojileri ve İletişim Kurumu (BTK)</span>
+                    </label>
+                    
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="institutions" value="SPK">
+                        <span class="checkmark"></span>
+                        <span class="option-text">Sermaye Piyasası Kurulu (SPK)</span>
+                    </label>
+                    
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="institutions" value="BDDK">
+                        <span class="checkmark"></span>
+                        <span class="option-text">Bankacılık Düzenleme ve Denetleme Kurumu (BDDK)</span>
+                    </label>
+                    
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="institutions" value="SGK">
+                        <span class="checkmark"></span>
+                        <span class="option-text">Sosyal Güvenlik Kurumu (SGK)</span>
+                    </label>
+                    
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="institutions" value="TUBITAK">
+                        <span class="checkmark"></span>
+                        <span class="option-text">Türkiye Bilimsel ve Teknolojik Araştırma Kurumu (TÜBİTAK)</span>
+                    </label>
+                    
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="institutions" value="TCDD">
+                        <span class="checkmark"></span>
+                        <span class="option-text">Türkiye Cumhuriyeti Devlet Demiryolları (TCDD)</span>
+                    </label>
+                    
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="institutions" value="KGM">
+                        <span class="checkmark"></span>
+                        <span class="option-text">Karayolları Genel Müdürlüğü (KGM)</span>
+                    </label>
+                </div>
+
+                <div class="answer-section">
+                    <button onclick="checkAnswer()" class="check-btn">Cevabı Kontrol Et</button>
+                    <div id="result" class="result"></div>
+                    <div id="explanation" class="explanation"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctInstitutions = ['RTUK', 'BTIK', 'SPK', 'BDDK'];
+        const socialSecurityInstitutions = ['SGK'];
+        const explanation = `
+            <strong>Düzenleyici ve Denetleyici Kamu Kurumları:</strong><br>
+            1) Radyo ve Televizyon Üst Kurulu (RTÜK)<br>
+            2) Bilgi Teknolojileri ve İletişim Kurumu (BTK)<br>
+            3) Sermaye Piyasası Kurulu (SPK)<br>
+            4) Bankacılık Düzenleme ve Denetleme Kurumu (BDDK)<br><br>
+            
+            <strong>Sosyal Güvenlik Kurumları:</strong><br>
+            1) Sosyal Güvenlik Kurumu (SGK)<br>
+            2) Türkiye İş Kurumu Genel Müdürlüğü<br><br>
+            
+            <strong>Not:</strong> TÜBİTAK, TCDD ve KGM diğer kategorilerde yer almaktadır. 
+            Bu kurumlar düzenleyici değil, araştırma ve hizmet sunan kurumlardır.
+        `;
+
+        function checkAnswer() {
+            const selectedCheckboxes = document.querySelectorAll('input[name="institutions"]:checked');
+            const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value);
+            const resultDiv = document.getElementById('result');
+            const explanationDiv = document.getElementById('explanation');
+            
+            if (selectedValues.length === 0) {
+                resultDiv.innerHTML = '<p style="color: orange;">Lütfen en az bir seçenek işaretleyiniz.</p>';
+                return;
+            }
+            
+            // Check if all correct institutions are selected and no wrong ones
+            const correctSelected = correctInstitutions.filter(inst => selectedValues.includes(inst));
+            const wrongSelected = selectedValues.filter(val => !correctInstitutions.includes(val) && !socialSecurityInstitutions.includes(val));
+            const socialSelected = selectedValues.filter(val => socialSecurityInstitutions.includes(val));
+            
+            let score = 0;
+            let feedback = '';
+            
+            if (correctSelected.length === correctInstitutions.length && wrongSelected.length === 0) {
+                if (socialSelected.length === 0) {
+                    score = 100;
+                    feedback = '✓ Mükemmel! Tüm düzenleyici kurumları doğru seçtiniz.';
+                } else {
+                    score = 80;
+                    feedback = '✓ Düzenleyici kurumları doğru seçtiniz, ancak SGK sosyal güvenlik kurumu kategorisindedir.';
+                }
+                localStorage.setItem('soru37_completed', 'true');
+            } else {
+                score = Math.round((correctSelected.length / correctInstitutions.length) * 100);
+                feedback = `Kısmi doğru: ${correctSelected.length}/${correctInstitutions.length} düzenleyici kurum doğru seçildi.`;
+                if (wrongSelected.length > 0) {
+                    feedback += ` ${wrongSelected.length} yanlış seçim yapıldı.`;
+                }
+            }
+            
+            resultDiv.innerHTML = `<p style="color: ${score === 100 ? 'green' : score >= 50 ? 'orange' : 'red'};">${feedback} (Skor: ${score}%)</p>`;
+            explanationDiv.innerHTML = '<div class="explanation-content">' + explanation + '</div>';
+        }
+
+        function previousQuestion() {
+            window.location.href = 'soru-36.html';
+        }
+
+        function nextQuestion() {
+            window.location.href = 'soru-38.html';
+        }
+
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+
+        // Load completion status
+        window.onload = function() {
+            if (localStorage.getItem('soru37_completed') === 'true') {
+                document.getElementById('result').innerHTML = '<p style="color: blue;">Bu soruyu daha önce doğru cevapladınız.</p>';
+            }
+        }
+
+        // CSS for checkbox styling
+        const style = document.createElement('style');
+        style.textContent = `
+            .checkbox-group {
+                margin: 20px 0;
+            }
+            .checkbox-option {
+                display: flex;
+                align-items: center;
+                margin: 10px 0;
+                cursor: pointer;
+                padding: 10px;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+            }
+            .checkbox-option:hover {
+                background-color: #f0f0f0;
+            }
+            .checkbox-option input[type="checkbox"] {
+                margin-right: 10px;
+                transform: scale(1.2);
+            }
+            .option-text {
+                font-size: 16px;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

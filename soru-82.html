@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 82 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku Sınavı</h1>
+            <p>Unsurların Tahlili - Sayfa 82</p>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-81.html" class="nav-btn" id="prevBtn">← Önceki</a>
+            <div class="page-info">Soru 82 / 120</div>
+            <a href="soru-83.html" class="nav-btn" id="nextBtn">Sonraki →</a>
+        </div>
+        
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0082.jpg" alt="Sayfa 82" />
+            </div>
+            
+            <div class="question-container">
+                <div class="question-title">Doğru/Yanlış Sorusu</div>
+                <div class="question-text">
+                    "Her işlemin amacı 'kamu yararını gerçekleştirmektir'" ifadesi doğru mudur?
+                </div>
+                
+                <div class="tf-container">
+                    <div class="tf-option" data-value="true">DOĞRU</div>
+                    <div class="tf-option" data-value="false">YANLIŞ</div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="btn btn-secondary" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+                
+                <div class="result" id="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswer = 'true';
+        let selectedAnswer = null;
+        
+        // Seçenek tıklama olayları
+        document.querySelectorAll('.tf-option').forEach(option => {
+            option.addEventListener('click', () => {
+                // Önceki seçimi temizle
+                document.querySelectorAll('.tf-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Yeni seçimi işaretle
+                option.classList.add('selected');
+                selectedAnswer = option.getAttribute('data-value');
+            });
+        });
+        
+        function checkAnswer() {
+            if (!selectedAnswer) {
+                alert('Lütfen bir seçenek seçin!');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('result');
+            const options = document.querySelectorAll('.tf-option');
+            
+            // Tüm seçenekleri devre dışı bırak
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+                if (option.getAttribute('data-value') === correctAnswer) {
+                    option.classList.add('correct');
+                } else if (option.getAttribute('data-value') === selectedAnswer && selectedAnswer !== correctAnswer) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Sonucu göster
+            if (selectedAnswer === correctAnswer) {
+                resultDiv.innerHTML = '✅ Doğru! Her işlemin amacı "kamu yararını gerçekleştirmektir". Bu, idare hukukunun temel ilkelerinden biridir.';
+                resultDiv.className = 'result show correct';
+                localStorage.setItem('soru82_completed', 'true');
+            } else {
+                resultDiv.innerHTML = '❌ Yanlış! İfade doğrudur. Her işlemin amacı kamu yararını gerçekleştirmektir.';
+                resultDiv.className = 'result show incorrect';
+            }
+        }
+        
+        function resetQuestion() {
+            selectedAnswer = null;
+            document.querySelectorAll('.tf-option').forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+                option.style.pointerEvents = 'auto';
+            });
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '';
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('soru82_completed') === 'true') {
+                const completionBadge = document.createElement('div');
+                completionBadge.className = 'completion-badge';
+                completionBadge.textContent = '✓ Tamamlandı';
+                document.querySelector('.question-container').appendChild(completionBadge);
+            }
+        });
+    </script>
+</body>
+</html>

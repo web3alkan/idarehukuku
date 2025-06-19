@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 228</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku Sınavı</h1>
+            <div class="page-info">Sayfa 228 - Özel Kanun Hükümlerine Tabi Olanlar</div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn" onclick="goToPrevious()">← Önceki</button>
+            <button class="nav-btn" onclick="goToHome()">🏠 Ana Sayfa</button>
+            <button class="nav-btn" onclick="goToNext()">Sonraki →</button>
+        </div>
+
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0228.jpg" alt="Sayfa 228 - Özel Kanun Hükümlerine Tabi Olanlar" />
+            </div>
+
+            <div class="question-section">
+                <div class="question-title">Soru</div>
+                <div class="question-text">
+                    Aşağıdakilerden hangisi sayfada belirtilen "Özel Kanun Hükümlerine Tabi Olanlar" arasında yer almaz?
+                </div>
+                
+                <ul class="options" id="options">
+                    <li onclick="selectOption(0)">A) Anayasa Mahkemesi üye ve yedek üyeleri ile raportörleri</li>
+                    <li onclick="selectOption(1)">B) Cumhurbaşkanlığı Senfoni Orkestrası üyeleri</li>
+                    <li onclick="selectOption(2)">C) Spor-Toto Teşkilatında çalışan personel</li>
+                    <li onclick="selectOption(3)">D) Belediye başkanları ve il genel meclis üyeleri</li>
+                    <li onclick="selectOption(4)">E) Üniversitelerin rektör ve öğretim üyeleri</li>
+                </ul>
+
+                <div class="controls">
+                    <button class="btn btn-primary" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="btn btn-secondary" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+
+                <div id="result" class="result" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>İdare Hukuku - Kamusal Alan © 2025</p>
+        </div>
+    </div>
+
+    <script>
+        let selectedAnswer = -1;
+        const correctAnswer = 3; // D şıkkı - Belediye başkanları listede yok
+        const questionId = 'question_228';
+
+        function selectOption(index) {
+            selectedAnswer = index;
+            const options = document.querySelectorAll('.options li');
+            options.forEach((option, i) => {
+                option.classList.remove('selected');
+                if (i === index) {
+                    option.classList.add('selected');
+                }
+            });
+        }
+
+        function checkAnswer() {
+            if (selectedAnswer === -1) {
+                alert('Lütfen bir seçenek seçiniz!');
+                return;
+            }
+
+            const options = document.querySelectorAll('.options li');
+            const resultDiv = document.getElementById('result');
+            
+            options.forEach((option, i) => {
+                option.classList.remove('selected');
+                if (i === correctAnswer) {
+                    option.classList.add('correct');
+                } else if (i === selectedAnswer && i !== correctAnswer) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            if (selectedAnswer === correctAnswer) {
+                resultDiv.textContent = 'Doğru! Belediye başkanları ve il genel meclis üyeleri bu listede yer almaz. Onlar seçimle gelen kişilerdir ve özel statüde değildirler.';
+                resultDiv.className = 'result correct';
+                saveCompletion(true);
+            } else {
+                resultDiv.textContent = 'Yanlış! Doğru cevap: D) Belediye başkanları ve il genel meclis üyeleri. Diğer seçeneklerin tümü sayfada belirtilen özel kanun hükümlerine tabi kişilerdir.';
+                resultDiv.className = 'result incorrect';
+                saveCompletion(false);
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        function resetQuestion() {
+            selectedAnswer = -1;
+            const options = document.querySelectorAll('.options li');
+            options.forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+            document.getElementById('result').style.display = 'none';
+        }
+
+        function saveCompletion(isCorrect) {
+            const completedQuestions = JSON.parse(localStorage.getItem('completedQuestions') || '{}');
+            completedQuestions[questionId] = {
+                completed: true,
+                correct: isCorrect,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('completedQuestions', JSON.stringify(completedQuestions));
+        }
+
+        function goToPrevious() {
+            window.location.href = 'soru-226.html';
+        }
+
+        function goToNext() {
+            // Sonraki sayfayı kontrol et
+            window.location.href = 'soru-229.html';
+        }
+
+        function goToHome() {
+            window.location.href = 'index.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const completedQuestions = JSON.parse(localStorage.getItem('completedQuestions') || '{}');
+            if (completedQuestions[questionId]) {
+                // Tamamlanmış soruyu göster ama yanıtları etkinleştir
+            }
+        });
+    </script>
+</body>
+</html>

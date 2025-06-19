@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 62 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>İdare Hukuku Sınav Soruları</h1>
+            <p>Kamusal Alan İdare Hukuku - Sayfa 62</p>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <div class="nav-buttons">
+            <a href="soru-61.html" class="nav-btn" id="prevBtn">← Önceki</a>
+            <span class="page-info">Soru 62 / 80</span>
+            <a href="soru-63.html" class="nav-btn" id="nextBtn">Sonraki →</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="progress-indicator">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 33.33%"></div>
+            </div>
+            <p>İlerleme: 33.33% (10/30)</p>
+        </div>
+
+        <div class="content">
+            <div class="source-image">
+                <h3>Kaynak Görseli</h3>
+                <img src="Kamusal Alan İdare Hukuku_page-0062.jpg" alt="Sayfa 62 - Kamulaştırma">
+            </div>
+
+            <div class="question-section">
+                <h2>Soru</h2>
+                <div class="question">
+                    <h3>Aşağıdaki metni okuyarak boşluğu uygun kelime ile doldurunuz:</h3>
+                    <p>Bir yol yapılacak ve Ayşe Hanım ile Arif Bey'in arazisi plana dahil bir arazi olsun. İdare bu arazinin üzerinden yolu geçirmek yani bir kamu hizmeti sunmak istiyor ise <input type="text" class="fill-blank-input" id="answer1" placeholder="Cevabınız"> kararı olan bir idari işlem yapmalı ve bu işlemi yapıp adı geçen ilgili maliklere tebliğ etmelidir. Artık işlem var, demek ki şimdi faaliyete başlanabilir.</p>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="btn btn-secondary" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+
+                <div id="feedback" class="feedback hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>&copy; 2025 İdare Hukuku Sınav Soruları. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = ['KAMULAŞTIRMA', 'kamulaştırma', 'KAMULAŞTIRMA', 'Kamulaştırma'];
+
+        // Load completion status
+        window.onload = function() {
+            const completed = localStorage.getItem('question-62-completed');
+            if (completed === 'true') {
+                document.body.classList.add('completed');
+            }
+        };
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answer1').value.trim();
+            
+            if (!userAnswer) {
+                alert('Lütfen boşluğu doldurun!');
+                return;
+            }
+
+            const feedback = document.getElementById('feedback');
+            const isCorrect = correctAnswers.some(answer => 
+                userAnswer.toUpperCase().replace(/Ş/g, 'Ş').replace(/Ğ/g, 'Ğ').replace(/Ü/g, 'Ü').replace(/Ç/g, 'Ç').replace(/İ/g, 'İ').replace(/Ö/g, 'Ö') === 
+                answer.toUpperCase().replace(/Ş/g, 'Ş').replace(/Ğ/g, 'Ğ').replace(/Ü/g, 'Ü').replace(/Ç/g, 'Ç').replace(/İ/g, 'İ').replace(/Ö/g, 'Ö')
+            );
+
+            if (isCorrect) {
+                feedback.className = 'feedback correct';
+                feedback.textContent = 'Doğru! Metne göre idare bir kamu hizmeti sunmak için kişilerin mülkiyetindeki araziyi kullanmak istiyorsa "KAMULAŞTIRMA" kararı olan bir idari işlem yapmalı ve bunu ilgili maliklere tebliğ etmelidir.';
+                document.getElementById('answer1').style.borderColor = '#28a745';
+                document.getElementById('answer1').style.backgroundColor = '#d4edda';
+                localStorage.setItem('question-62-completed', 'true');
+                localStorage.setItem('question-62-correct', 'true');
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = 'Yanlış! Doğru cevap "KAMULAŞTIRMA"dır. Metinde açıkça kamulaştırma sürecinden bahsedilmektedir.';
+                document.getElementById('answer1').style.borderColor = '#dc3545';
+                document.getElementById('answer1').style.backgroundColor = '#f8d7da';
+                localStorage.setItem('question-62-completed', 'true');
+                localStorage.setItem('question-62-correct', 'false');
+            }
+            
+            feedback.classList.remove('hidden');
+            document.getElementById('answer1').disabled = true;
+        }
+
+        function resetQuestion() {
+            document.getElementById('answer1').value = '';
+            document.getElementById('answer1').disabled = false;
+            document.getElementById('answer1').style.borderColor = '#e9ecef';
+            document.getElementById('answer1').style.backgroundColor = 'white';
+            document.getElementById('feedback').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

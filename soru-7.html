@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru 7</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="window.location.href='soru-6.html'">&larr; Önceki</button>
+            <button onclick="window.location.href='index.html'">Ana Sayfa</button>
+            <button onclick="window.location.href='soru-8.html'">Sonraki &rarr;</button>
+        </div>
+
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0007.jpg" alt="Sayfa 7" class="source-image">
+            
+            <div class="question">
+                <h2>Soru 7</h2>
+                <p>İdarenin yaptığı sözleşmelerle ilgili aşağıdaki ifade doğru mu yanlış mı?</p>
+                <p class="statement">"İdarenin yaptığı sözleşmeler her zaman idari nitelik taşır ve özel hukuk hükümlerine tabi olamaz."</p>
+                
+                <div class="true-false">
+                    <button class="tf-button" onclick="selectAnswer(true)">DOĞRU</button>
+                    <button class="tf-button" onclick="selectAnswer(false)">YANLIŞ</button>
+                </div>
+                
+                <div id="feedback" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedAnswer = null;
+
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('soru7_completed') === 'true') {
+                document.getElementById('feedback').innerHTML = '<span class="correct">✓ Bu soruyu daha önce doğru cevapladınız.</span>';
+                document.querySelectorAll('.tf-button').forEach(btn => btn.disabled = true);
+                document.querySelectorAll('.tf-button')[1].classList.add('selected');
+            }
+        });
+
+        function selectAnswer(answer) {
+            selectedAnswer = answer;
+            const feedback = document.getElementById('feedback');
+            
+            if (answer === false) {
+                feedback.innerHTML = '<span class="correct">✓ Doğru! Metinde belirtildiği gibi, bir sözleşme "idari" nitelikli olabileceği gibi "özel hukuk hükümlerine tabi" de olabilir.</span>';
+                localStorage.setItem('soru7_completed', 'true');
+                document.querySelectorAll('.tf-button').forEach(btn => btn.disabled = true);
+                document.querySelectorAll('.tf-button')[1].classList.add('selected');
+            } else {
+                feedback.innerHTML = '<span class="incorrect">✗ Yanlış. İdarenin yaptığı sözleşmeler hem idari nitelikli hem de özel hukuk hükümlerine tabi olabilir.</span>';
+            }
+        }
+    </script>
+</body>
+</html>

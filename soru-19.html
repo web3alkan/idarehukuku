@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 19 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="window.location.href='soru-17.html'" class="nav-btn">← Önceki</button>
+            <button onclick="window.location.href='index.html'" class="nav-btn home-btn">Ana Sayfa</button>
+            <button onclick="window.location.href='soru-20.html'" class="nav-btn">Sonraki →</button>
+        </div>
+
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0019.jpg" alt="Sayfa 19" class="page-image">
+            
+            <div class="question-box">
+                <h2>Soru 19</h2>
+                <p class="question-text">1982 Anayasası'na göre, milli güvenliğin sağlanması ve silahlı kuvvetlerin yurt savunmasına hazırlanması konusunda hangi organ sorumludur?</p>
+                
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="answer" value="A">
+                        <span>A) Genelkurmay Başkanlığı</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="B">
+                        <span>B) Milli Savunma Bakanlığı</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="C">
+                        <span>C) Türkiye Büyük Millet Meclisi'ne karşı Cumhurbaşkanı</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="D">
+                        <span>D) Milli Güvenlik Kurulu</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="E">
+                        <span>E) Bakanlar Kurulu</span>
+                    </label>
+                </div>
+                
+                <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <div class="result" id="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswer = 'C';
+        
+        function checkAnswer() {
+            const selected = document.querySelector('input[name="answer"]:checked');
+            const resultDiv = document.getElementById('result');
+            
+            if (!selected) {
+                resultDiv.innerHTML = '<p class="error">Lütfen bir seçenek işaretleyin!</p>';
+                return;
+            }
+            
+            if (selected.value === correctAnswer) {
+                resultDiv.innerHTML = '<p class="correct">✓ Doğru! 1982 Anayasası madde 117/2\'ye göre Türkiye Büyük Millet Meclisi\'ne karşı Cumhurbaşkanı sorumludur.</p>';
+                localStorage.setItem('soru19', 'completed');
+            } else {
+                resultDiv.innerHTML = '<p class="incorrect">✗ Yanlış! Tekrar deneyin.</p>';
+            }
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.onload = function() {
+            if (localStorage.getItem('soru19') === 'completed') {
+                document.getElementById('result').innerHTML = '<p class="completed">Bu soruyu daha önce doğru cevapladınız.</p>';
+            }
+        }
+    </script>
+</body>
+</html>

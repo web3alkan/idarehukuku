@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru P3-10: İdari Yargıda Karar Türleri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Soru P3-10: İdari Yargıda Karar Türleri</h1>
+        
+        <div class="question-box">
+            <div class="question">
+                <p>İdari yargıda verilebilecek karar türleri ile ilgili aşağıdaki ifadelerin doğru (D) veya yanlış (Y) olduğunu işaretleyiniz:</p>
+                
+                <div class="true-false-container">
+                    <div class="tf-item">
+                        <label>Red kararı, davanın esasına girilerek verilir ve idari işlemin hukuka uygun olduğunu gösterir.</label>
+                        <div class="tf-options">
+                            <label><input type="radio" name="soru1" value="D"> Doğru</label>
+                            <label><input type="radio" name="soru1" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+                    
+                    <div class="tf-item">
+                        <label>İptal kararı kesinleştikten sonra idare aynı gerekçelerle aynı işlemi tekrar yapabilir.</label>
+                        <div class="tf-options">
+                            <label><input type="radio" name="soru2" value="D"> Doğru</label>
+                            <label><input type="radio" name="soru2" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+                    
+                    <div class="tf-item">
+                        <label>Mahkeme, iptal kararı verirken aynı zamanda idareye ne yapması gerektiğini de belirtebilir.</label>
+                        <div class="tf-options">
+                            <label><input type="radio" name="soru3" value="D"> Doğru</label>
+                            <label><input type="radio" name="soru3" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+                    
+                    <div class="tf-item">
+                        <label>Tam yargı davasında mahkeme tazminat miktarını kendisi belirleyebilir.</label>
+                        <div class="tf-options">
+                            <label><input type="radio" name="soru4" value="D"> Doğru</label>
+                            <label><input type="radio" name="soru4" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+                    
+                    <div class="tf-item">
+                        <label>Davanın usulde red kararı verilmesi halinde aynı konu için yeniden dava açılamaz.</label>
+                        <div class="tf-options">
+                            <label><input type="radio" name="soru5" value="D"> Doğru</label>
+                            <label><input type="radio" name="soru5" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button onclick="gosterCozum()" class="cozum-button">Çözümü Göster</button>
+            
+            <div id="cozum" class="cozum-box" style="display: none;">
+                <h3>Çözüm:</h3>
+                <div class="cevap-listesi">
+                    <p><strong>1. İfade:</strong> <span class="dogru">DOĞRU</span></p>
+                    <p>Red kararı, mahkemenin dava konusu idari işlemi inceledikten sonra hukuka uygun bularak davanın reddedilmesi kararıdır.</p>
+                    
+                    <p><strong>2. İfade:</strong> <span class="yanlis">YANLIŞ</span></p>
+                    <p>İptal kararı kesinleştikten sonra idare aynı gerekçelerle aynı işlemi yapamaz. Bu, iptal kararının bağlayıcılığı ilkesidir.</p>
+                    
+                    <p><strong>3. İfade:</strong> <span class="dogru">DOĞRU</span></p>
+                    <p>Mahkeme iptal kararı verirken idareye yapması gerekenler hakkında yönlendirme yapabilir (reform kararı).</p>
+                    
+                    <p><strong>4. İfade:</strong> <span class="dogru">DOĞRU</span></p>
+                    <p>Tam yargı davasında mahkeme takdir yetkisi kullanarak tazminat miktarını belirleyebilir ve hükmeder.</p>
+                    
+                    <p><strong>5. İfade:</strong> <span class="yanlis">YANLIŞ</span></p>
+                    <p>Usulde red halinde dava şartları düzeltilerek yeniden dava açılabilir. Esasta red halinde ise yeniden dava açılamaz.</p>
+                </div>
+                
+                <div class="karar-turleri">
+                    <h4>İdari Yargıda Karar Türleri:</h4>
+                    <ul>
+                        <li><strong>Red Kararı:</strong> 
+                            <ul>
+                                <li>Usulde red: Dava şartları eksik</li>
+                                <li>Esasta red: İşlem hukuka uygun</li>
+                            </ul>
+                        </li>
+                        <li><strong>İptal Kararı:</strong>
+                            <ul>
+                                <li>Basit iptal: Sadece iptal</li>
+                                <li>Reform kararı: İptal + yönlendirme</li>
+                            </ul>
+                        </li>
+                        <li><strong>Tam Yargı Kararı:</strong>
+                            <ul>
+                                <li>İptal + tazminat</li>
+                                <li>Sadece tazminat</li>
+                            </ul>
+                        </li>
+                        <li><strong>Menfi Tespit Kararı:</strong> İşlemin yokluğunun tespiti</li>
+                    </ul>
+                </div>
+                
+                <div class="kararin-sonuclari">
+                    <h4>Kararların Sonuçları:</h4>
+                    <ul>
+                        <li><strong>İptal Kararı:</strong> Geriye dönük etki (ex tunc)</li>
+                        <li><strong>Reform Kararı:</strong> İdareyi bağlar, uyması zorunlu</li>
+                        <li><strong>Tazminat Kararı:</strong> İcra edilebilir, icra organları aracılığıyla tahsil</li>
+                        <li><strong>Red Kararı:</strong> İşlem ayakta kalır, yeniden dava açılamaz (esasta red)</li>
+                    </ul>
+                </div>
+                
+                <div class="kaynak">
+                    <p><strong>Kaynak:</strong> İdare hukuku notu 2.dönem 3.part.pdf</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P3-09.html" class="nav-button">← Önceki Soru</a>
+            <a href="soru-P3-11.html" class="nav-button">Sonraki Soru →</a>
+        </div>
+    </div>
+    
+    <script>
+        function gosterCozum() {
+            document.getElementById('cozum').style.display = 'block';
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            cozumler['soru-P3-10'] = true;
+            localStorage.setItem('gosterilenCozumler', JSON.stringify(cozumler));
+        }
+        
+        window.onload = function() {
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            if (cozumler['soru-P3-10']) {
+                document.getElementById('cozum').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

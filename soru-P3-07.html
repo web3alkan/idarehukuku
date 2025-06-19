@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru P3-07: Dava Açma Süreleri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Soru P3-07: Dava Açma Süreleri</h1>
+        
+        <div class="question-box">
+            <div class="question">
+                <p>Aşağıdaki durumlar için doğru dava açma sürelerini yazınız:</p>
+                
+                <div class="sure-tablosu">
+                    <table class="exercise-table">
+                        <thead>
+                            <tr>
+                                <th>Durum</th>
+                                <th>Dava Açma Süresi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Genel kural (ilgiliye tebliğ edilmiş işlemler)</td>
+                                <td><input type="text" id="sure1" placeholder="... gün"></td>
+                            </tr>
+                            <tr>
+                                <td>İlan yoluyla duyurulmuş işlemler</td>
+                                <td><input type="text" id="sure2" placeholder="... gün"></td>
+                            </tr>
+                            <tr>
+                                <td>Herkes tarafından öğrenilebilir işlemler</td>
+                                <td><input type="text" id="sure3" placeholder="... gün"></td>
+                            </tr>
+                            <tr>
+                                <td>Personel işlemleri (memurlar için)</td>
+                                <td><input type="text" id="sure4" placeholder="... gün"></td>
+                            </tr>
+                            <tr>
+                                <td>Tam yargı davası (zarardan haberdar olma)</td>
+                                <td><input type="text" id="sure5" placeholder="... yıl"></td>
+                            </tr>
+                            <tr>
+                                <td>Tam yargı davası (mutlak süre)</td>
+                                <td><input type="text" id="sure6" placeholder="... yıl"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <button onclick="gosterCozum()" class="cozum-button">Çözümü Göster</button>
+            
+            <div id="cozum" class="cozum-box" style="display: none;">
+                <h3>Çözüm:</h3>
+                
+                <table class="cevap-tablosu">
+                    <thead>
+                        <tr>
+                            <th>Durum</th>
+                            <th>Dava Açma Süresi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Genel kural (ilgiliye tebliğ edilmiş işlemler)</td>
+                            <td><strong>60 gün</strong></td>
+                        </tr>
+                        <tr>
+                            <td>İlan yoluyla duyurulmuş işlemler</td>
+                            <td><strong>60 gün</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Herkes tarafından öğrenilebilir işlemler</td>
+                            <td><strong>60 gün</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Personel işlemleri (memurlar için)</td>
+                            <td><strong>60 gün</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Tam yargı davası (zarardan haberdar olma)</td>
+                            <td><strong>2 yıl</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Tam yargı davası (mutlak süre)</td>
+                            <td><strong>5 yıl</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="sure-hesaplama">
+                    <h4>Süre Hesaplama Kuralları:</h4>
+                    <ul>
+                        <li><strong>Tebliğ Edilen İşlemler:</strong> Tebliğ tarihinden itibaren 60 gün</li>
+                        <li><strong>İlan Edilen İşlemler:</strong> İlan tarihinden itibaren 60 gün</li>
+                        <li><strong>Herkes Tarafından Öğrenilebilir:</strong> İşlemin yapıldığı tarihten itibaren 60 gün</li>
+                        <li><strong>Personel İşlemleri:</strong> Öğrenme tarihinden itibaren 60 gün</li>
+                        <li><strong>Tam Yargı:</strong> Zarardan ve zarar verenden haberdar olma tarihinden itibaren 2 yıl, her halde zarardan itibaren 5 yıl</li>
+                    </ul>
+                </div>
+                
+                <div class="ozel-durumlar">
+                    <h4>Özel Durumlar:</h4>
+                    <ul>
+                        <li><strong>Vergi Davaları:</strong> Özel süreler vardır (30 gün)</li>
+                        <li><strong>Seçim İtirazları:</strong> Çok kısa süreler (7-10 gün)</li>
+                        <li><strong>Mevzuat İptali:</strong> Süre sınırı yoktur</li>
+                        <li><strong>Yokluk İddiası:</strong> Süre sınırı yoktur</li>
+                    </ul>
+                </div>
+                
+                <div class="sure-uzatimi">
+                    <h4>Süre Uzatımı ve Kesinti:</h4>
+                    <ul>
+                        <li>Süreler hak düşürücüdür</li>
+                        <li>Mazeret nedeniyle uzatılabilir</li>
+                        <li>Resmi tatiller süreye dahil değildir</li>
+                        <li>Sürenin son günü resmi tatile denk gelirse ertesi iş gününe uzar</li>
+                    </ul>
+                </div>
+                
+                <div class="kaynak">
+                    <p><strong>Kaynak:</strong> İdare hukuku notu 2.dönem 3.part.pdf</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P3-06.html" class="nav-button">← Önceki Soru</a>
+            <a href="soru-P3-08.html" class="nav-button">Sonraki Soru →</a>
+        </div>
+    </div>
+    
+    <script>
+        function gosterCozum() {
+            document.getElementById('cozum').style.display = 'block';
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            cozumler['soru-P3-07'] = true;
+            localStorage.setItem('gosterilenCozumler', JSON.stringify(cozumler));
+        }
+        
+        window.onload = function() {
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            if (cozumler['soru-P3-07']) {
+                document.getElementById('cozum').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

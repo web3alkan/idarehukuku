@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Sorusu - P2-13</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Disiplin Yaptırımları</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P2-12.html" class="nav-button">Önceki</a>
+            <span class="page-info">Soru P2-13</span>
+            <a href="soru-P2-14.html" class="nav-button">Sonraki</a>
+        </div>
+        
+        <div class="content">
+            <div class="question-section">
+                <div class="question-title">Soru 13: Disiplin Suçu ve Ceza</div>
+                <div class="question-text">
+                    Devlet memurlarına verilecek disiplin cezaları maaştan kesme şeklinde para cezası olabilir.
+                </div>
+                
+                <div class="true-false">
+                    <button onclick="selectAnswer(true)">Doğru</button>
+                    <button onclick="selectAnswer(false)">Yanlış</button>
+                </div>
+                
+                <button class="show-solution-btn" onclick="showSolution()">Çözümü Göster</button>
+                
+                <div class="solution-box" id="solution">
+                    <h3>Çözüm:</h3>
+                    <div class="correct-answer">Doğru Cevap: YANLIŞ</div>
+                    <div class="explanation-text">
+                        657 sayılı Devlet Memurları Kanunu'na göre, devlet memurlarına verilebilecek disiplin cezaları 
+                        şunlardır:
+                        1. Uyarma
+                        2. Kınama
+                        3. Aylıktan kesme (30 günü geçmemek üzere)
+                        4. Kademe ilerlemesinin durdurulması
+                        5. Devlet memurluğundan çıkarma
+                        
+                        "Aylıktan kesme" cezası vardır ancak bu para cezası değil, maaştan kesinti yapılması şeklindedir. 
+                        Bu ceza memura verilen bir disiplin yaptırımıdır ve idari para cezası kavramından farklıdır.
+                    </div>
+                    <div class="pdf-source"><strong>Kaynak:</strong> İdare Hukuku notu 2.dönem 2.part.pdf</div>
+                </div>
+            </div>
+            
+            <div class="result-message" id="result" style="display: none;"></div>
+        </div>
+    </div>
+    
+    <script>
+        let selectedAnswer = null;
+        
+        function selectAnswer(answer) {
+            const buttons = document.querySelectorAll('.true-false button');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            
+            if (answer === true) {
+                buttons[0].classList.add('selected');
+            } else {
+                buttons[1].classList.add('selected');
+            }
+            
+            selectedAnswer = answer;
+        }
+        
+        function showSolution() {
+            const solutionBox = document.getElementById('solution');
+            solutionBox.classList.add('visible');
+            
+            const resultDiv = document.getElementById('result');
+            
+            if (selectedAnswer === false) {
+                resultDiv.textContent = 'Tebrikler! Doğru cevap.';
+                resultDiv.className = 'result-message correct';
+            } else if (selectedAnswer === true) {
+                resultDiv.textContent = 'Yanlış cevap. Doğru cevap: YANLIŞ';
+                resultDiv.className = 'result-message incorrect';
+            }
+            
+            if (selectedAnswer !== null) {
+                resultDiv.style.display = 'block';
+            }
+            
+            localStorage.setItem('soru-P2-13', 'completed');
+        }
+    </script>
+</body>
+</html>

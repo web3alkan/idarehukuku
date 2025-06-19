@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru 299</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>İdare Hukuku Soruları</h1>
+            <div class="question-number">Soru 299</div>
+        </header>
+
+        <nav class="navigation">
+            <a href="soru-298.html" class="nav-btn">← Önceki</a>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <a href="soru-300.html" class="nav-btn">Sonraki →</a>
+        </nav>
+
+        <div class="content">
+            <div class="image-container">
+                <img src="Kamusal Alan İdare Hukuku_page-0299.jpg" alt="Sayfa 299" class="page-image">
+            </div>
+
+            <div class="question-container">
+                <h2>Soru</h2>
+                <p class="question-text">
+                    Bu bölüm normalde Genel İdare Hukuku Teorisinde yer almamaktadır. Ancak farklı sınavlara çalışan birçok dostumuz bulunduğundan en azından basit birkaç soruyu yakalamanızı sağlaması açısından benim için kıymetli bir bölümdür. 
+                    <br><br>
+                    Türk İdari Teşkilat dersimizin adı ____________ şeklindedir.
+                </p>
+
+                <div class="fill-blank">
+                    <label for="blank-answer">Cevabınızı yazın:</label>
+                    <input type="text" id="blank-answer" name="blank-answer" placeholder="Ders adını yazın">
+                </div>
+
+                <button onclick="checkAnswer()" class="submit-btn">Cevabı Kontrol Et</button>
+                <div id="result" class="result"></div>
+                <div id="explanation" class="explanation" style="display: none;">
+                    <strong>Açıklama:</strong> Türk İdari Teşkilat dersinin tam adı "TÜRK İDARİ TEŞKİLATI HUKUKU"dur.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const answer = document.getElementById('blank-answer').value.trim().toLowerCase();
+            const resultDiv = document.getElementById('result');
+            const explanationDiv = document.getElementById('explanation');
+            
+            if (!answer) {
+                resultDiv.innerHTML = '<p style="color: orange;">Lütfen bir cevap girin.</p>';
+                return;
+            }
+            
+            if (answer.includes('türk idari teşkilatı hukuku') || answer.includes('türk i̇dari teşkilatı hukuku')) {
+                resultDiv.innerHTML = '<p style="color: green;">✓ Doğru! Tebrikler.</p>';
+                localStorage.setItem('soru299', 'completed');
+            } else {
+                resultDiv.innerHTML = '<p style="color: red;">✗ Yanlış. Doğru cevap: TÜRK İDARİ TEŞKİLATI HUKUKU</p>';
+            }
+            
+            explanationDiv.style.display = 'block';
+        }
+
+        window.onload = function() {
+            if (localStorage.getItem('soru299') === 'completed') {
+                document.body.classList.add('completed');
+            }
+        }
+    </script>
+</body>
+</html>

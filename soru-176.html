@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 176</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Sayfa 176</h1>
+            <div class="progress-indicator">Soru 176 / 220</div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn" onclick="goToPrevious()">← Önceki</button>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <button class="nav-btn" onclick="goToNext()">Sonraki →</button>
+        </div>
+        
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0176.jpg" alt="Sayfa 176" />
+            </div>
+            
+            <div class="question-section">
+                <div class="question-title">
+                    İdari şerh ile ilgili aşağıdaki cümleyi tamamlayınız:
+                </div>
+                
+                <div class="fill-blank">
+                    <p>İdare kamulaştırma kararı verdikten sonra kamulaştırmanın tapu siciline şerh verilmesini kamulaştırmaya konu taşınmaz malın kayıtlı bulunduğu tapu idaresine bildirir. İdare tarafından, şerh tarihinden itibaren altı ay için de kamulaştırma bedelinin tespitiyle idare adına tescili isteğinde bulunulduğuna dair mahkemeden alınacak belge tapu idaresine 
+                    <input type="text" id="answer" placeholder="Cevabınızı yazın"> edilmediği takdirde, bu şerh tapu idaresince resen sicilden silinir.</p>
+                </div>
+                
+                <div class="answer-section">
+                    <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <div id="result" class="result" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let answered = false;
+        const correctAnswer = "ibraz";
+
+        function checkAnswer() {
+            if (answered) return;
+            
+            const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+            const resultDiv = document.getElementById('result');
+            
+            answered = true;
+
+            if (userAnswer === correctAnswer.toLowerCase()) {
+                resultDiv.innerHTML = '✅ Doğru! "İbraz" kelimesi doğru cevaptır. Belgenin tapu idaresine ibraz edilmesi gerekir.';
+                resultDiv.className = 'result correct';
+                updateProgress(176, true);
+            } else {
+                resultDiv.innerHTML = `❌ Yanlış! Doğru cevap "${correctAnswer}"dır. Bu terim, belgenin tapu idaresine gösterilmesi/sunulması anlamında kullanılır.`;
+                resultDiv.className = 'result incorrect';
+                updateProgress(176, false);
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        function updateProgress(questionNumber, isCorrect) {
+            let progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            progress[questionNumber] = {
+                completed: true,
+                correct: isCorrect,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('examProgress', JSON.stringify(progress));
+        }
+
+        function goToPrevious() {
+            window.location.href = 'soru-175.html';
+        }
+
+        function goToNext() {
+            window.location.href = 'soru-177.html';
+        }
+
+        // Allow enter key to submit
+        document.getElementById('answer').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkAnswer();
+            }
+        });
+
+        window.onload = function() {
+            const progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            if (progress[176] && progress[176].completed) {
+                document.querySelector('.header h1').innerHTML += ' <span class="completed-badge">Tamamlandı</span>';
+            }
+        }
+    </script>
+</body>
+</html>

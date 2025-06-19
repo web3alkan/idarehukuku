@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru P1-12</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku Sınavı - 2. Dönem 1. Part</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P1-11.html" class="nav-button">Önceki Soru</a>
+            <span class="page-info">Soru P1-12 / 25</span>
+            <a href="soru-P1-13.html" class="nav-button">Sonraki Soru</a>
+        </div>
+        
+        <div class="content">
+            <div class="question-section">
+                <h2 class="question-title">Soru 12: İdari Yaptırımlar</h2>
+                <p class="question-text">İdari para cezaları, sadece kanunla düzenlenebilir ve takdir yetkisi tanınamaz.</p>
+                
+                <div class="true-false">
+                    <button onclick="selectAnswer('true')">DOĞRU</button>
+                    <button onclick="selectAnswer('false')">YANLIŞ</button>
+                </div>
+                
+                <button class="check-button" onclick="checkAnswer()" style="display: block; margin: 20px auto;">Cevabı Kontrol Et</button>
+                <button class="show-solution-btn" onclick="showSolution()">Çözümü Göster</button>
+                
+                <div class="result-message" id="result" style="display: none;"></div>
+                
+                <div class="solution-box" id="solution">
+                    <h3>Çözüm:</h3>
+                    <div class="correct-answer">Doğru Cevap: YANLIŞ</div>
+                    <div class="explanation-text">
+                        İdari para cezalarında takdir yetkisi tanınabilir. Anayasa'nın 38. maddesine göre 
+                        idari para cezaları kanunla düzenlenir, ancak bu cezaların alt ve üst sınırları 
+                        belirlenerek idareye takdir yetkisi verilebilir. Önemli olan, cezanın temel 
+                        unsurlarının kanunla düzenlenmesi ve keyfi uygulamaların önlenmesidir.
+                    </div>
+                    <div class="pdf-source"><strong>Kaynak:</strong> İdare Hukuku Notu 2.dönem 1.part.pdf</div>
+                </div>
+            </div>
+            
+            <div class="navigation" style="margin-top: 30px;">
+                <a href="index.html" class="nav-button">Ana Sayfaya Dön</a>
+                <a href="soru-P1-13.html" class="nav-button">Sonraki Soru</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let selectedAnswer = '';
+        const correctAnswer = 'false';
+        
+        function selectAnswer(answer) {
+            document.querySelectorAll('.true-false button').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+            selectedAnswer = answer;
+        }
+        
+        function checkAnswer() {
+            if (!selectedAnswer) {
+                alert('Lütfen bir cevap seçiniz!');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('result');
+            
+            if (selectedAnswer === correctAnswer) {
+                resultDiv.className = 'result-message correct';
+                resultDiv.textContent = 'Tebrikler! Doğru cevap.';
+                markQuestionCompleted();
+            } else {
+                resultDiv.className = 'result-message incorrect';
+                resultDiv.textContent = 'Yanlış cevap. Tekrar deneyiniz veya çözümü gösteriniz.';
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+        
+        function showSolution() {
+            const solutionDiv = document.getElementById('solution');
+            solutionDiv.classList.add('visible');
+            markQuestionCompleted();
+        }
+        
+        function markQuestionCompleted() {
+            localStorage.setItem('soru-P1-12', 'completed');
+        }
+        
+        window.onload = function() {
+            if (localStorage.getItem('soru-P1-12') === 'completed') {
+                const solutionDiv = document.getElementById('solution');
+                solutionDiv.classList.add('visible');
+            }
+        };
+    </script>
+</body>
+</html>

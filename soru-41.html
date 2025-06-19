@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 41 - İl İdaresi ve İl Özel İdaresi Farkı</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="previousQuestion()" class="nav-btn">← Önceki</button>
+            <button onclick="goHome()" class="nav-btn home">🏠 Ana Sayfa</button>
+            <button onclick="nextQuestion()" class="nav-btn">Sonraki →</button>
+        </div>
+
+        <div class="question-container">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0041.jpg" alt="Sayfa 41" class="page-image">
+            </div>
+
+            <div class="question-content">
+                <h2>Soru 41</h2>
+                <p class="question-text">
+                    "Hocam ben İl İdaresi ile İl Özel İdaresinin organlarını nasıl karıştırmam" sorusuna göre, 
+                    aşağıdaki karşılaştırma tablosunu doğru şekilde tamamlayınız:
+                </p>
+
+                <div class="comparison-exercise">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Özellik</th>
+                                <th>Taşra Başkentinin Gölgesidir (İl İdaresi)</th>
+                                <th>Yerel Yönetimler de Devlet Gibi Bağımsızdır</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Başkent → Gölgesi</strong><br><small>(taşrada karşılığı)</small></td>
+                                <td>
+                                    <select class="answer-select" id="q1">
+                                        <option value="">Seçiniz...</option>
+                                        <option value="cumhurbaskani-vali">Cumhurbaşkanı → Vali</option>
+                                        <option value="bakanliklar-mudurler">Bakanlıklar → İl Müdürleri</option>
+                                        <option value="yasama-meclis">Yasama → İl Genel Meclisi</option>
+                                        <option value="yurutme-encumen">Yürütme → İl Encümeni</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="answer-select" id="q2">
+                                        <option value="">Seçiniz...</option>
+                                        <option value="devletin-erkleri">Devletin Erkleri</option>
+                                        <option value="ozel-idarenin-erkleri">Özel İdarenin Erkleri</option>
+                                        <option value="yasama-yurutme">Yasama → İl Genel Meclisi, Yürütme → Vali</option>
+                                        <option value="yargi-yurutme">Yargı → İl Encümeni</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Çalışma Prensibi</strong></td>
+                                <td>
+                                    <select class="answer-select" id="q3">
+                                        <option value="">Seçiniz...</option>
+                                        <option value="ozerk">Özerk</option>
+                                        <option value="bagimli">Bağımlı</option>
+                                        <option value="bagimsiz">Bağımsız</option>
+                                        <option value="karma">Karma</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="answer-select" id="q4">
+                                        <option value="">Seçiniz...</option>
+                                        <option value="ozerk">Özerk</option>
+                                        <option value="bagimli">Bağımlı</option>
+                                        <option value="bagimsiz">Bağımsız</option>
+                                        <option value="karma">Karma</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Personel Durumu</strong></td>
+                                <td>
+                                    <select class="answer-select" id="q5">
+                                        <option value="">Seçiniz...</option>
+                                        <option value="devlet-personeli">Devlet Personeli</option>
+                                        <option value="ozel-personel">Özel İdare Personeli</option>
+                                        <option value="karma-personel">Karma Personel</option>
+                                        <option value="secmeli">Seçmeli</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="answer-select" id="q6">
+                                        <option value="">Seçiniz...</option>
+                                        <option value="devlet-personeli">Devlet Personeli</option>
+                                        <option value="ozel-personel">Özel İdare Personeli</option>
+                                        <option value="karma-personel">Karma Personel</option>
+                                        <option value="secmeli">Seçmeli</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="answer-section">
+                    <button onclick="checkAnswer()" class="check-btn">Cevabı Kontrol Et</button>
+                    <div id="result" class="result"></div>
+                    <div id="explanation" class="explanation"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            q1: 'cumhurbaskani-vali', // Cumhurbaşkanı → Vali
+            q2: 'ozel-idarenin-erkleri', // Özel İdarenin Erkleri  
+            q3: 'bagimli', // Bağımlı
+            q4: 'ozerk', // Özerk
+            q5: 'devlet-personeli', // Devlet Personeli
+            q6: 'ozel-personel' // Özel İdare Personeli
+        };
+
+        function checkAnswer() {
+            const resultDiv = document.getElementById('result');
+            const explanationDiv = document.getElementById('explanation');
+            
+            let correctCount = 0;
+            let totalQuestions = Object.keys(correctAnswers).length;
+            let allAnswered = true;
+            
+            for (let questionId in correctAnswers) {
+                const selectedValue = document.getElementById(questionId).value;
+                if (!selectedValue) {
+                    allAnswered = false;
+                    break;
+                }
+                if (selectedValue === correctAnswers[questionId]) {
+                    correctCount++;
+                }
+            }
+            
+            if (!allAnswered) {
+                resultDiv.innerHTML = '<p style="color: orange;">Lütfen tüm soruları cevaplayınız.</p>';
+                return;
+            }
+            
+            const percentage = Math.round((correctCount / totalQuestions) * 100);
+            
+            if (percentage >= 85) {
+                resultDiv.innerHTML = `<p style="color: green;">✓ Mükemmel! ${correctCount}/${totalQuestions} doğru cevap. (${percentage}%)</p>`;
+                localStorage.setItem('soru41_completed', 'true');
+            } else if (percentage >= 70) {
+                resultDiv.innerHTML = `<p style="color: orange;">İyi! ${correctCount}/${totalQuestions} doğru cevap. (${percentage}%)</p>`;
+            } else {
+                resultDiv.innerHTML = `<p style="color: red;">✗ ${correctCount}/${totalQuestions} doğru cevap. (${percentage}%) Tekrar deneyin.</p>`;
+            }
+            
+            const explanation = `
+                <div class="explanation-content">
+                    <strong>Doğru Cevaplar:</strong><br><br>
+                    
+                    <strong>Taşra Başkentinin Gölgesidir (İl İdaresi):</strong><br>
+                    • Başkent → Gölgesi: <em>Cumhurbaşkanı → Vali</em><br>
+                    • Çalışma Prensibi: <em>Bağımlı</em><br>
+                    • Personel Durumu: <em>Devlet Personeli</em><br><br>
+                    
+                    <strong>Yerel Yönetimler de Devlet Gibi Bağımsızdır (İl Özel İdaresi):</strong><br>
+                    • Organlar: <em>Özel İdarenin Erkleri</em><br>
+                    • Çalışma Prensibi: <em>Özerk</em><br>
+                    • Personel Durumu: <em>Özel İdare Personeli</em><br><br>
+                    
+                    <strong>Temel Fark:</strong><br>
+                    İl İdaresi merkezi yönetimin taşra teşkilatıdır ve doğrudan devlete bağlıdır. 
+                    İl Özel İdaresi ise yerel yönetim birimi olarak özerk çalışır ve kendi 
+                    tüzel kişiliğine sahiptir. Vali her iki yapıda da bulunur ancak farklı 
+                    rollerle görev yapar.
+                </div>
+            `;
+            
+            explanationDiv.innerHTML = explanation;
+        }
+
+        function previousQuestion() {
+            window.location.href = 'soru-40.html';
+        }
+
+        function nextQuestion() {
+            window.location.href = 'soru-42.html';
+        }
+
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+
+        // Load completion status
+        window.onload = function() {
+            if (localStorage.getItem('soru41_completed') === 'true') {
+                document.getElementById('result').innerHTML = '<p style="color: blue;">Bu soruyu daha önce doğru cevapladınız.</p>';
+            }
+        }
+
+        // CSS for table styling
+        const style = document.createElement('style');
+        style.textContent = `
+            .comparison-exercise {
+                margin: 20px 0;
+                overflow-x: auto;
+            }
+            .comparison-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                background-color: #fff;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .comparison-table th,
+            .comparison-table td {
+                border: 1px solid #ddd;
+                padding: 15px;
+                text-align: left;
+                vertical-align: top;
+            }
+            .comparison-table th {
+                background-color: #f2f2f2;
+                font-weight: bold;
+                color: #333;
+            }
+            .comparison-table tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .answer-select {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 14px;
+                background-color: white;
+            }
+            .answer-select:focus {
+                border-color: #2196F3;
+                outline: none;
+            }
+            @media (max-width: 768px) {
+                .comparison-table {
+                    font-size: 12px;
+                }
+                .comparison-table th,
+                .comparison-table td {
+                    padding: 8px;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

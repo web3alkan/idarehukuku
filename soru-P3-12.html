@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru P3-12: İdari Yargı Sisteminde Görevlilik</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Soru P3-12: İdari Yargı Sisteminde Görevlilik</h1>
+        
+        <div class="question-box">
+            <div class="question">
+                <p>Hangi mahkemeler hangi tür davalara bakar? Doğru eşleştirmeyi yapınız:</p>
+                <div class="options">
+                    <label><input type="radio" name="cevap" value="A"> A) Vergi mahkemeleri - Tüm vergi uyuşmazlıkları</label>
+                    <label><input type="radio" name="cevap" value="B"> B) İdare mahkemeleri - Tüm idari uyuşmazlıklar</label>
+                    <label><input type="radio" name="cevap" value="C"> C) Bölge idare mahkemeleri - Sadece istinaf davaları</label>
+                    <label><input type="radio" name="cevap" value="D"> D) Danıştay - Hem ilk derece hem temyiz davaları</label>
+                    <label><input type="radio" name="cevap" value="E"> E) Tüm seçenekler doğrudur</label>
+                </div>
+            </div>
+            
+            <button onclick="gosterCozum()" class="cozum-button">Çözümü Göster</button>
+            
+            <div id="cozum" class="cozum-box" style="display: none;">
+                <h3>Çözüm:</h3>
+                <p><strong>Doğru Cevap: D) Danıştay - Hem ilk derece hem temyiz davaları</strong></p>
+                
+                <div class="gorevlilik-analizi">
+                    <h4>Seçeneklerin Analizi:</h4>
+                    <ul>
+                        <li><strong>A Seçeneği (Yanlış):</strong> Vergi mahkemeleri sadece belirli vergi uyuşmazlıklarına bakar, tümüne değil.</li>
+                        <li><strong>B Seçeneği (Yanlış):</strong> İdare mahkemeleri genel görevli olmakla birlikte özel mahkemelerin görevindeki konulara bakamaz.</li>
+                        <li><strong>C Seçeneği (Yanlış):</strong> Bölge idare mahkemeleri genellikle istinaf mahkemesi olmakla birlikte bazı konularda ilk derece de olabilir.</li>
+                        <li><strong>D Seçeneği (Doğru):</strong> Danıştay hem belirli konularda ilk derece hem de temyiz mahkemesi olarak görev yapar.</li>
+                    </ul>
+                </div>
+                
+                <div class="gorevlilik-tablosu">
+                    <h4>Görevlilik Dağılımı:</h4>
+                    <table class="gorev-table">
+                        <tr>
+                            <th>Mahkeme</th>
+                            <th>Görevli Olduğu Davalar</th>
+                        </tr>
+                        <tr>
+                            <td><strong>İdare Mahkemeleri</strong></td>
+                            <td>Genel idari uyuşmazlıklar (özel görevliler hariç)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vergi Mahkemeleri</strong></td>
+                            <td>Vergi, gümrük, harç, benzin davaları</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bölge İdare Mah.</strong></td>
+                            <td>İstinaf + bazı ilk derece davalar</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Danıştay</strong></td>
+                            <td>Temyiz + önemli ilk derece davalar</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="danistay-ilk-derece">
+                    <h4>Danıştay'ın İlk Derece Görevli Olduğu Davalar:</h4>
+                    <ul>
+                        <li>Bakanlara karşı açılan davalar</li>
+                        <li>Kanun hükmünde kararname iptali davaları</li>
+                        <li>Yönetmelik iptali davaları</li>
+                        <li>Ülke genelini ilgilendiren işlemler</li>
+                        <li>Kamu kurumu niteliğindeki meslek kuruluşlarının genel kurullarına karşı davalar</li>
+                    </ul>
+                </div>
+                
+                <div class="kaynak">
+                    <p><strong>Kaynak:</strong> İdare hukuku notu 2.dönem 3.part.pdf</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P3-11.html" class="nav-button">← Önceki Soru</a>
+            <a href="soru-P3-13.html" class="nav-button">Sonraki Soru →</a>
+        </div>
+    </div>
+    
+    <script>
+        function gosterCozum() {
+            document.getElementById('cozum').style.display = 'block';
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            cozumler['soru-P3-12'] = true;
+            localStorage.setItem('gosterilenCozumler', JSON.stringify(cozumler));
+        }
+        
+        window.onload = function() {
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            if (cozumler['soru-P3-12']) {
+                document.getElementById('cozum').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

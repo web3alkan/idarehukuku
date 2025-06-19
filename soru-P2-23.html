@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Sorusu - P2-23</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - İdarenin Sorumluluğu</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P2-22.html" class="nav-button">Önceki</a>
+            <span class="page-info">Soru P2-23</span>
+            <a href="soru-P2-24.html" class="nav-button">Sonraki</a>
+        </div>
+        
+        <div class="content">
+            <div class="question-section">
+                <div class="question-title">Soru 23: İdarenin Kusursuz Sorumluluğu</div>
+                <div class="question-text">
+                    İdarenin kusursuz sorumluluğu hangi hallerde söz konusu olur?
+                </div>
+                
+                <ul class="options">
+                    <li onclick="selectOption(this, 'A')">A) Sadece kamu görevlilerinin kusurlu davranışlarında</li>
+                    <li onclick="selectOption(this, 'B')">B) Kamu hizmetinde meydana gelen ağır kusurlar halinde</li>
+                    <li onclick="selectOption(this, 'C')">C) Risk esasına dayalı zararlar ve sosyal risk teorisi kapsamındaki zararlar</li>
+                    <li onclick="selectOption(this, 'D')">D) Sadece trafik kazalarında</li>
+                    <li onclick="selectOption(this, 'E')">E) Yalnızca doğal afetlerde</li>
+                </ul>
+                
+                <button class="show-solution-btn" onclick="showSolution()">Çözümü Göster</button>
+                
+                <div class="solution-box" id="solution">
+                    <h3>Çözüm:</h3>
+                    <div class="correct-answer">Doğru Cevap: C) Risk esasına dayalı zararlar ve sosyal risk teorisi kapsamındaki zararlar</div>
+                    <div class="explanation-text">
+                        İdarenin kusursuz sorumluluğu iki temel teoriye dayanır:
+                        
+                        1. <strong>Risk Teorisi</strong>: İdarenin faaliyetlerinin yaratığı tehlikeden doğan zararlar
+                           (Örnek: Askeri tatbikatlar, patlayıcı madde nakliyesi, nükleer enerji faaliyetleri)
+                        
+                        2. <strong>Sosyal Risk Teorisi</strong>: Kamu hizmetinin yürütülmesi sırasında bazı kişilerin 
+                           kamu yararı uğruna katlandığı özel fedakarlıklar
+                           (Örnek: Kamulaştırma, bazı ekonomik düzenlemeler)
+                        
+                        Bu hallerde idare, kusuru olmasa bile sorumlu tutulur. Çünkü bu faaliyetler kamu yararına 
+                        yapılmakta ve bireyler bu risklerle karşı karşıya kalmaktadır.
+                    </div>
+                    <div class="pdf-source"><strong>Kaynak:</strong> İdare Hukuku notu 2.dönem 2.part.pdf</div>
+                </div>
+            </div>
+            
+            <div class="result-message" id="result" style="display: none;"></div>
+        </div>
+    </div>
+    
+    <script>
+        let selectedOption = null;
+        
+        function selectOption(element, option) {
+            const allOptions = document.querySelectorAll('.options li');
+            allOptions.forEach(opt => opt.classList.remove('selected'));
+            
+            element.classList.add('selected');
+            selectedOption = option;
+        }
+        
+        function showSolution() {
+            const solutionBox = document.getElementById('solution');
+            solutionBox.classList.add('visible');
+            
+            const allOptions = document.querySelectorAll('.options li');
+            allOptions[2].classList.add('correct'); // C şıkkı
+            
+            if (selectedOption && selectedOption !== 'C') {
+                allOptions.forEach((opt, index) => {
+                    if (opt.classList.contains('selected') && index !== 2) {
+                        opt.classList.add('incorrect');
+                    }
+                });
+            }
+            
+            localStorage.setItem('soru-P2-23', 'completed');
+        }
+    </script>
+</body>
+</html>

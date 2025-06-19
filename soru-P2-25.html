@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Sorusu - P2-25</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - İdari Usul İlkeleri</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P2-24.html" class="nav-button">Önceki</a>
+            <span class="page-info">Soru P2-25</span>
+            <a href="index.html" class="nav-button">Ana Sayfa</a>
+        </div>
+        
+        <div class="content">
+            <div class="question-section">
+                <div class="question-title">Soru 25: İdari Usul İlkeleri Eşleştirme</div>
+                <div class="question-text">
+                    Aşağıdaki idari usul ilkeleri ile açıklamalarını eşleştiriniz.
+                </div>
+                
+                <div class="matching-container">
+                    <div class="matching-column">
+                        <h4>İlkeler</h4>
+                        <div class="matching-item" data-id="1" onclick="selectItem(this, 'left')">1. Dinlenilme Hakkı</div>
+                        <div class="matching-item" data-id="2" onclick="selectItem(this, 'left')">2. Gerekçe Gösterme</div>
+                        <div class="matching-item" data-id="3" onclick="selectItem(this, 'left')">3. Orantılılık İlkesi</div>
+                        <div class="matching-item" data-id="4" onclick="selectItem(this, 'left')">4. Makul Süre</div>
+                    </div>
+                    <div class="matching-column">
+                        <h4>Açıklamalar</h4>
+                        <div class="matching-item" data-id="A" onclick="selectItem(this, 'right')">A. İdari işlemler gereksiz gecikme olmaksızın tamamlanmalıdır</div>
+                        <div class="matching-item" data-id="B" onclick="selectItem(this, 'right')">B. İdarenin tedbiri amaçla orantılı olmalıdır</div>
+                        <div class="matching-item" data-id="C" onclick="selectItem(this, 'right')">C. İlgilinin görüşünü açıklama imkanı tanınmalıdır</div>
+                        <div class="matching-item" data-id="D" onclick="selectItem(this, 'right')">D. İdari işlemin dayanağı açıklanmalıdır</div>
+                    </div>
+                </div>
+                
+                <div class="match-result" id="matchResult"></div>
+                
+                <button class="check-button" onclick="checkMatches()">Eşleştirmeleri Kontrol Et</button>
+                <button class="show-solution-btn" onclick="showSolution()">Çözümü Göster</button>
+                
+                <div class="solution-box" id="solution">
+                    <h3>Çözüm:</h3>
+                    <div class="correct-answer">
+                        Doğru Eşleştirmeler:<br>
+                        1 - C (Dinlenilme Hakkı - İlgilinin görüşünü açıklama imkanı tanınmalıdır)<br>
+                        2 - D (Gerekçe Gösterme - İdari işlemin dayanağı açıklanmalıdır)<br>
+                        3 - B (Orantılılık İlkesi - İdarenin tedbiri amaçla orantılı olmalıdır)<br>
+                        4 - A (Makul Süre - İdari işlemler gereksiz gecikme olmaksızın tamamlanmalıdır)
+                    </div>
+                    <div class="explanation-text">
+                        İdari usul ilkeleri, idarenin işlem yaparken uyması gereken temel kurallardır:
+                        
+                        1. <strong>Dinlenilme Hakkı</strong>: İlgilinin savunma hakkı, görüş bildirme imkanı
+                        2. <strong>Gerekçe Gösterme</strong>: İşlemin nedenlerinin açıklanması zorunluluğu
+                        3. <strong>Orantılılık</strong>: Amaç-araç orantısı, en az zarar verici yöntemin seçilmesi
+                        4. <strong>Makul Süre</strong>: İdari işlemlerin gereksiz gecikme olmaksızın yapılması
+                        
+                        Bu ilkeler, hukuk devleti ve iyi yönetim ilkelerinin gereğidir.
+                    </div>
+                    <div class="pdf-source"><strong>Kaynak:</strong> İdare Hukuku notu 2.dönem 2.part.pdf</div>
+                </div>
+            </div>
+            
+            <div class="completion-message" style="text-align: center; margin-top: 30px; padding: 20px; background-color: #e8f5e8; border-radius: 8px;">
+                <h3 style="color: #2d5016;">Tebrikler!</h3>
+                <p>İdare Hukuku 2. Dönem 2. Part sorularının tamamını bitirdiniz.</p>
+                <a href="index.html" class="nav-button" style="display: inline-block; margin-top: 10px;">Ana Sayfaya Dön</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let selectedLeft = null;
+        let selectedRight = null;
+        let matches = {};
+        
+        function selectItem(element, side) {
+            const items = document.querySelectorAll(`.matching-column .matching-item`);
+            
+            if (side === 'left') {
+                items.forEach(item => {
+                    if (item.parentElement.querySelector('h4').textContent === 'İlkeler') {
+                        item.classList.remove('selected');
+                    }
+                });
+                element.classList.add('selected');
+                selectedLeft = element.dataset.id;
+                
+                if (selectedRight) {
+                    matches[selectedLeft] = selectedRight;
+                    selectedLeft = null;
+                    selectedRight = null;
+                    items.forEach(item => item.classList.remove('selected'));
+                }
+            } else {
+                items.forEach(item => {
+                    if (item.parentElement.querySelector('h4').textContent === 'Açıklamalar') {
+                        item.classList.remove('selected');
+                    }
+                });
+                element.classList.add('selected');
+                selectedRight = element.dataset.id;
+                
+                if (selectedLeft) {
+                    matches[selectedLeft] = selectedRight;
+                    selectedLeft = null;
+                    selectedRight = null;
+                    items.forEach(item => item.classList.remove('selected'));
+                }
+            }
+            
+            updateMatchDisplay();
+        }
+        
+        function updateMatchDisplay() {
+            const resultDiv = document.getElementById('matchResult');
+            let html = '<h4>Yapılan Eşleştirmeler:</h4>';
+            
+            for (let left in matches) {
+                html += `<p>${left} → ${matches[left]}</p>`;
+            }
+            
+            resultDiv.innerHTML = html;
+        }
+        
+        function checkMatches() {
+            const correctMatches = {
+                '1': 'C',
+                '2': 'D',
+                '3': 'B',
+                '4': 'A'
+            };
+            
+            let allCorrect = true;
+            for (let key in correctMatches) {
+                if (matches[key] !== correctMatches[key]) {
+                    allCorrect = false;
+                    break;
+                }
+            }
+            
+            const resultDiv = document.getElementById('matchResult');
+            if (allCorrect && Object.keys(matches).length === 4) {
+                resultDiv.innerHTML += '<p class="result-message correct">Tebrikler! Tüm eşleştirmeler doğru!</p>';
+            } else {
+                resultDiv.innerHTML += '<p class="result-message incorrect">Bazı eşleştirmeler yanlış. Tekrar deneyin.</p>';
+            }
+        }
+        
+        function showSolution() {
+            const solutionBox = document.getElementById('solution');
+            solutionBox.classList.add('visible');
+            
+            localStorage.setItem('soru-P2-25', 'completed');
+        }
+    </script>
+</body>
+</html>

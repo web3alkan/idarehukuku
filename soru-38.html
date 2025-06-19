@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 38 - Kamu Tüzel Kişisi Olmamanın Sonuçları</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="previousQuestion()" class="nav-btn">← Önceki</button>
+            <button onclick="goHome()" class="nav-btn home">🏠 Ana Sayfa</button>
+            <button onclick="nextQuestion()" class="nav-btn">Sonraki →</button>
+        </div>
+
+        <div class="question-container">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0038.jpg" alt="Sayfa 38" class="page-image">
+            </div>
+
+            <div class="question-content">
+                <h2>Soru 38</h2>
+                <p class="question-text">
+                    Aşağıdakilerden hangisi "Kamu Tüzel Kişisi Olmamanın Ne Gibi Sonuçları Vardır?" sorusuna doğru cevap verir?
+                </p>
+
+                <div class="true-false-group">
+                    <div class="statement">
+                        <strong>Aşağıdaki ifadelerin doğru (D) veya yanlış (Y) olduğunu belirtiniz:</strong>
+                    </div>
+
+                    <div class="tf-item">
+                        <span class="statement-text">1. Kendine has bütçeleri bulunur.</span>
+                        <div class="tf-options">
+                            <label><input type="radio" name="q1" value="D"> Doğru</label>
+                            <label><input type="radio" name="q1" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+
+                    <div class="tf-item">
+                        <span class="statement-text">2. Kararlarını özerk bir şekilde alırlar.</span>
+                        <div class="tf-options">
+                            <label><input type="radio" name="q2" value="D"> Doğru</label>
+                            <label><input type="radio" name="q2" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+
+                    <div class="tf-item">
+                        <span class="statement-text">3. Her birinin personeli kendi personelidir, devlet personeli denilmez.</span>
+                        <div class="tf-options">
+                            <label><input type="radio" name="q3" value="D"> Doğru</label>
+                            <label><input type="radio" name="q3" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+
+                    <div class="tf-item">
+                        <span class="statement-text">4. Kamunun kullanımına sunulmuş olan malları kamu malıdır.</span>
+                        <div class="tf-options">
+                            <label><input type="radio" name="q4" value="D"> Doğru</label>
+                            <label><input type="radio" name="q4" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+
+                    <div class="tf-item">
+                        <span class="statement-text">5. Ayrıksı haller yasada belirtilmedikçe Meclis adına Sayıştay tarafından denetlenir.</span>
+                        <div class="tf-options">
+                            <label><input type="radio" name="q5" value="D"> Doğru</label>
+                            <label><input type="radio" name="q5" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+
+                    <div class="tf-item">
+                        <span class="statement-text">6. Ayrıksı haller yasada belirtilmedikçe Cumhurbaşkanı adına DDK tarafından denetlenir.</span>
+                        <div class="tf-options">
+                            <label><input type="radio" name="q6" value="D"> Doğru</label>
+                            <label><input type="radio" name="q6" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+
+                    <div class="tf-item">
+                        <span class="statement-text">7. Kamulaştırma yapabilir, borçlanabilir, ihaleye çıkabilirler.</span>
+                        <div class="tf-options">
+                            <label><input type="radio" name="q7" value="D"> Doğru</label>
+                            <label><input type="radio" name="q7" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer-section">
+                    <button onclick="checkAnswer()" class="check-btn">Cevabı Kontrol Et</button>
+                    <div id="result" class="result"></div>
+                    <div id="explanation" class="explanation"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // These are the CONSEQUENCES of NOT being a public legal entity
+        const correctAnswers = {
+            q1: 'Y', // Kendine has bütçeleri bulunur - YANLIŞ (kamu tüzel kişisi olmayanlar için)
+            q2: 'Y', // Kararlarını özerk bir şekilde alırlar - YANLIŞ
+            q3: 'Y', // Her birinin personeli kendi personelidir - YANLIŞ
+            q4: 'Y', // Kamunun kullanımına sunulmuş olan malları kamu malıdır - YANLIŞ
+            q5: 'Y', // Sayıştay tarafından denetlenir - YANLIŞ
+            q6: 'Y', // DDK tarafından denetlenir - YANLIŞ  
+            q7: 'Y'  // Kamulaştırma yapabilir, borçlanabilir, ihaleye çıkabilirler - YANLIŞ
+        };
+
+        const explanation = `
+            <strong>Kamu Tüzel Kişisi Olmamanın Sonuçları:</strong><br><br>
+            
+            Kamu tüzel kişisi OLMAYAN birimler için tüm ifadeler YANLIŞTIR çünkü:<br><br>
+            
+            ✗ Kendine has bütçeleri BULUNMAZ<br>
+            ✗ Kararlarını özerk bir şekilde ALAMAZLAR<br>
+            ✗ Personeli kendi personeli OLAMAZ, devlet personeli OLAMAZ<br>
+            ✗ Malları kamu malı OLAMAZ<br>
+            ✗ Sayıştay tarafından DENETLENEMEZ<br>
+            ✗ DDK tarafından DENETLENEMEZ<br>
+            ✗ Kamulaştırma YAPAMAZLAR, borçlanabilir, ihaleye ÇIKAMAZLAR<br><br>
+            
+            <strong>Önemli:</strong> Bu özellikler sadece kamu tüzel kişiliği OLAN kurumlar için geçerlidir. 
+            Kamu tüzel kişiliği olmayan birimler bu yetkilere sahip değildir.
+        `;
+
+        function checkAnswer() {
+            const resultDiv = document.getElementById('result');
+            const explanationDiv = document.getElementById('explanation');
+            
+            let correctCount = 0;
+            let totalQuestions = Object.keys(correctAnswers).length;
+            let allAnswered = true;
+            
+            for (let questionId in correctAnswers) {
+                const selectedAnswer = document.querySelector(`input[name="${questionId}"]:checked`);
+                if (!selectedAnswer) {
+                    allAnswered = false;
+                    break;
+                }
+                if (selectedAnswer.value === correctAnswers[questionId]) {
+                    correctCount++;
+                }
+            }
+            
+            if (!allAnswered) {
+                resultDiv.innerHTML = '<p style="color: orange;">Lütfen tüm soruları cevaplayınız.</p>';
+                return;
+            }
+            
+            const percentage = Math.round((correctCount / totalQuestions) * 100);
+            
+            if (percentage >= 85) {
+                resultDiv.innerHTML = `<p style="color: green;">✓ Mükemmel! ${correctCount}/${totalQuestions} doğru cevap. (${percentage}%)</p>`;
+                localStorage.setItem('soru38_completed', 'true');
+            } else if (percentage >= 70) {
+                resultDiv.innerHTML = `<p style="color: orange;">İyi! ${correctCount}/${totalQuestions} doğru cevap. (${percentage}%)</p>`;
+            } else {
+                resultDiv.innerHTML = `<p style="color: red;">✗ ${correctCount}/${totalQuestions} doğru cevap. (${percentage}%) Tekrar deneyin.</p>`;
+            }
+            
+            explanationDiv.innerHTML = '<div class="explanation-content">' + explanation + '</div>';
+        }
+
+        function previousQuestion() {
+            window.location.href = 'soru-37.html';
+        }
+
+        function nextQuestion() {
+            window.location.href = 'soru-39.html';
+        }
+
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+
+        // Load completion status
+        window.onload = function() {
+            if (localStorage.getItem('soru38_completed') === 'true') {
+                document.getElementById('result').innerHTML = '<p style="color: blue;">Bu soruyu daha önce doğru cevapladınız.</p>';
+            }
+        }
+
+        // CSS for true/false styling
+        const style = document.createElement('style');
+        style.textContent = `
+            .true-false-group {
+                margin: 20px 0;
+            }
+            .statement {
+                margin-bottom: 20px;
+                font-weight: bold;
+                color: #333;
+            }
+            .tf-item {
+                margin: 15px 0;
+                padding: 15px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background-color: #fafafa;
+            }
+            .statement-text {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: 500;
+            }
+            .tf-options {
+                display: flex;
+                gap: 20px;
+            }
+            .tf-options label {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                font-weight: 500;
+            }
+            .tf-options input {
+                margin-right: 5px;
+                transform: scale(1.1);
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

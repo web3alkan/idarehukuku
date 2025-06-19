@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 130</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Sayfa 130</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-129.html" class="nav-button" id="prevBtn">← Önceki</a>
+            <div class="page-info">Sayfa 130 / 170</div>
+            <a href="soru-131.html" class="nav-button" id="nextBtn">Sonraki →</a>
+        </div>
+        
+        <div class="content">
+            <div class="completion-status" id="completionStatus">
+                <span class="not-completed">Bu soru henüz tamamlanmadı</span>
+            </div>
+            
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0130.jpg" alt="Sayfa 130 - İmtiyazda Tazminat Hukuku">
+            </div>
+            
+            <div class="question-section">
+                <div class="question-title">Soru 130</div>
+                <div class="question-text">
+                    İmtiyazda tazminat hukuku ile ilgili aşağıdaki boşlukları doldurunuz:
+                </div>
+                
+                <div class="fill-blank">
+                    <p>1. <strong>Klasik tazminat kurumu içerisir:</strong> Sözleşme koşullarını hakez olarak tek yanlı değiştiren idare karşı tarafına <input type="text" id="answer1" placeholder="tazminat türü"> ödeyecektir.</p>
+                    
+                    <p>2. <strong>FAIT DU PRINCE ilkesi:</strong> Bu tip etkiler imtiyazının mahına neden oluyorsa idare bu zararı, dolaylı faaliyetlerinin kamu hizmetinin görülmesini zora sokması dolayısı ile giderim yoluna gider. Buna <input type="text" id="answer2" placeholder="ilke adı"> denir.</p>
+                    
+                    <p>3. <strong>EMPREVIZYON (Öngörülemezlik) ilkesi:</strong> Savaş, doğal afet, vb. Olağanüstü durum süreklilik kazanımızca tazminat değil, <input type="text" id="answer3" placeholder="eylem türü"> gerekir.</p>
+                </div>
+                
+                <div class="button-container">
+                    <button class="check-button" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="reset-button" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+                
+                <div class="result-message" id="result" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            'answer1': ['tazminat', 'Tazminat', 'TAZMİNAT'],
+            'answer2': ['fait du prince', 'FAIT DU PRINCE', 'Fait Du Prince'],
+            'answer3': ['uyarlama', 'Uyarlama', 'UYARLAMA', 'uyarlanma', 'Uyarlanma']
+        };
+        let answered = false;
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        document.addEventListener('DOMContentLoaded', function() {
+            const completed = localStorage.getItem('question_130_completed');
+            const completionStatus = document.getElementById('completionStatus');
+            
+            if (completed === 'true') {
+                completionStatus.innerHTML = '<span class="completed">✓ Bu soru tamamlandı</span>';
+            }
+        });
+        
+        function checkAnswer() {
+            const answer1 = document.getElementById('answer1').value.trim();
+            const answer2 = document.getElementById('answer2').value.trim();
+            const answer3 = document.getElementById('answer3').value.trim();
+            const resultDiv = document.getElementById('result');
+            
+            if (!answer1 || !answer2 || !answer3) {
+                alert('Lütfen tüm boşlukları doldurun!');
+                return;
+            }
+            
+            answered = true;
+            let correctCount = 0;
+            
+            // Cevapları kontrol et
+            const inputs = ['answer1', 'answer2', 'answer3'];
+            const answers = [answer1, answer2, answer3];
+            
+            inputs.forEach((inputId, index) => {
+                const input = document.getElementById(inputId);
+                const userAnswer = answers[index];
+                const correctOptions = correctAnswers[inputId];
+                
+                const isCorrect = correctOptions.some(correct => 
+                    correct.toLowerCase() === userAnswer.toLowerCase()
+                );
+                
+                if (isCorrect) {
+                    correctCount++;
+                    input.style.borderColor = '#10B981';
+                    input.style.backgroundColor = '#D1FAE5';
+                } else {
+                    input.style.borderColor = '#EF4444';
+                    input.style.backgroundColor = '#FEE2E2';
+                }
+                
+                input.disabled = true;
+            });
+            
+            // Sonucu göster
+            if (correctCount === 3) {
+                resultDiv.innerHTML = 'Tebrikler! Doğru cevap. 1) Klasik tazminat kurumunda idare "tazminat" öder. 2) FAIT DU PRINCE ilkesi geçerlidir. 3) EMPREVIZYON durumunda "uyarlama" yapılır.';
+                resultDiv.className = 'result-message correct';
+                
+                // Tamamlandı olarak işaretle
+                localStorage.setItem('question_130_completed', 'true');
+                document.getElementById('completionStatus').innerHTML = '<span class="completed">✓ Bu soru tamamlandı</span>';
+            } else {
+                resultDiv.innerHTML = `Kısmen doğru. ${correctCount}/3 boşluğu doğru doldurdunuz. Doğru cevaplar: 1) Tazminat, 2) Fait du Prince, 3) Uyarlama.`;
+                resultDiv.className = 'result-message incorrect';
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+        
+        function resetQuestion() {
+            answered = false;
+            const inputs = ['answer1', 'answer2', 'answer3'];
+            
+            inputs.forEach(inputId => {
+                const input = document.getElementById(inputId);
+                input.value = '';
+                input.disabled = false;
+                input.style.borderColor = '#e0e0e0';
+                input.style.backgroundColor = 'white';
+            });
+            
+            document.getElementById('result').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

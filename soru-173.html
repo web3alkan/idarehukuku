@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 173</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Sayfa 173</h1>
+            <div class="progress-indicator">Soru 173 / 220</div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn" onclick="goToPrevious()">← Önceki</button>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <button class="nav-btn" onclick="goToNext()">Sonraki →</button>
+        </div>
+        
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0173.jpg" alt="Sayfa 173" />
+            </div>
+            
+            <div class="question-section">
+                <div class="question-title">
+                    Kamulaştırmada usul unsuru ile ilgili süreç sırasıyla hangi aşamalardan geçer?
+                </div>
+                
+                <div class="options">
+                    <div class="option" onclick="selectOption(this, false)">
+                        A) 1. Kamulaştırma Kararının alınması - 2. Yeterli ödeneğin hazırlanması - 3. Kamulaştırılacak Taşınmazın tespiti - 4. Kamu Yararı Kararının alınması - 5. Satın alma usulünün denenmesi
+                    </div>
+                    <div class="option" onclick="selectOption(this, true)">
+                        B) 1. Yeterli ödeneğin hazırlanması - 2. Kamu Yararı Kararının alınması - 3. Kamulaştırılacak Taşınmazın tespiti - 4. Kamulaştırma Kararının alınması - 5. Satın alma usulünün denenmesi
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        C) 1. Kamu Yararı Kararının alınması - 2. Yeterli ödeneğin hazırlanması - 3. Satın alma usulünün denenmesi - 4. Kamulaştırılacak Taşınmazın tespiti - 5. Kamulaştırma Kararının alınması
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        D) 1. Kamulaştırılacak Taşınmazın tespiti - 2. Kamu Yararı Kararının alınması - 3. Yeterli ödeneğin hazırlanması - 4. Satın alma usulünün denenmesi - 5. Kamulaştırma Kararının alınması
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        E) 1. Satın alma usulünün denenmesi - 2. Kamu Yararı Kararının alınması - 3. Kamulaştırılacak Taşınmazın tespiti - 4. Yeterli ödeneğin hazırlanması - 5. Kamulaştırma Kararının alınması
+                    </div>
+                </div>
+                
+                <div class="answer-section">
+                    <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <div id="result" class="result" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedOption = null;
+        let answered = false;
+
+        function selectOption(element, isCorrect) {
+            if (answered) return;
+            
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            element.classList.add('selected');
+            selectedOption = { element, isCorrect };
+        }
+
+        function checkAnswer() {
+            if (!selectedOption) {
+                alert('Lütfen bir seçenek seçiniz!');
+                return;
+            }
+            
+            if (answered) return;
+            answered = true;
+
+            const resultDiv = document.getElementById('result');
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach(opt => {
+                const isCorrect = opt.onclick.toString().includes('true');
+                if (isCorrect) {
+                    opt.classList.add('correct');
+                } else if (opt.classList.contains('selected') && !selectedOption.isCorrect) {
+                    opt.classList.add('incorrect');
+                }
+            });
+
+            if (selectedOption.isCorrect) {
+                resultDiv.innerHTML = '✅ Doğru! Kamulaştırma süreci: Yeterli ödeneğin hazırlanması → Kamu Yararı Kararının alınması → Kamulaştırılacak Taşınmazın tespiti → Kamulaştırma Kararının alınması → Satın alma usulünün denenmesi şeklinde ilerler.';
+                resultDiv.className = 'result correct';
+                updateProgress(173, true);
+            } else {
+                resultDiv.innerHTML = '❌ Yanlış! Doğru cevap B seçeneğidir. Kamulaştırma süreci belirli bir sırayla gerçekleştirilmelidir ve öncelikle yeterli ödeneğin hazırlanması gerekir.';
+                resultDiv.className = 'result incorrect';
+                updateProgress(173, false);
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        function updateProgress(questionNumber, isCorrect) {
+            let progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            progress[questionNumber] = {
+                completed: true,
+                correct: isCorrect,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('examProgress', JSON.stringify(progress));
+        }
+
+        function goToPrevious() {
+            window.location.href = 'soru-172.html';
+        }
+
+        function goToNext() {
+            window.location.href = 'soru-174.html';
+        }
+
+        window.onload = function() {
+            const progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            if (progress[173] && progress[173].completed) {
+                document.querySelector('.header h1').innerHTML += ' <span class="completed-badge">Tamamlandı</span>';
+            }
+        }
+    </script>
+</body>
+</html>

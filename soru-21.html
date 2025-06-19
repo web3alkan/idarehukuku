@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 21 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="soru-20.html" class="nav-btn">← Önceki</a>
+            <a href="index.html" class="nav-btn home-btn">Ana Sayfa</a>
+            <a href="soru-22.html" class="nav-btn">Sonraki →</a>
+        </nav>
+        
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0021.jpg" alt="Sayfa 21" class="page-image">
+            
+            <div class="question-box">
+                <h2>Soru 21</h2>
+                <p>Bazı yazarlar kamu hizmetini dar anlamda kabul etmektedir. Bu dar anlama göre kamu hizmeti aşağıdakilerden hangisiyle ilişkilendirilmektedir?</p>
+                
+                <div class="options">
+                    <label>
+                        <input type="radio" name="q21" value="a">
+                        a) Ekonomik faaliyetler
+                    </label>
+                    <label>
+                        <input type="radio" name="q21" value="b">
+                        b) Özel sektör hizmetleri
+                    </label>
+                    <label>
+                        <input type="radio" name="q21" value="c">
+                        c) Milli güvenlik ve kolluk
+                    </label>
+                    <label>
+                        <input type="radio" name="q21" value="d">
+                        d) Serbest piyasa ekonomisi
+                    </label>
+                    <label>
+                        <input type="radio" name="q21" value="e">
+                        e) Uluslararası ilişkiler
+                    </label>
+                </div>
+                
+                <button onclick="checkAnswer21()" class="check-btn">Cevabı Kontrol Et</button>
+                <div id="result21" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function checkAnswer21() {
+            const selected = document.querySelector('input[name="q21"]:checked');
+            const result = document.getElementById('result21');
+            
+            if (!selected) {
+                result.innerHTML = '<span class="incorrect">Lütfen bir seçenek seçin!</span>';
+                return;
+            }
+            
+            if (selected.value === 'c') {
+                result.innerHTML = '<span class="correct">✓ Doğru! Kamu hizmeti dar anlamda milli güvenlik ve kolluk kapsamında değerlendirilmektedir.</span>';
+                localStorage.setItem('soru21', 'completed');
+            } else {
+                result.innerHTML = '<span class="incorrect">✗ Yanlış. Metinde kamu hizmetinin dar anlamda milli güvenlik ve kolluk kapsamında kabul edildiği belirtilmektedir.</span>';
+            }
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.onload = function() {
+            if (localStorage.getItem('soru21') === 'completed') {
+                document.getElementById('result21').innerHTML = '<span class="completed">Bu soruyu daha önce doğru cevapladınız.</span>';
+            }
+        }
+    </script>
+</body>
+</html>

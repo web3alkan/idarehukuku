@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 125</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Sayfa 125</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-124.html" class="nav-button" id="prevBtn">← Önceki</a>
+            <div class="page-info">Sayfa 125 / 170</div>
+            <a href="soru-126.html" class="nav-button" id="nextBtn">Sonraki →</a>
+        </div>
+        
+        <div class="content">
+            <div class="completion-status" id="completionStatus">
+                <span class="not-completed">Bu soru henüz tamamlanmadı</span>
+            </div>
+            
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0125.jpg" alt="Sayfa 125 - Kamu Hizmeti İmtiyaz Sözleşmeleri">
+            </div>
+            
+            <div class="question-section">
+                <div class="question-title">Soru 125</div>
+                <div class="question-text">
+                    Kamu hizmeti imtiyaz sözleşmeleri ile ilgili aşağıdaki ifadelerden hangisi yanlıştır?
+                </div>
+                
+                <ul class="options" id="options">
+                    <li data-value="a">Bir kamu hizmetinin özel kişi tarafından kurulup işletilmesi ya da kurulu bir kamu hizmetinin özel kişi tarafından işletilmesi usulüdür.</li>
+                    <li data-value="b">İmtiyaz Türk A.Ş.'lere verilir ve en fazla 49 yıllığına işletme hakkı verilir.</li>
+                    <li data-value="c">Tekel statüsündeki hizmetleri kapsar ve burada sermaye, kar, zarar, masraf özel kişi imtiyazcıya aittir.</li>
+                    <li data-value="d">Bu sözleşmelerde sadece özel hukuk kuralları uygulanır, kamu hukuku ayrıcalıkları yoktur.</li>
+                    <li data-value="e">Bir şartlaşma yapılır, burada kuruluş ve işleyiş düzenlenir, bir de nihai sözleşme yapılır burada da haklar ve borçlar düzenlenir.</li>
+                </ul>
+                
+                <div class="button-container">
+                    <button class="check-button" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="reset-button" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+                
+                <div class="result-message" id="result" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswer = 'd';
+        let answered = false;
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        document.addEventListener('DOMContentLoaded', function() {
+            const completed = localStorage.getItem('question_125_completed');
+            const completionStatus = document.getElementById('completionStatus');
+            
+            if (completed === 'true') {
+                completionStatus.innerHTML = '<span class="completed">✓ Bu soru tamamlandı</span>';
+            }
+        });
+        
+        // Seçenek tıklama olayları
+        document.getElementById('options').addEventListener('click', function(e) {
+            if (e.target.tagName === 'LI' && !answered) {
+                // Tüm seçeneklerin seçili durumunu temizle
+                document.querySelectorAll('.options li').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                
+                // Tıklanan seçeneği seçili yap
+                e.target.classList.add('selected');
+            }
+        });
+        
+        function checkAnswer() {
+            const selectedOption = document.querySelector('.options li.selected');
+            const resultDiv = document.getElementById('result');
+            const options = document.querySelectorAll('.options li');
+            
+            if (!selectedOption) {
+                alert('Lütfen bir seçenek seçin!');
+                return;
+            }
+            
+            answered = true;
+            const selectedValue = selectedOption.getAttribute('data-value');
+            
+            // Tüm seçenekleri göster
+            options.forEach(option => {
+                const value = option.getAttribute('data-value');
+                if (value === correctAnswer) {
+                    option.classList.add('correct');
+                } else if (value === selectedValue && value !== correctAnswer) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Sonucu göster
+            if (selectedValue === correctAnswer) {
+                resultDiv.innerHTML = 'Tebrikler! Doğru cevap. İmtiyaz sözleşmeleri idari sözleşmeler oldukları için kamu hukuku ayrıcalıklarından yararlanırlar, sadece özel hukuk kuralları uygulanmaz.';
+                resultDiv.className = 'result-message correct';
+                
+                // Tamamlandı olarak işaretle
+                localStorage.setItem('question_125_completed', 'true');
+                document.getElementById('completionStatus').innerHTML = '<span class="completed">✓ Bu soru tamamlandı</span>';
+            } else {
+                resultDiv.innerHTML = 'Yanlış cevap. İmtiyaz sözleşmeleri idari sözleşme niteliğinde olduğu için hem özel hukuk hem de kamu hukuku kurallarına tabidir ve kamu hukuku ayrıcalıklarından yararlanır.';
+                resultDiv.className = 'result-message incorrect';
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+        
+        function resetQuestion() {
+            answered = false;
+            const options = document.querySelectorAll('.options li');
+            const resultDiv = document.getElementById('result');
+            
+            options.forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            resultDiv.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

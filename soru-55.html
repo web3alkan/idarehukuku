@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 55 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>İdare Hukuku Sınav Soruları</h1>
+            <p>Kamusal Alan İdare Hukuku - Sayfa 55</p>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <div class="nav-buttons">
+            <a href="soru-54.html" class="nav-btn" id="prevBtn">← Önceki</a>
+            <span class="page-info">Soru 55 / 80</span>
+            <a href="soru-56.html" class="nav-btn" id="nextBtn">Sonraki →</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="progress-indicator">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 16.67%"></div>
+            </div>
+            <p>İlerleme: 16.67% (5/30)</p>
+        </div>
+
+        <div class="content">
+            <div class="source-image">
+                <h3>Kaynak Görseli</h3>
+                <img src="Kamusal Alan İdare Hukuku_page-0055.jpg" alt="Sayfa 55 - Belediye Denetimi">
+            </div>
+
+            <div class="question-section">
+                <h2>Soru</h2>
+                <div class="question">
+                    <h3>Metne göre belirtilen hizmetlerde Danıştayın görüşü ve Çevre ve Şehircilik Bakanlığının kararıyla hangi süre geçmeden belediye imtiyaz yoluyla devredebilir?</h3>
+                    
+                    <ul class="options">
+                        <li class="option" data-value="A">A) Otuz yıl</li>
+                        <li class="option" data-value="B">B) Kırk yıl</li>
+                        <li class="option" data-value="C">C) Kırkdokuz yıl</li>
+                        <li class="option" data-value="D">D) Elli yıl</li>
+                        <li class="option" data-value="E">E) Altmış yıl</li>
+                    </ul>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="btn btn-secondary" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+
+                <div id="feedback" class="feedback hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>&copy; 2025 İdare Hukuku Sınav Soruları. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+
+    <script>
+        let selectedOption = null;
+        const correctAnswer = 'C';
+
+        // Load completion status
+        window.onload = function() {
+            const completed = localStorage.getItem('question-55-completed');
+            if (completed === 'true') {
+                document.body.classList.add('completed');
+            }
+        };
+
+        // Option selection
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedOption = this.getAttribute('data-value');
+            });
+        });
+
+        function checkAnswer() {
+            if (!selectedOption) {
+                alert('Lütfen bir seçenek seçin!');
+                return;
+            }
+
+            const feedback = document.getElementById('feedback');
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach(option => {
+                const value = option.getAttribute('data-value');
+                if (value === correctAnswer) {
+                    option.classList.add('correct');
+                } else if (value === selectedOption && value !== correctAnswer) {
+                    option.classList.add('incorrect');
+                }
+                option.style.pointerEvents = 'none';
+            });
+
+            if (selectedOption === correctAnswer) {
+                feedback.className = 'feedback correct';
+                feedback.textContent = 'Doğru! Metne göre belediye, (c), (f) ve (g) bentlerinde belirtilen hizmetleri Danıştayın görüşü ve Çevre ve Şehircilik Bakanlığının kararıyla süresi kırkdokuz yılı geçmemek üzere imtiyaz yoluyla devredebilir.';
+                localStorage.setItem('question-55-completed', 'true');
+                localStorage.setItem('question-55-correct', 'true');
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = 'Yanlış! Doğru cevap C seçeneğidir. Metinde açıkça "kırkdokuz yılı geçmemek üzere" ifadesi geçmektedir.';
+                localStorage.setItem('question-55-completed', 'true');
+                localStorage.setItem('question-55-correct', 'false');
+            }
+            
+            feedback.classList.remove('hidden');
+        }
+
+        function resetQuestion() {
+            selectedOption = null;
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+                option.style.pointerEvents = 'auto';
+            });
+            document.getElementById('feedback').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

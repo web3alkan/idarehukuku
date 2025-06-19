@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 61 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>İdare Hukuku Sınav Soruları</h1>
+            <p>Kamusal Alan İdare Hukuku - Sayfa 61</p>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <div class="nav-buttons">
+            <a href="soru-60.html" class="nav-btn" id="prevBtn">← Önceki</a>
+            <span class="page-info">Soru 61 / 80</span>
+            <a href="soru-62.html" class="nav-btn" id="nextBtn">Sonraki →</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="progress-indicator">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 30%"></div>
+            </div>
+            <p>İlerleme: 30% (9/30)</p>
+        </div>
+
+        <div class="content">
+            <div class="source-image">
+                <h3>Kaynak Görseli</h3>
+                <img src="Kamusal Alan İdare Hukuku_page-0061.jpg" alt="Sayfa 61 - İdari Faaliyetler">
+            </div>
+
+            <div class="question-section">
+                <h2>Soru</h2>
+                <div class="question">
+                    <h3>Metne göre "OLMAZ İŞLEMSİZ FAALİYET!" ifadesi hakkında aşağıdaki açıklama doğru mudur?</h3>
+                    
+                    <div class="true-false">
+                        <div class="tf-option" data-value="true">DOĞRU</div>
+                        <div class="tf-option" data-value="false">YANLIŞ</div>
+                    </div>
+                    
+                    <p><strong>Açıklama:</strong> "İdari fonksiyon idarenin sürdürdüğü hizmetlerin tümüdür ve bu fonksiyon genelde bir idari işlemle yerine getirilir. İdari işlem olmadan idarenin bir hizmeti fiilen yerine getirmesi de beklenmez. İdarenin faaliyetleri işlemlerin varlığına dayanır demek çok isabetlidir."</p>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="btn btn-secondary" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+
+                <div id="feedback" class="feedback hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>&copy; 2025 İdare Hukuku Sınav Soruları. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+
+    <script>
+        let selectedAnswer = null;
+        const correctAnswer = 'true';
+
+        // Load completion status
+        window.onload = function() {
+            const completed = localStorage.getItem('question-61-completed');
+            if (completed === 'true') {
+                document.body.classList.add('completed');
+            }
+        };
+
+        // True/False selection
+        document.querySelectorAll('.tf-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.tf-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedAnswer = this.getAttribute('data-value');
+            });
+        });
+
+        function checkAnswer() {
+            if (!selectedAnswer) {
+                alert('Lütfen Doğru veya Yanlış seçin!');
+                return;
+            }
+
+            const feedback = document.getElementById('feedback');
+            const options = document.querySelectorAll('.tf-option');
+            
+            // Disable further selection
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+                if (option.getAttribute('data-value') === correctAnswer) {
+                    option.classList.add('correct');
+                } else if (option.getAttribute('data-value') === selectedAnswer && selectedAnswer !== correctAnswer) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            if (selectedAnswer === correctAnswer) {
+                feedback.className = 'feedback correct';
+                feedback.textContent = 'Doğru! Metne göre bu açıklama doğrudur. İdari fonksiyon idarenin sürdürdüğü hizmetlerin tümüdür ve genelde bir idari işlemle yerine getirilir. İdari işlem olmadan idarenin faaliyetlerinin gerçekleşmesi beklenmez, bu nedenle "OLMAZ İŞLEMSİZ FAALİYET!" ifadesi isabetlidir.';
+                localStorage.setItem('question-61-completed', 'true');
+                localStorage.setItem('question-61-correct', 'true');
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = 'Yanlış! Açıklama doğrudur. İdari faaliyetler işlemlerin varlığına dayanır ve idari işlem olmadan idarenin hizmet vermesi beklenmez. Bu nedenle doğru cevap "DOĞRU" olmalıydı.';
+                localStorage.setItem('question-61-completed', 'true');
+                localStorage.setItem('question-61-correct', 'false');
+            }
+            
+            feedback.classList.remove('hidden');
+        }
+
+        function resetQuestion() {
+            selectedAnswer = null;
+            document.querySelectorAll('.tf-option').forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+                option.style.pointerEvents = 'auto';
+            });
+            document.getElementById('feedback').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru 279</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>İdare Hukuku Soruları</h1>
+            <div class="question-number">Soru 279</div>
+        </header>
+
+        <nav class="navigation">
+            <a href="soru-278.html" class="nav-btn">← Önceki</a>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <a href="soru-280.html" class="nav-btn">Sonraki →</a>
+        </nav>
+
+        <div class="content">
+            <div class="image-container">
+                <img src="Kamusal Alan İdare Hukuku_page-0279.jpg" alt="Sayfa 279" class="page-image">
+            </div>
+
+            <div class="question-container">
+                <h2>Soru</h2>
+                <p class="question-text">
+                    Disiplin kurulu ve yüksek disiplin kurulunun aynı bir ceza tayinine yetkisi yoktur, cezayı kabul veya reddeder. Bu durumda atamaya yetkili amirler _______ gün içinde başka bir disiplin cezası vermekte serbest değildir.
+                </p>
+
+                <div class="fill-blank">
+                    <label for="blank-answer">Cevabınızı yazın:</label>
+                    <input type="number" id="blank-answer" name="blank-answer" placeholder="Gün sayısını yazın">
+                </div>
+
+                <button onclick="checkAnswer()" class="submit-btn">Cevabı Kontrol Et</button>
+                <div id="result" class="result"></div>
+                <div id="explanation" class="explanation" style="display: none;">
+                    <strong>Açıklama:</strong> Disiplin kurulu kararı ret halinde atamaya yetkili amirler 15 gün içinde başka bir disiplin cezası vermekte serbesttirler.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const answer = document.getElementById('blank-answer').value.trim();
+            const resultDiv = document.getElementById('result');
+            const explanationDiv = document.getElementById('explanation');
+            
+            if (!answer) {
+                resultDiv.innerHTML = '<p style="color: orange;">Lütfen bir sayı girin.</p>';
+                return;
+            }
+            
+            if (answer === '15') {
+                resultDiv.innerHTML = '<p style="color: green;">✓ Doğru! Tebrikler.</p>';
+                localStorage.setItem('soru279', 'completed');
+            } else {
+                resultDiv.innerHTML = '<p style="color: red;">✗ Yanlış. Doğru cevap: 15</p>';
+            }
+            
+            explanationDiv.style.display = 'block';
+        }
+
+        window.onload = function() {
+            if (localStorage.getItem('soru279') === 'completed') {
+                document.body.classList.add('completed');
+            }
+        }
+    </script>
+</body>
+</html>

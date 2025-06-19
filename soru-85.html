@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 85 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku Sınavı</h1>
+            <p>Yetki Gaspı - Kişi Yönünden Yetkisizlik - Sayfa 85</p>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-84.html" class="nav-btn" id="prevBtn">← Önceki</a>
+            <div class="page-info">Soru 85 / 120</div>
+            <a href="soru-86.html" class="nav-btn" id="nextBtn">Sonraki →</a>
+        </div>
+        
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0085.jpg" alt="Sayfa 85" />
+            </div>
+            
+            <div class="question-container">
+                <div class="question-title">Eşleştirme Sorusu</div>
+                <div class="question-text">
+                    Aşağıdaki yabancı türleri ile örneklerini eşleştiriniz:
+                </div>
+                
+                <div class="matching-container">
+                    <div class="matching-column">
+                        <h4>Yabancı Türleri</h4>
+                        <div class="matching-item" data-id="1">Tamamen Yabancı</div>
+                        <div class="matching-item" data-id="2">Kendine Yabancı</div>
+                        <div class="matching-item" data-id="3">Hiyerarşiye Yabancı</div>
+                    </div>
+                    <div class="matching-column">
+                        <h4>Örnekler</h4>
+                        <div class="matching-item" data-match="1">Alelade bir vatandaşın, çok sevdiği Bld. Başkanını görmek için odasına girdiğinde kimse olmadığını görmüş, masasına oturup tüm işlemleri imzalamış</div>
+                        <div class="matching-item" data-match="2">"Görevli personel" A, akli melekelerini kaybedip daireye gitmiş ve "kendine ait" tüm işlemleri imzalamış</div>
+                        <div class="matching-item" data-match="3">Vergi dairesinin çay işletmecisi A, başkanın odasındaki kağıtları tek tek imzalamıştır</div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="btn btn-secondary" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+                
+                <div class="result" id="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctMatches = {
+            '1': '1', // Tamamen Yabancı - Alelade vatandaş
+            '2': '2', // Kendine Yabancı - Görevli personel akli melekelerini kaybetmiş
+            '3': '3'  // Hiyerarşiye Yabancı - Çay işletmecisi
+        };
+        
+        let selectedItem = null;
+        let matches = {};
+        
+        // Eşleştirme olayları
+        document.querySelectorAll('.matching-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const itemId = item.getAttribute('data-id');
+                const matchId = item.getAttribute('data-match');
+                
+                if (itemId) {
+                    // Sol kolondaki bir öğe seçildi
+                    if (selectedItem) {
+                        selectedItem.classList.remove('selected');
+                    }
+                    selectedItem = item;
+                    item.classList.add('selected');
+                } else if (matchId && selectedItem) {
+                    // Sağ kolondaki bir öğe seçildi ve sol kolondan bir öğe seçili
+                    const selectedId = selectedItem.getAttribute('data-id');
+                    matches[selectedId] = matchId;
+                    
+                    // Eşleşmeyi görsel olarak göster
+                    selectedItem.classList.remove('selected');
+                    selectedItem.classList.add('matched');
+                    item.classList.add('matched');
+                    
+                    selectedItem = null;
+                }
+            });
+        });
+        
+        function checkAnswer() {
+            if (Object.keys(matches).length !== 3) {
+                alert('Lütfen tüm eşleştirmeleri yapın!');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('result');
+            let correctCount = 0;
+            
+            // Cevapları kontrol et
+            for (let id in correctMatches) {
+                if (matches[id] === correctMatches[id]) {
+                    correctCount++;
+                }
+            }
+            
+            // Tüm öğeleri devre dışı bırak
+            document.querySelectorAll('.matching-item').forEach(item => {
+                item.style.pointerEvents = 'none';
+            });
+            
+            // Sonucu göster
+            if (correctCount === 3) {
+                resultDiv.innerHTML = '✅ Mükemmel! Tüm eşleştirmeler doğru.<br>' +
+                    '• Tamamen Yabancı: Hiçbir organik bağı bulunmayan kişiler<br>' +
+                    '• Kendine Yabancı: Görevli personelin akli melekelerini kaybetmesi<br>' +
+                    '• Hiyerarşiye Yabancı: Başkanın odasındaki kağıtları imzalayan çay işletmecisi';
+                resultDiv.className = 'result show correct';
+                localStorage.setItem('soru85_completed', 'true');
+            } else {
+                resultDiv.innerHTML = `❌ ${correctCount}/3 doğru eşleştirme. Doğru eşleştirmeler:<br>` +
+                    '• Tamamen Yabancı ↔ Alelade vatandaş örneği<br>' +
+                    '• Kendine Yabancı ↔ Akli melekelerini kaybetmiş personel<br>' +
+                    '• Hiyerarşiye Yabancı ↔ Çay işletmecisi örneği';
+                resultDiv.className = 'result show incorrect';
+            }
+        }
+        
+        function resetQuestion() {
+            matches = {};
+            selectedItem = null;
+            
+            document.querySelectorAll('.matching-item').forEach(item => {
+                item.classList.remove('selected', 'matched');
+                item.style.pointerEvents = 'auto';
+            });
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '';
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('soru85_completed') === 'true') {
+                const completionBadge = document.createElement('div');
+                completionBadge.className = 'completion-badge';
+                completionBadge.textContent = '✓ Tamamlandı';
+                document.querySelector('.question-container').appendChild(completionBadge);
+            }
+        });
+    </script>
+</body>
+</html>

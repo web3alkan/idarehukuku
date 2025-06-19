@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru P3-08: Yürütmenin Durdurulması</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Soru P3-08: Yürütmenin Durdurulması</h1>
+        
+        <div class="question-box">
+            <div class="question">
+                <p>Yürütmenin durdurulması kararı verilebilmesi için gerekli şartlar hangileridir?</p>
+                <div class="options">
+                    <label><input type="checkbox" name="sart" value="A"> A) Davacının çekeceği zararın telafisinin güç olması</label>
+                    <label><input type="checkbox" name="sart" value="B"> B) İdari işlemin açıkça hukuka aykırı olması</label>
+                    <label><input type="checkbox" name="sart" value="C"> C) Davacının hakim görünmesi</label>
+                    <label><input type="checkbox" name="sart" value="D"> D) İdarenin rızasının alınması</label>
+                    <label><input type="checkbox" name="sart" value="E"> E) Kamu yararının korunması</label>
+                    <label><input type="checkbox" name="sart" value="F"> F) Davacının teminat göstermesi</label>
+                </div>
+            </div>
+            
+            <button onclick="gosterCozum()" class="cozum-button">Çözümü Göster</button>
+            
+            <div id="cozum" class="cozum-box" style="display: none;">
+                <h3>Çözüm:</h3>
+                <p><strong>Doğru Cevaplar: A, B, C</strong></p>
+                
+                <div class="sartlar">
+                    <h4>Yürütmenin Durdurulması Şartları:</h4>
+                    <ol>
+                        <li><strong>Telafisi güç zarar:</strong> Davacının çekeceği zararın sonradan telafisinin güç olması</li>
+                        <li><strong>Açık hukuka aykırılık:</strong> İdari işlemin açıkça hukuka aykırı olması</li>
+                        <li><strong>Hakim görünme (Fumus boni iuris):</strong> Davacının davasında hakim görünür delillere sahip olması</li>
+                    </ol>
+                </div>
+                
+                <div class="aciklama">
+                    <h4>Detaylı Açıklama:</h4>
+                    <ul>
+                        <li><strong>A Seçeneği (Doğru):</strong> Davacının çekeceği zararın telafisinin güç olması temel şartlardan biridir.</li>
+                        <li><strong>B Seçeneği (Doğru):</strong> İşlemin açıkça hukuka aykırı olması gerekir, şüphe durumunda yürütme durdurulmaz.</li>
+                        <li><strong>C Seçeneği (Doğru):</strong> Davacının davasında hakim görünmesi (prima facie delil) gerekir.</li>
+                        <li><strong>D Seçeneği (Yanlış):</strong> İdarenin rızası alınmaz, mahkeme re'sen karar verir.</li>
+                        <li><strong>E Seçeneği (Yanlış):</strong> Kamu yararı korunur ama bu ayrı bir şart değil, genel değerlendirme kapsamındadır.</li>
+                        <li><strong>F Seçeneği (Yanlış):</strong> Teminat gösterme şartı yoktur, mahkeme isteirse teminat isteyebilir.</li>
+                    </ul>
+                </div>
+                
+                <div class="ozel-durumlar">
+                    <h4>Özel Durumlar:</h4>
+                    <ul>
+                        <li><strong>Personel İşlemleri:</strong> Memurların çalışma hakkı nedeniyle daha kolay yürütme durduruluyor</li>
+                        <li><strong>Vergi İşlemleri:</strong> Vergi tahsilatlarında yürütme durdurma zor</li>
+                        <li><strong>Güvenlik İşlemleri:</strong> Kamu güvenliği nedeniyle yürütme durdurulmaz</li>
+                        <li><strong>Acil Durumlar:</strong> Acil durumlarda yürütme durdurmaya sınırlama</li>
+                    </ul>
+                </div>
+                
+                <div class="sonuc">
+                    <h4>Sonuca Etkisi:</h4>
+                    <p>Yürütmenin durdurulması kararı geçici tedbir niteliğindedir. Davanın esası hakkındaki kararı etkilemez. Yalnızca işlemin uygulanmasını geçici olarak durdurur.</p>
+                </div>
+                
+                <div class="kaynak">
+                    <p><strong>Kaynak:</strong> İdare hukuku notu 2.dönem 3.part.pdf</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P3-07.html" class="nav-button">← Önceki Soru</a>
+            <a href="soru-P3-09.html" class="nav-button">Sonraki Soru →</a>
+        </div>
+    </div>
+    
+    <script>
+        function gosterCozum() {
+            document.getElementById('cozum').style.display = 'block';
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            cozumler['soru-P3-08'] = true;
+            localStorage.setItem('gosterilenCozumler', JSON.stringify(cozumler));
+        }
+        
+        window.onload = function() {
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            if (cozumler['soru-P3-08']) {
+                document.getElementById('cozum').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

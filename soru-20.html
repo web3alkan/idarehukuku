@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 20 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="window.location.href='soru-19.html'" class="nav-btn">← Önceki</button>
+            <button onclick="window.location.href='index.html'" class="nav-btn home-btn">Ana Sayfa</button>
+            <button onclick="window.location.href='soru-21.html'" class="nav-btn">Sonraki →</button>
+        </div>
+
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0020.jpg" alt="Sayfa 20" class="page-image">
+            
+            <div class="question-box">
+                <h2>Soru 20</h2>
+                <p class="question-text">Kolluk faaliyetleri ile ilgili aşağıdaki ifade doğru mu yanlış mı?</p>
+                
+                <div class="true-false">
+                    <p class="statement">"Kolluk faaliyetleri salt güvenlik faaliyetlerini içermediğinden, kamu düzeninin korunması için 'iç güvenliği' sağlamak başlığı kullanılmıştır."</p>
+                    
+                    <div class="tf-options">
+                        <label class="option">
+                            <input type="radio" name="answer" value="true">
+                            <span>Doğru</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="answer" value="false">
+                            <span>Yanlış</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <div class="result" id="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswer = 'false';
+        
+        function checkAnswer() {
+            const selected = document.querySelector('input[name="answer"]:checked');
+            const resultDiv = document.getElementById('result');
+            
+            if (!selected) {
+                resultDiv.innerHTML = '<p class="error">Lütfen bir seçenek işaretleyin!</p>';
+                return;
+            }
+            
+            if (selected.value === correctAnswer) {
+                resultDiv.innerHTML = '<p class="correct">✓ Doğru! İfade yanlıştır. Metinde belirtildiğine göre, kolluk faaliyetleri salt güvenlik faaliyetlerini içermediğinden "iç güvenliği" sağlamak başlığı kullanılmamıştır.</p>';
+                localStorage.setItem('soru20', 'completed');
+            } else {
+                resultDiv.innerHTML = '<p class="incorrect">✗ Yanlış! İfadeyi tekrar okuyun. Metinde "iç güvenliği" başlığının kullanılmadığı belirtiliyor.</p>';
+            }
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.onload = function() {
+            if (localStorage.getItem('soru20') === 'completed') {
+                document.getElementById('result').innerHTML = '<p class="completed">Bu soruyu daha önce doğru cevapladınız.</p>';
+            }
+        }
+    </script>
+</body>
+</html>

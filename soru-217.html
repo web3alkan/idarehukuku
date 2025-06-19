@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 217</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Sayfa 217</h1>
+            <div class="progress-indicator">Soru 217 / 220</div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn" onclick="goToPrevious()" >← Önceki</button>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <button class="nav-btn" onclick="goToNext()" >Sonraki →</button>
+        </div>
+        
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0217.jpg" alt="Sayfa 217" />
+            </div>
+            
+            <div class="question-section">
+                <div class="question-title">
+                    Hukuka uygunluk karinesini kim çürütebilir?
+                </div>
+                
+                <div class="fill-blank">
+                    <p>Hukuka uygunluk karinesini _______ çürütebilir.</p>
+                    <input type="text" id="answer" placeholder="Cevabınızı yazın">
+                </div>
+                
+                <div class="answer-section">
+                    <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <div id="result" class="result" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedOption = null;
+        let answered = false;
+
+        const correctAnswer = "davacı";
+
+        function checkAnswer() {
+            if (answered) return;
+            
+            const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+            const resultDiv = document.getElementById('result');
+            
+            answered = true;
+
+            if (userAnswer === correctAnswer.toLowerCase()) {
+                resultDiv.innerHTML = '✅ Doğru! Hukuka uygunluk karinesini iddia eden davacı taraf çürütmek zorundadır.';
+                resultDiv.className = 'result correct';
+                updateProgress(217, true);
+            } else {
+                resultDiv.innerHTML = `❌ Yanlış! Doğru cevap "${correctAnswer}"dır. Hukuka uygunluk karinesini iddia eden davacı taraf çürütmek zorundadır.`;
+                resultDiv.className = 'result incorrect';
+                updateProgress(217, false);
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        // Allow enter key to submit
+        document.addEventListener('DOMContentLoaded', function() {
+            const answerInput = document.getElementById('answer');
+            if (answerInput) {
+                answerInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        checkAnswer();
+                    }
+                });
+            }
+        });
+
+        function updateProgress(questionNumber, isCorrect) {
+            let progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            progress[questionNumber] = {
+                completed: true,
+                correct: isCorrect,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('examProgress', JSON.stringify(progress));
+        }
+
+        function goToPrevious() {
+            window.location.href = "soru-216.html";
+        }
+
+        function goToNext() {
+            window.location.href = "soru-218.html";
+        }
+
+        window.onload = function() {
+            const progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            if (progress[217] && progress[217].completed) {
+                document.querySelector('.header h1').innerHTML += ' <span class="completed-badge">Tamamlandı</span>';
+            }
+        }
+    </script>
+</body>
+</html>

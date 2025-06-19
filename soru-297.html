@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru 297</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>İdare Hukuku Soruları</h1>
+            <div class="question-number">Soru 297</div>
+        </header>
+
+        <nav class="navigation">
+            <a href="soru-296.html" class="nav-btn">← Önceki</a>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <a href="soru-298.html" class="nav-btn">Sonraki →</a>
+        </nav>
+
+        <div class="content">
+            <div class="image-container">
+                <img src="Kamusal Alan İdare Hukuku_page-0297.jpg" alt="Sayfa 297" class="page-image">
+            </div>
+
+            <div class="question-container">
+                <h2>Soru</h2>
+                <p class="question-text">
+                    Memurların yargılanması hakkında verilen soruşturma izni yetkisi aşağıdaki eşleştirmelerden hangisinde YANLIŞ verilmiştir?
+                </p>
+
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="answer" value="A">
+                        <span>A) İlçede görevli memurlar - Kaymakam</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="B">
+                        <span>B) İl ve merkez ilçede görevli memurlar - Vali</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="C">
+                        <span>C) Türkiye Büyük Millet Meclisinde görevli memurlar - TBMM genel Sekreteri</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="D">
+                        <span>D) Cumhurbaşkanlığında görevli memurlar - CB İdari İşler Başkanı</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="E">
+                        <span>E) Köy ve mahalle muhtarları - İlçede kaymakam, ilde vali</span>
+                    </label>
+                </div>
+
+                <button onclick="checkAnswer()" class="submit-btn">Cevabı Kontrol Et</button>
+                <div id="result" class="result"></div>
+                <div id="explanation" class="explanation" style="display: none;">
+                    <strong>Açıklama:</strong> Cumhurbaşkanlığında görevli memurlar için soruşturma izni yetkisi CB İdari İşler Başkanı'nda değil, Cumhurbaşkanı'ndadır. Diğer eşleştirmeler doğrudur.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            const resultDiv = document.getElementById('result');
+            const explanationDiv = document.getElementById('explanation');
+            
+            if (!selectedAnswer) {
+                resultDiv.innerHTML = '<p style="color: orange;">Lütfen bir seçenek işaretleyin.</p>';
+                return;
+            }
+            
+            const answer = selectedAnswer.value;
+            if (answer === 'D') {
+                resultDiv.innerHTML = '<p style="color: green;">✓ Doğru! Tebrikler.</p>';
+                localStorage.setItem('soru297', 'completed');
+            } else {
+                resultDiv.innerHTML = '<p style="color: red;">✗ Yanlış. Doğru cevap: D</p>';
+            }
+            
+            explanationDiv.style.display = 'block';
+        }
+
+        window.onload = function() {
+            if (localStorage.getItem('soru297') === 'completed') {
+                document.body.classList.add('completed');
+            }
+        }
+    </script>
+</body>
+</html>

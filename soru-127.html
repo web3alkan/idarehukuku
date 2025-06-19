@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 127</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Sayfa 127</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-126.html" class="nav-button" id="prevBtn">← Önceki</a>
+            <div class="page-info">Sayfa 127 / 170</div>
+            <a href="soru-128.html" class="nav-button" id="nextBtn">Sonraki →</a>
+        </div>
+        
+        <div class="content">
+            <div class="completion-status" id="completionStatus">
+                <span class="not-completed">Bu soru henüz tamamlanmadı</span>
+            </div>
+            
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0127.jpg" alt="Sayfa 127 - İmtiyazın Şekli">
+            </div>
+            
+            <div class="question-section">
+                <div class="question-title">Soru 127</div>
+                <div class="question-text">
+                    İmtiyazın şekli ile ilgili aşağıdaki ifade doğru mu yanlış mı?<br>
+                    <strong>"İmtiyaz yazılı bir sözleşmedir ve iltihakidir (katılmalıdır). Şartları önceden idare tarafından hazırlanmış ve taraf olmak isteyene dayatılan kurallardan oluşan bir sözleşmedir."</strong>
+                </div>
+                
+                <div class="true-false">
+                    <button data-value="true" onclick="selectAnswer(this)">DOĞRU</button>
+                    <button data-value="false" onclick="selectAnswer(this)">YANLIŞ</button>
+                </div>
+                
+                <div class="button-container">
+                    <button class="check-button" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="reset-button" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+                
+                <div class="result-message" id="result" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswer = 'true';
+        let selectedAnswer = null;
+        let answered = false;
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        document.addEventListener('DOMContentLoaded', function() {
+            const completed = localStorage.getItem('question_127_completed');
+            const completionStatus = document.getElementById('completionStatus');
+            
+            if (completed === 'true') {
+                completionStatus.innerHTML = '<span class="completed">✓ Bu soru tamamlandı</span>';
+            }
+        });
+        
+        function selectAnswer(button) {
+            if (answered) return;
+            
+            // Tüm butonların seçili durumunu temizle
+            document.querySelectorAll('.true-false button').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Seçilen butonu işaretle
+            button.classList.add('selected');
+            selectedAnswer = button.getAttribute('data-value');
+        }
+        
+        function checkAnswer() {
+            const resultDiv = document.getElementById('result');
+            
+            if (!selectedAnswer) {
+                alert('Lütfen bir seçenek seçin!');
+                return;
+            }
+            
+            answered = true;
+            const buttons = document.querySelectorAll('.true-false button');
+            
+            // Butonları renklendir
+            buttons.forEach(button => {
+                const value = button.getAttribute('data-value');
+                if (value === correctAnswer) {
+                    button.style.backgroundColor = '#D1FAE5';
+                    button.style.borderColor = '#10B981';
+                    button.style.color = '#065F46';
+                } else if (value === selectedAnswer && value !== correctAnswer) {
+                    button.style.backgroundColor = '#FEE2E2';
+                    button.style.borderColor = '#EF4444';
+                    button.style.color = '#991B1B';
+                }
+            });
+            
+            // Sonucu göster
+            if (selectedAnswer === correctAnswer) {
+                resultDiv.innerHTML = 'Tebrikler! Doğru cevap. İmtiyaz yazılı bir sözleşmedir ve iltihakidir (katılmalıdır). Şartları önceden idare tarafından hazırlanmış ve taraf olmak isteyene dayatılan kurallardan oluşan ve tarafın da içeriğe katılım ile işlemeye başlayan bir sözleşmedir. Danıştay bu sözleşmeler hakkında 2 ay içinde görüş bildirir.';
+                resultDiv.className = 'result-message correct';
+                
+                // Tamamlandı olarak işaretle
+                localStorage.setItem('question_127_completed', 'true');
+                document.getElementById('completionStatus').innerHTML = '<span class="completed">✓ Bu soru tamamlandı</span>';
+            } else {
+                resultDiv.innerHTML = 'Yanlış cevap. Doğru cevap: DOĞRU. İmtiyaz yazılı bir sözleşmedir ve iltihakidir. Yani şartları önceden idare tarafından hazırlanmış ve taraf olmak isteyene dayatılan kurallardan oluşan bir sözleşmedir. Danıştay bu sözleşmeler hakkında 2 ay içinde görüş bildirir ve Danıştay\'ın bu görüşünü 1. Daire verir.';
+                resultDiv.className = 'result-message incorrect';
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+        
+        function resetQuestion() {
+            answered = false;
+            selectedAnswer = null;
+            
+            // Butonları sıfırla
+            document.querySelectorAll('.true-false button').forEach(button => {
+                button.classList.remove('selected');
+                button.style.backgroundColor = 'white';
+                button.style.borderColor = '#e0e0e0';
+                button.style.color = 'black';
+            });
+            
+            document.getElementById('result').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

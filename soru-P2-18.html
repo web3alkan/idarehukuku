@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Sorusu - P2-18</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - İdari Yargılama Usulü</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P2-17.html" class="nav-button">Önceki</a>
+            <span class="page-info">Soru P2-18</span>
+            <a href="soru-P2-19.html" class="nav-button">Sonraki</a>
+        </div>
+        
+        <div class="content">
+            <div class="question-section">
+                <div class="question-title">Soru 18: İdari Yargılama İlkeleri</div>
+                <div class="question-text">
+                    İdari yargılamada geçerli olan "re'sen araştırma" ilkesi, mahkemenin davanın esasına ilişkin 
+                    delilleri kendiliğinden toplamasını ifade eder.
+                </div>
+                
+                <div class="true-false">
+                    <button onclick="selectAnswer(true)">Doğru</button>
+                    <button onclick="selectAnswer(false)">Yanlış</button>
+                </div>
+                
+                <button class="show-solution-btn" onclick="showSolution()">Çözümü Göster</button>
+                
+                <div class="solution-box" id="solution">
+                    <h3>Çözüm:</h3>
+                    <div class="correct-answer">Doğru Cevap: DOĞRU</div>
+                    <div class="explanation-text">
+                        İdari yargılamada "re'sen araştırma" (职権探知主義) ilkesi geçerlidir. Bu ilkeye göre:
+                        1. Mahkeme, davanın esasına ilişkin delilleri kendiliğinden toplayabilir
+                        2. Tarafların sunmadığı delilleri araştırabilir
+                        3. Keşif yapabilir, bilirkişi incelemesi yapabilir
+                        4. İdareden dosya getirtebilir
+                        
+                        Bu ilke, idari yargının kamu düzenini ilgilendiren niteliği nedeniyle kabul edilmiştir. 
+                        Hukuk devleti ilkesi gereği, idarenin hukuka uygun hareket etmesi kamu yararı açısından 
+                        önemlidir ve mahkeme bu denetimi etkin yapabilmek için geniş araştırma yetkilerine sahiptir.
+                    </div>
+                    <div class="pdf-source"><strong>Kaynak:</strong> İdare Hukuku notu 2.dönem 2.part.pdf</div>
+                </div>
+            </div>
+            
+            <div class="result-message" id="result" style="display: none;"></div>
+        </div>
+    </div>
+    
+    <script>
+        let selectedAnswer = null;
+        
+        function selectAnswer(answer) {
+            const buttons = document.querySelectorAll('.true-false button');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            
+            if (answer === true) {
+                buttons[0].classList.add('selected');
+            } else {
+                buttons[1].classList.add('selected');
+            }
+            
+            selectedAnswer = answer;
+        }
+        
+        function showSolution() {
+            const solutionBox = document.getElementById('solution');
+            solutionBox.classList.add('visible');
+            
+            const resultDiv = document.getElementById('result');
+            
+            if (selectedAnswer === true) {
+                resultDiv.textContent = 'Tebrikler! Doğru cevap.';
+                resultDiv.className = 'result-message correct';
+            } else if (selectedAnswer === false) {
+                resultDiv.textContent = 'Yanlış cevap. Doğru cevap: DOĞRU';
+                resultDiv.className = 'result-message incorrect';
+            }
+            
+            if (selectedAnswer !== null) {
+                resultDiv.style.display = 'block';
+            }
+            
+            localStorage.setItem('soru-P2-18', 'completed');
+        }
+    </script>
+</body>
+</html>

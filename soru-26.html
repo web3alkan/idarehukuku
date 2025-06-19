@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 26 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="soru-24.html" class="nav-btn">← Önceki</a>
+            <a href="index.html" class="nav-btn home-btn">Ana Sayfa</a>
+            <a href="soru-27.html" class="nav-btn">Sonraki →</a>
+        </nav>
+        
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0026.jpg" alt="Sayfa 26" class="page-image">
+            
+            <div class="question-box">
+                <h2>Soru 26</h2>
+                <p>1982 Anayasası'ndan idareye ait tespit edilebilen ilkeleri aşağıdaki listelerle eşleştirin:</p>
+                
+                <div class="matching">
+                    <div class="left-column">
+                        <h4>İlkeler:</h4>
+                        <div>1. Hukuk Devleti ve Kanuni İdare İlkesi</div>
+                        <div>2. Kamu Tüzel Kişiliği İlkesi</div>
+                        <div>3. Merkezden Yönetim ve Yerinden Yönetime Uygunluk İlkesi</div>
+                        <div>4. Yetki Genişliği İlkesi</div>
+                        <div>5. İdarenin Bütünlüğü İlkesi</div>
+                        <div>6. İdarenin Mali Sorumluluğu İlkesi</div>
+                    </div>
+                    
+                    <div class="right-column">
+                        <h4>Açıklamalar:</h4>
+                        <div>A. <select id="match1">
+                            <option value="">Seçin</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select> İdarenin tazminat ödemesi gerekliliği</div>
+                        
+                        <div>B. <select id="match2">
+                            <option value="">Seçin</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select> İdarenin kanunlara bağlı olması</div>
+                        
+                        <div>C. <select id="match3">
+                            <option value="">Seçin</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select> İdarenin tüzel kişiliğe sahip olması</div>
+                        
+                        <div>D. <select id="match4">
+                            <option value="">Seçin</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select> Merkezi ve yerel yönetim dengesi</div>
+                    </div>
+                </div>
+                
+                <button onclick="checkAnswer26()" class="check-btn">Cevabı Kontrol Et</button>
+                <div id="result26" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function checkAnswer26() {
+            const match1 = document.getElementById('match1').value;
+            const match2 = document.getElementById('match2').value;
+            const match3 = document.getElementById('match3').value;
+            const match4 = document.getElementById('match4').value;
+            const result = document.getElementById('result26');
+            
+            if (!match1 || !match2 || !match3 || !match4) {
+                result.innerHTML = '<span class="incorrect">Lütfen tüm eşleştirmeleri yapın!</span>';
+                return;
+            }
+            
+            if (match1 === '6' && match2 === '1' && match3 === '2' && match4 === '3') {
+                result.innerHTML = '<span class="correct">✓ Doğru! Tüm eşleştirmeleri doğru yaptınız.</span>';
+                localStorage.setItem('soru26', 'completed');
+            } else {
+                result.innerHTML = '<span class="incorrect">✗ Yanlış. Doğru eşleştirmeler: A-6, B-1, C-2, D-3</span>';
+            }
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.onload = function() {
+            if (localStorage.getItem('soru26') === 'completed') {
+                document.getElementById('result26').innerHTML = '<span class="completed">Bu soruyu daha önce doğru cevapladınız.</span>';
+            }
+        }
+    </script>
+</body>
+</html>

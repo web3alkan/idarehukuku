@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 177</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Sayfa 177</h1>
+            <div class="progress-indicator">Soru 177 / 220</div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn" onclick="goToPrevious()">← Önceki</button>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <button class="nav-btn" onclick="goToNext()">Sonraki →</button>
+        </div>
+        
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0177.jpg" alt="Sayfa 177" />
+            </div>
+            
+            <div class="question-section">
+                <div class="question-title">
+                    "Satın Alma Usulünün Denenmesi" başlığı altında belirtilen konu hakkında doğru olanı seçiniz.
+                </div>
+                
+                <div class="options">
+                    <div class="option" onclick="selectOption(this, false)">
+                        A) Satın alma usulü tüm kamulaştırma türlerinde zorunlu olarak denenmelidir
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        B) Satın alma usulü sadece özel mülkiyette olan taşınmazlarda denenebilir
+                    </div>
+                    <div class="option" onclick="selectOption(this, true)">
+                        C) Bu usul, kamulaştırma sürecinin son aşamasında yer alan bir seçenektir
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        D) Satın alma usulü denendikten sonra başka bir yöntem kullanılamaz
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        E) Bu usul sadece devlet yararına yapılan kamulaştırmalarda geçerlidir
+                    </div>
+                </div>
+                
+                <div class="answer-section">
+                    <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <div id="result" class="result" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedOption = null;
+        let answered = false;
+
+        function selectOption(element, isCorrect) {
+            if (answered) return;
+            
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            element.classList.add('selected');
+            selectedOption = { element, isCorrect };
+        }
+
+        function checkAnswer() {
+            if (!selectedOption) {
+                alert('Lütfen bir seçenek seçiniz!');
+                return;
+            }
+            
+            if (answered) return;
+            answered = true;
+
+            const resultDiv = document.getElementById('result');
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach(opt => {
+                const isCorrect = opt.onclick.toString().includes('true');
+                if (isCorrect) {
+                    opt.classList.add('correct');
+                } else if (opt.classList.contains('selected') && !selectedOption.isCorrect) {
+                    opt.classList.add('incorrect');
+                }
+            });
+
+            if (selectedOption.isCorrect) {
+                resultDiv.innerHTML = '✅ Doğru! Satın alma usulünün denenmesi, kamulaştırma sürecinin son aşamasında yer alan bir seçenektir.';
+                resultDiv.className = 'result correct';
+                updateProgress(177, true);
+            } else {
+                resultDiv.innerHTML = '❌ Yanlış! Doğru cevap C seçeneğidir. Satın alma usulü kamulaştırma sürecinin son aşamasında denenmelidir.';
+                resultDiv.className = 'result incorrect';
+                updateProgress(177, false);
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        function updateProgress(questionNumber, isCorrect) {
+            let progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            progress[questionNumber] = {
+                completed: true,
+                correct: isCorrect,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('examProgress', JSON.stringify(progress));
+        }
+
+        function goToPrevious() {
+            window.location.href = 'soru-176.html';
+        }
+
+        function goToNext() {
+            window.location.href = 'soru-178.html';
+        }
+
+        window.onload = function() {
+            const progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            if (progress[177] && progress[177].completed) {
+                document.querySelector('.header h1').innerHTML += ' <span class="completed-badge">Tamamlandı</span>';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru P1-25</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku Sınavı - 2. Dönem 1. Part</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P1-24.html" class="nav-button">Önceki Soru</a>
+            <span class="page-info">Soru P1-25 / 25</span>
+            <span style="color: #28a745; font-weight: bold;">SON SORU</span>
+        </div>
+        
+        <div class="content">
+            <div class="question-section">
+                <h2 class="question-title">Soru 25: İdare Hukukunun Kaynakları (Final)</h2>
+                <p class="question-text">Aşağıdakilerden hangisi idare hukukunun yazılı kaynakları arasında yer almaz?</p>
+                
+                <ul class="options">
+                    <li onclick="selectOption(this, 'A')">A) Anayasa</li>
+                    <li onclick="selectOption(this, 'B')">B) Kanunlar</li>
+                    <li onclick="selectOption(this, 'C')">C) İçtihatlar</li>
+                    <li onclick="selectOption(this, 'D')">D) Tüzükler</li>
+                    <li onclick="selectOption(this, 'E')">E) Yönetmelikler</li>
+                </ul>
+                
+                <button class="check-button" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <button class="show-solution-btn" onclick="showSolution()">Çözümü Göster</button>
+                
+                <div class="result-message" id="result" style="display: none;"></div>
+                
+                <div class="solution-box" id="solution">
+                    <h3>Çözüm:</h3>
+                    <div class="correct-answer">Doğru Cevap: C) İçtihatlar</div>
+                    <div class="explanation-text">
+                        İçtihatlar idare hukukunun yazılı olmayan (örfi) kaynaklarındandır. Yazılı 
+                        kaynaklar arasında Anayasa, kanunlar, tüzükler, yönetmelikler ve diğer 
+                        düzenleyici işlemler yer alır. İçtihatlar ise mahkeme kararları yoluyla 
+                        oluşan ve hukuk kurallarının yorumlanmasında rehber olan kaynaklardır.
+                    </div>
+                    <div class="pdf-source"><strong>Kaynak:</strong> İdare Hukuku Notu 2.dönem 1.part.pdf</div>
+                </div>
+                
+                <div id="completion-message" style="display: none; background: linear-gradient(135deg, #28a745, #20c997); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: center;">
+                    <h3>🎉 Tebrikler! Sınavı Tamamladınız! 🎉</h3>
+                    <p>İdare Hukuku 2. Dönem 1. Part sınavının 25 sorusunu başarıyla tamamladınız.</p>
+                    <div id="final-score" style="font-size: 18px; font-weight: bold; margin: 10px 0;"></div>
+                    <a href="index.html" class="nav-button" style="background-color: white; color: #28a745; margin: 10px;">Ana Sayfaya Dön</a>
+                </div>
+            </div>
+            
+            <div class="navigation" style="margin-top: 30px;">
+                <a href="index.html" class="nav-button">Ana Sayfaya Dön</a>
+                <button class="nav-button" onclick="showFinalResults()" style="background-color: #28a745;">Sonuçları Göster</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let selectedAnswer = '';
+        const correctAnswer = 'C';
+        
+        function selectOption(element, answer) {
+            document.querySelectorAll('.options li').forEach(li => {
+                li.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            selectedAnswer = answer;
+        }
+        
+        function checkAnswer() {
+            if (!selectedAnswer) {
+                alert('Lütfen bir cevap seçiniz!');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('result');
+            const selectedElement = document.querySelector('.selected');
+            
+            if (selectedAnswer === correctAnswer) {
+                selectedElement.classList.add('correct');
+                resultDiv.className = 'result-message correct';
+                resultDiv.textContent = 'Tebrikler! Doğru cevap.';
+                markQuestionCompleted();
+                showFinalResults();
+            } else {
+                selectedElement.classList.add('incorrect');
+                resultDiv.className = 'result-message incorrect';
+                resultDiv.textContent = 'Yanlış cevap. Tekrar deneyiniz veya çözümü gösteriniz.';
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+        
+        function showSolution() {
+            const solutionDiv = document.getElementById('solution');
+            solutionDiv.classList.add('visible');
+            markQuestionCompleted();
+            showFinalResults();
+        }
+        
+        function markQuestionCompleted() {
+            localStorage.setItem('soru-P1-25', 'completed');
+        }
+        
+        function showFinalResults() {
+            const totalQuestions = 25;
+            let completedCount = 0;
+            
+            for (let i = 1; i <= totalQuestions; i++) {
+                const key = `soru-P1-${i.toString().padStart(2, '0')}`;
+                if (localStorage.getItem(key) === 'completed') {
+                    completedCount++;
+                }
+            }
+            
+            const completionPercentage = (completedCount / totalQuestions) * 100;
+            
+            document.getElementById('completion-message').style.display = 'block';
+            document.getElementById('final-score').innerHTML = `
+                Tamamlanan Sorular: ${completedCount} / ${totalQuestions}<br>
+                Tamamlanma Oranı: ${completionPercentage.toFixed(1)}%
+            `;
+            
+            // Sayfa sonuna kaydır
+            document.getElementById('completion-message').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        window.onload = function() {
+            if (localStorage.getItem('soru-P1-25') === 'completed') {
+                const solutionDiv = document.getElementById('solution');
+                solutionDiv.classList.add('visible');
+            }
+        };
+    </script>
+</body>
+</html>

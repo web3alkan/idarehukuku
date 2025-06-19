@@ -1,0 +1,11 @@
+P3-16: Vergi Davaları
+P3-17: İdari Yargıda Delil
+P3-18: Kesin Hüküm ve Res Judicata
+P3-19: İdari Yargıda Taraflar
+P3-20: Dava Dilekçesi
+P3-21: Geçici Hukuki Koruma
+P3-22: İdari Yargıda İnfaz
+P3-23: Danıştay'ın İçtihadı Birleştirme Kararları
+P3-24: İdari Yargıda Harç ve Giderler
+P3-25: İdari Yargının Geleceği ve Reformlar
+EOF < /dev/null

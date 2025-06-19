@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 33 - Kamu Tüzel Kişiliği</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="previousQuestion()" class="nav-btn">← Önceki</button>
+            <button onclick="goHome()" class="nav-btn home">🏠 Ana Sayfa</button>
+            <button onclick="nextQuestion()" class="nav-btn">Sonraki →</button>
+        </div>
+
+        <div class="question-container">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0033.jpg" alt="Sayfa 33" class="page-image">
+            </div>
+
+            <div class="question-content">
+                <h2>Soru 33</h2>
+                <p class="question-text">
+                    Aşağıdakilerden hangisi kamu tüzel kişileri ile diğer kamu tüzel kişileri arasındaki temel farkları doğru olarak açıklar?
+                </p>
+
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="answer" value="A">
+                        <span class="option-text">A) Devlet tüzel kişiliği birey yerden var oldukları için her konuda sınırsız karar alma yetkisine sahip tek türüdür.</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="B">
+                        <span class="option-text">B) Kamu hizmeti sınırlaması yoktur, her konuda hizmet sunabilir.</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="C">
+                        <span class="option-text">C) Kamu idaresi olarak tanımlanan, kişi topluluğu ve tüzel kişiliği "devlet" adı ile yürütür. İçinde yer alan birimlerin ayrı KTK'sı yoktur.</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="D">
+                        <span class="option-text">D) Kamu idareleri ve kamu kurumları birbirinden farklı, kişi veya mal topluluğudurlar.</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="E">
+                        <span class="option-text">E) Kuruluş açısından devlete bağımlı, işleyiş açısından özerk yönetmelik budunur.</span>
+                    </label>
+                </div>
+
+                <div class="answer-section">
+                    <button onclick="checkAnswer()" class="check-btn">Cevabı Kontrol Et</button>
+                    <div id="result" class="result"></div>
+                    <div id="explanation" class="explanation"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswer = 'C';
+        const explanation = 'Kamu tüzel kişiliği KANUNLA veya CBK ile kazanılan, sırf bu kuruluştan gelen güç nedeni ile muhatabı ile eşitsiz bir ilişki tarafı olarak beliren kamu gücü otoritesi ile donatılmış kişilerdir. Devlet tüzel kişiliği ve diğer kamu tüzel kişileri arasındaki temel fark, devlet tüzel kişiliği bireylerden var oldukları için her konuda sınırsız karar alma yetkisine sahip tek türüm. Diğer kamu tüzel kişileri ise kuruluş açısından devlete bağımlı, işleyiş açısından özerk yönetmeliklere tabidir.';
+
+        function checkAnswer() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            const resultDiv = document.getElementById('result');
+            const explanationDiv = document.getElementById('explanation');
+            
+            if (!selectedAnswer) {
+                resultDiv.innerHTML = '<p style="color: orange;">Lütfen bir seçenek seçiniz.</p>';
+                return;
+            }
+            
+            if (selectedAnswer.value === correctAnswer) {
+                resultDiv.innerHTML = '<p style="color: green;">✓ Doğru cevap!</p>';
+                localStorage.setItem('soru33_completed', 'true');
+            } else {
+                resultDiv.innerHTML = '<p style="color: red;">✗ Yanlış cevap. Doğru cevap: ' + correctAnswer + '</p>';
+            }
+            
+            explanationDiv.innerHTML = '<div class="explanation-content"><strong>Açıklama:</strong> ' + explanation + '</div>';
+        }
+
+        function previousQuestion() {
+            window.location.href = 'soru-32.html';
+        }
+
+        function nextQuestion() {
+            window.location.href = 'soru-34.html';
+        }
+
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+
+        // Load completion status
+        window.onload = function() {
+            if (localStorage.getItem('soru33_completed') === 'true') {
+                document.getElementById('result').innerHTML = '<p style="color: blue;">Bu soruyu daha önce doğru cevapladınız.</p>';
+            }
+        }
+    </script>
+</body>
+</html>

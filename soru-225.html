@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 225</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku Sınavı</h1>
+            <div class="page-info">Sayfa 225 - Kusursuz Sorumluluk</div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn" onclick="goToPrevious()">← Önceki</button>
+            <button class="nav-btn" onclick="goToHome()">🏠 Ana Sayfa</button>
+            <button class="nav-btn" onclick="goToNext()">Sonraki →</button>
+        </div>
+
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0225.jpg" alt="Sayfa 225 - Kusursuz Sorumluluk" />
+            </div>
+
+            <div class="question-section">
+                <div class="question-title">Eşleştirme Sorusu</div>
+                <div class="question-text">
+                    Aşağıdaki risk türlerini doğru kategorileriyle eşleştiriniz:
+                </div>
+                
+                <div class="matching">
+                    <div class="matching-left">
+                        <h4>Risk Türleri</h4>
+                        <div class="matching-item" onclick="selectLeft(0)" data-id="meslek">Mesleki Risk</div>
+                        <div class="matching-item" onclick="selectLeft(1)" data-id="isletme">İşletme Faaliyetleri</div>
+                        <div class="matching-item" onclick="selectLeft(2)" data-id="sosyal">Sosyal Risk</div>
+                        <div class="matching-item" onclick="selectLeft(3)" data-id="kamu">Kamu Mülkleri</div>
+                    </div>
+                    
+                    <div class="matching-right">
+                        <h4>Açıklamalar</h4>
+                        <div class="matching-item" onclick="selectRight(0)" data-match="meslek">Personelin mesleklerin yapılması sırasında karşılaştığı durumlar</div>
+                        <div class="matching-item" onclick="selectRight(1)" data-match="sosyal">İdarenin vatandaşların sosyal güvenlik ve korunmasından sorumlu tutulması</div>
+                        <div class="matching-item" onclick="selectRight(2)" data-match="isletme">Tabi tutulma ve kaynaklarla ilgili konularda özellik taşıyan durumlar</div>
+                        <div class="matching-item" onclick="selectRight(3)" data-match="kamu">İdarenin kusursuz ve tehlikeli bir fiil yokken yapılan büyük kamu yapılarından doğan eşitsizlik</div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-primary" onclick="checkMatching()">Eşleştirmeyi Kontrol Et</button>
+                    <button class="btn btn-secondary" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+
+                <div id="result" class="result" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>İdare Hukuku - Kamusal Alan © 2025</p>
+        </div>
+    </div>
+
+    <script>
+        let selectedLeft = null;
+        let selectedRight = null;
+        let matches = {};
+        const questionId = 'question_225';
+        
+        const correctMatches = {
+            'meslek': 0,
+            'isletme': 2,
+            'sosyal': 1,
+            'kamu': 3
+        };
+
+        function selectLeft(index) {
+            selectedLeft = index;
+            const leftItems = document.querySelectorAll('.matching-left .matching-item');
+            leftItems.forEach((item, i) => {
+                item.classList.remove('selected');
+                if (i === index) {
+                    item.classList.add('selected');
+                }
+            });
+            
+            const rightItems = document.querySelectorAll('.matching-right .matching-item');
+            rightItems.forEach(item => item.classList.remove('selected'));
+            selectedRight = null;
+        }
+
+        function selectRight(index) {
+            if (selectedLeft === null) {
+                alert('Önce sol taraftan bir öğe seçiniz!');
+                return;
+            }
+            
+            selectedRight = index;
+            const leftItem = document.querySelectorAll('.matching-left .matching-item')[selectedLeft];
+            const rightItem = document.querySelectorAll('.matching-right .matching-item')[index];
+            
+            const leftId = leftItem.getAttribute('data-id');
+            matches[leftId] = index;
+            
+            leftItem.classList.remove('selected');
+            rightItem.classList.add('selected');
+            
+            selectedLeft = null;
+            selectedRight = null;
+        }
+
+        function checkMatching() {
+            if (Object.keys(matches).length < 4) {
+                alert('Lütfen tüm eşleştirmeleri yapınız!');
+                return;
+            }
+
+            const leftItems = document.querySelectorAll('.matching-left .matching-item');
+            const rightItems = document.querySelectorAll('.matching-right .matching-item');
+            
+            let correctCount = 0;
+            
+            leftItems.forEach((leftItem, leftIndex) => {
+                const leftId = leftItem.getAttribute('data-id');
+                const userMatch = matches[leftId];
+                const correctMatch = correctMatches[leftId];
+                
+                if (userMatch === correctMatch) {
+                    leftItem.classList.add('correct');
+                    rightItems[userMatch].classList.add('correct');
+                    correctCount++;
+                } else {
+                    leftItem.classList.add('incorrect');
+                    rightItems[userMatch].classList.add('incorrect');
+                    rightItems[correctMatch].classList.add('correct');
+                }
+            });
+
+            const resultDiv = document.getElementById('result');
+            const isAllCorrect = correctCount === 4;
+            
+            if (isAllCorrect) {
+                resultDiv.textContent = `Mükemmel! Tüm eşleştirmeler doğru. (${correctCount}/4)`;
+                resultDiv.className = 'result correct';
+                saveCompletion(true);
+            } else {
+                resultDiv.textContent = `${correctCount}/4 eşleştirme doğru. Yanlış eşleştirmeler kırmızı, doğru eşleştirmeler yeşil ile gösterildi.`;
+                resultDiv.className = 'result incorrect';
+                saveCompletion(false);
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        function resetQuestion() {
+            matches = {};
+            selectedLeft = null;
+            selectedRight = null;
+            
+            const items = document.querySelectorAll('.matching-item');
+            items.forEach(item => {
+                item.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            document.getElementById('result').style.display = 'none';
+        }
+
+        function saveCompletion(isCorrect) {
+            const completedQuestions = JSON.parse(localStorage.getItem('completedQuestions') || '{}');
+            completedQuestions[questionId] = {
+                completed: true,
+                correct: isCorrect,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('completedQuestions', JSON.stringify(completedQuestions));
+        }
+
+        function goToPrevious() {
+            window.location.href = 'soru-224.html';
+        }
+
+        function goToNext() {
+            window.location.href = 'soru-226.html';
+        }
+
+        function goToHome() {
+            window.location.href = 'index.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const completedQuestions = JSON.parse(localStorage.getItem('completedQuestions') || '{}');
+            if (completedQuestions[questionId]) {
+                // Tamamlanmış soruyu göster ama yanıtları etkinleştir
+            }
+        });
+    </script>
+</body>
+</html>

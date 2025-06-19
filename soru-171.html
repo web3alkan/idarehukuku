@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 171</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Sayfa 171</h1>
+            <div class="progress-indicator">Soru 171 / 220</div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn" onclick="goToPrevious()" id="prevBtn">← Önceki</button>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <button class="nav-btn" onclick="goToNext()" id="nextBtn">Sonraki →</button>
+        </div>
+        
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0171.jpg" alt="Sayfa 171" />
+            </div>
+            
+            <div class="question-section">
+                <div class="question-title">
+                    Aşağıdaki ifadelerden hangisi kamulaştırma konusunda doğrudur?
+                </div>
+                
+                <div class="options">
+                    <div class="option" onclick="selectOption(this, false)">
+                        A) İdareler yalnızca kanunlarla yapılan yükümlülükler çerçevesinde kamulaştırma yapabilir
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        B) Kamulaştırma sadece merkezi idare tarafından gerçekleştirilebilir
+                    </div>
+                    <div class="option" onclick="selectOption(this, true)">
+                        C) Kamulaştırma işlemini yapmaya yetkili olan kamu idarelerinin yanı sıra, özel idare ve devletin yetkili olduğu durumlar vardır
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        D) TOBB haricinde meslek kuruluşları kamulaştırma yetkisine sahiptir
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        E) Vakıf üniversiteleri her durumda kamulaştırma yapabilir
+                    </div>
+                </div>
+                
+                <div class="answer-section">
+                    <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <div id="result" class="result" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedOption = null;
+        let answered = false;
+
+        function selectOption(element, isCorrect) {
+            if (answered) return;
+            
+            // Remove previous selections
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Select current option
+            element.classList.add('selected');
+            selectedOption = { element, isCorrect };
+        }
+
+        function checkAnswer() {
+            if (!selectedOption) {
+                alert('Lütfen bir seçenek seçiniz!');
+                return;
+            }
+            
+            if (answered) return;
+            answered = true;
+
+            const resultDiv = document.getElementById('result');
+            const options = document.querySelectorAll('.option');
+            
+            // Show correct answer
+            options.forEach(opt => {
+                const isCorrect = opt.onclick.toString().includes('true');
+                if (isCorrect) {
+                    opt.classList.add('correct');
+                } else if (opt.classList.contains('selected') && !selectedOption.isCorrect) {
+                    opt.classList.add('incorrect');
+                }
+            });
+
+            // Show result
+            if (selectedOption.isCorrect) {
+                resultDiv.innerHTML = '✅ Doğru! Kamulaştırma yetkisi çeşitli kamu idarelerine, özel idarelere ve devletin yetkili olduğu durumlarda kullanılabilir.';
+                resultDiv.className = 'result correct';
+                updateProgress(171, true);
+            } else {
+                resultDiv.innerHTML = '❌ Yanlış! Doğru cevap C seçeneğidir. Kamulaştırma yetkisi sadece merkezi idareye ait değildir, çeşitli kamu kurumları bu yetkiye sahip olabilir.';
+                resultDiv.className = 'result incorrect';
+                updateProgress(171, false);
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        function updateProgress(questionNumber, isCorrect) {
+            let progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            progress[questionNumber] = {
+                completed: true,
+                correct: isCorrect,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('examProgress', JSON.stringify(progress));
+        }
+
+        function goToPrevious() {
+            const currentPage = 171;
+            if (currentPage > 171) {
+                window.location.href = `soru-${currentPage - 1}.html`;
+            }
+        }
+
+        function goToNext() {
+            const currentPage = 171;
+            if (currentPage < 220) {
+                window.location.href = `soru-${currentPage + 1}.html`;
+            }
+        }
+
+        // Check if question was already completed
+        window.onload = function() {
+            const progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            if (progress[171] && progress[171].completed) {
+                document.querySelector('.header h1').innerHTML += ' <span class="completed-badge">Tamamlandı</span>';
+            }
+        }
+    </script>
+</body>
+</html>

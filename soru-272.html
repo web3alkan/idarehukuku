@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru 272</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>İdare Hukuku Soruları</h1>
+            <div class="question-number">Soru 272</div>
+        </header>
+
+        <nav class="navigation">
+            <a href="soru-271.html" class="nav-btn">← Önceki</a>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <a href="soru-273.html" class="nav-btn">Sonraki →</a>
+        </nav>
+
+        <div class="content">
+            <div class="image-container">
+                <img src="Kamusal Alan İdare Hukuku_page-0272.jpg" alt="Sayfa 272" class="page-image">
+            </div>
+
+            <div class="question-container">
+                <h2>Soru</h2>
+                <p class="question-text">
+                    Kınamayı gerektiren haller kapsamında aşağıdakilerden hangisi BULUNMAZ?
+                </p>
+
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="answer" value="A">
+                        <span>A) Görev sırasında amirine hal ve hareketlerle saygısızlık davranmak</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="B">
+                        <span>B) Hizmet dışında Devlet memurunun itibar ve güven duygusunu sarsacak nitelikte davranışlarda bulunmak</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="C">
+                        <span>C) Devlete ait resmi araç gereç ve benzeri eşyayı özel işlerinde kullanmak</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="D">
+                        <span>D) Verilen emirlere itiraz etmek</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="E">
+                        <span>E) İş arkadaşlarına ve iş sahiplerine kötü muamelede bulunmak</span>
+                    </label>
+                </div>
+
+                <button onclick="checkAnswer()" class="submit-btn">Cevabı Kontrol Et</button>
+                <div id="result" class="result"></div>
+                <div id="explanation" class="explanation" style="display: none;">
+                    <strong>Açıklama:</strong> Verilen emirlere itiraz etmek, memurların hakkıdır ve kınamayı gerektiren haller arasında yer almaz. Diğer seçenekler kınamayı gerektiren fiillerdir.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            const resultDiv = document.getElementById('result');
+            const explanationDiv = document.getElementById('explanation');
+            
+            if (!selectedAnswer) {
+                resultDiv.innerHTML = '<p style="color: orange;">Lütfen bir seçenek işaretleyin.</p>';
+                return;
+            }
+            
+            const answer = selectedAnswer.value;
+            if (answer === 'D') {
+                resultDiv.innerHTML = '<p style="color: green;">✓ Doğru! Tebrikler.</p>';
+                localStorage.setItem('soru272', 'completed');
+            } else {
+                resultDiv.innerHTML = '<p style="color: red;">✗ Yanlış. Doğru cevap: D</p>';
+            }
+            
+            explanationDiv.style.display = 'block';
+        }
+
+        window.onload = function() {
+            if (localStorage.getItem('soru272') === 'completed') {
+                document.body.classList.add('completed');
+            }
+        }
+    </script>
+</body>
+</html>

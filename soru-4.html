@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru 4</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="window.location.href='soru-3.html'">&larr; Önceki</button>
+            <button onclick="window.location.href='index.html'">Ana Sayfa</button>
+            <button onclick="window.location.href='soru-5.html'">Sonraki &rarr;</button>
+        </div>
+
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0004.jpg" alt="Sayfa 4" class="source-image">
+            
+            <div class="question">
+                <h2>Soru 4</h2>
+                <p>İdare hukukunun düzenleme alanı ile ilgili aşağıdaki ifadeyi tamamlayınız:</p>
+                <p>"İdare hukukunun düzenleme alanı idarenin <input type="text" id="blank1" class="fill-blank"> ve <input type="text" id="blank2" class="fill-blank"> izleyeceği yolu, yöntemi belirlemektir."</p>
+                
+                <button onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <div id="feedback" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('soru4_completed') === 'true') {
+                document.getElementById('feedback').innerHTML = '<span class="correct">✓ Bu soruyu daha önce doğru cevapladınız.</span>';
+                document.getElementById('blank1').value = 'işlemlerinde';
+                document.getElementById('blank2').value = 'eylemlerinde';
+                document.getElementById('blank1').disabled = true;
+                document.getElementById('blank2').disabled = true;
+            }
+        });
+
+        function checkAnswer() {
+            const answer1 = document.getElementById('blank1').value.toLowerCase().trim();
+            const answer2 = document.getElementById('blank2').value.toLowerCase().trim();
+            const feedback = document.getElementById('feedback');
+            
+            // Kabul edilebilir cevap varyasyonları
+            const acceptable1 = ['işlemlerinde', 'işlemlerde', 'işlemlerinde'];
+            const acceptable2 = ['eylemlerinde', 'eylemlerde', 'eylemlerinde'];
+            
+            if (acceptable1.includes(answer1) && acceptable2.includes(answer2)) {
+                feedback.innerHTML = '<span class="correct">✓ Doğru! İdare hukukunun düzenleme alanı idarenin işlemlerinde ve eylemlerinde izleyeceği yolu, yöntemi belirlemektir.</span>';
+                localStorage.setItem('soru4_completed', 'true');
+                document.getElementById('blank1').disabled = true;
+                document.getElementById('blank2').disabled = true;
+            } else {
+                feedback.innerHTML = '<span class="incorrect">✗ Yanlış. Her iki boşluğu da doğru doldurunuz.</span>';
+            }
+        }
+
+        // Enter tuşu ile cevap kontrolü
+        document.querySelectorAll('.fill-blank').forEach(input => {
+            input.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    checkAnswer();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

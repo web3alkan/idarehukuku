@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru P3-09: İdari İşlemlerin Yargısal Denetimi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Soru P3-09: İdari İşlemlerin Yargısal Denetimi</h1>
+        
+        <div class="question-box">
+            <div class="question">
+                <p>İdari işlemlerin yargısal denetimi türleri ile açıklamalarını eşleştiriniz:</p>
+                
+                <div class="matching-container">
+                    <div class="matching-left">
+                        <h4>Denetim Türleri:</h4>
+                        <div class="matching-item" data-id="1">1. Hukuka Uygunluk Denetimi</div>
+                        <div class="matching-item" data-id="2">2. Yerindelik Denetimi</div>
+                        <div class="matching-item" data-id="3">3. Tam Denetim</div>
+                        <div class="matching-item" data-id="4">4. Sınırlı Denetim</div>
+                    </div>
+                    
+                    <div class="matching-right">
+                        <h4>Açıklamalar:</h4>
+                        <div class="matching-target" data-target="A">A) İşlemin hukuki mevcudiyeti ve geçerliliğinin denetimi</div>
+                        <div class="matching-target" data-target="B">B) İşlemin uygunluk ve fayda yönünden denetimi</div>
+                        <div class="matching-target" data-target="C">C) Hem hukuka uygunluk hem yerindelik denetimi birlikte</div>
+                        <div class="matching-target" data-target="D">D) Yalnızca belirli unsurların denetimi</div>
+                    </div>
+                </div>
+                
+                <div class="user-matches">
+                    <h4>Eşleştirmeleriniz:</h4>
+                    <div id="matches"></div>
+                </div>
+            </div>
+            
+            <button onclick="gosterCozum()" class="cozum-button">Çözümü Göster</button>
+            
+            <div id="cozum" class="cozum-box" style="display: none;">
+                <h3>Çözüm:</h3>
+                <p><strong>Doğru Eşleştirmeler:</strong></p>
+                <ul>
+                    <li><strong>1 - A:</strong> Hukuka Uygunluk Denetimi → İşlemin hukuki mevcudiyeti ve geçerliliğinin denetimi</li>
+                    <li><strong>2 - B:</strong> Yerindelik Denetimi → İşlemin uygunluk ve fayda yönünden denetimi</li>
+                    <li><strong>3 - C:</strong> Tam Denetim → Hem hukuka uygunluk hem yerindelik denetimi birlikte</li>
+                    <li><strong>4 - D:</strong> Sınırlı Denetim → Yalnızca belirli unsurların denetimi</li>
+                </ul>
+                
+                <div class="denetim-turleri">
+                    <h4>Denetim Türlerinin Özellikleri:</h4>
+                    <ul>
+                        <li><strong>Hukuka Uygunluk:</strong> İşlemin hukuk kurallarına uygunluğu (genel kural)</li>
+                        <li><strong>Yerindelik:</strong> İşlemin fayda, uygunluk ve zamanlaması (istisna)</li>
+                        <li><strong>Tam Denetim:</strong> Tam yargı davalarında her iki denetim birlikte</li>
+                        <li><strong>Sınırlı Denetim:</strong> Takdir yetkisi olan işlemlerde sınırlı denetim</li>
+                    </ul>
+                </div>
+                
+                <div class="hangi-davada">
+                    <h4>Hangi Davada Hangi Denetim:</h4>
+                    <ul>
+                        <li><strong>İptal Davası:</strong> Genellikle hukuka uygunluk denetimi</li>
+                        <li><strong>Tam Yargı Davası:</strong> Tam denetim (hukuka uygunluk + yerindelik)</li>
+                        <li><strong>Takdir Yetkisi:</strong> Sınırlı denetim (aşırılık, sapma, maksad aşımı)</li>
+                        <li><strong>Bağlı Yetki:</strong> Tam hukuka uygunluk denetimi</li>
+                    </ul>
+                </div>
+                
+                <div class="kaynak">
+                    <p><strong>Kaynak:</strong> İdare hukuku notu 2.dönem 3.part.pdf</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P3-08.html" class="nav-button">← Önceki Soru</a>
+            <a href="soru-P3-10.html" class="nav-button">Sonraki Soru →</a>
+        </div>
+    </div>
+    
+    <script>
+        let matches = {};
+        
+        function gosterCozum() {
+            document.getElementById('cozum').style.display = 'block';
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            cozumler['soru-P3-09'] = true;
+            localStorage.setItem('gosterilenCozumler', JSON.stringify(cozumler));
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const items = document.querySelectorAll('.matching-item');
+            const targets = document.querySelectorAll('.matching-target');
+            
+            items.forEach(item => {
+                item.addEventListener('click', function() {
+                    document.querySelectorAll('.matching-item').forEach(i => i.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+            
+            targets.forEach(target => {
+                target.addEventListener('click', function() {
+                    const selected = document.querySelector('.matching-item.selected');
+                    if (selected) {
+                        const itemId = selected.dataset.id;
+                        const targetId = this.dataset.target;
+                        matches[itemId] = targetId;
+                        updateMatches();
+                        selected.classList.remove('selected');
+                    }
+                });
+            });
+        });
+        
+        function updateMatches() {
+            const matchesDiv = document.getElementById('matches');
+            matchesDiv.innerHTML = '';
+            for (let key in matches) {
+                matchesDiv.innerHTML += `<p>${key} → ${matches[key]}</p>`;
+            }
+        }
+        
+        window.onload = function() {
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            if (cozumler['soru-P3-09']) {
+                document.getElementById('cozum').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

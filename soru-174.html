@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 174</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Sayfa 174</h1>
+            <div class="progress-indicator">Soru 174 / 220</div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn" onclick="goToPrevious()">← Önceki</button>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <button class="nav-btn" onclick="goToNext()">Sonraki →</button>
+        </div>
+        
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0174.jpg" alt="Sayfa 174" />
+            </div>
+            
+            <div class="question-section">
+                <div class="question-title">
+                    Aşağıdaki kamulaştırma türleri ile kamu yararı kararı alan merci eşleştirmelerinden hangisi yanlıştır?
+                </div>
+                
+                <div class="options">
+                    <div class="option" onclick="selectOption(this, false)">
+                        A) Devlet yararına yapılacak kamulaştırmalarda - Vali
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        B) İl Özel İdaresi yararına kamulaştırmalarda - Vali
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        C) Belediye yararına kamulaştırmalarda - Mülki İdare Amiri
+                    </div>
+                    <div class="option" onclick="selectOption(this, true)">
+                        D) CB tarafından kabul olunan taksitlendirilebilir işlerle ilgili kamulaştırmalarda - Onay yok
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        E) Kamu Kurumu yararına kamulaştırmalarda - Müdür, başkan, rektör
+                    </div>
+                </div>
+                
+                <div class="answer-section">
+                    <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <div id="result" class="result" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedOption = null;
+        let answered = false;
+
+        function selectOption(element, isCorrect) {
+            if (answered) return;
+            
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            element.classList.add('selected');
+            selectedOption = { element, isCorrect };
+        }
+
+        function checkAnswer() {
+            if (!selectedOption) {
+                alert('Lütfen bir seçenek seçiniz!');
+                return;
+            }
+            
+            if (answered) return;
+            answered = true;
+
+            const resultDiv = document.getElementById('result');
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach(opt => {
+                const isCorrect = opt.onclick.toString().includes('true');
+                if (isCorrect) {
+                    opt.classList.add('correct');
+                } else if (opt.classList.contains('selected') && !selectedOption.isCorrect) {
+                    opt.classList.add('incorrect');
+                }
+            });
+
+            if (selectedOption.isCorrect) {
+                resultDiv.innerHTML = '✅ Doğru! CB tarafından kabul olunan taksitlendirilebilir işlerle ilgili kamulaştırmalarda da onay makamı bulunmaktadır, "Onay yok" ifadesi yanlıştır.';
+                resultDiv.className = 'result correct';
+                updateProgress(174, true);
+            } else {
+                resultDiv.innerHTML = '❌ Yanlış! Doğru cevap D seçeneğidir. Tüm kamulaştırma türlerinde uygun onay makamı bulunmaktadır.';
+                resultDiv.className = 'result incorrect';
+                updateProgress(174, false);
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        function updateProgress(questionNumber, isCorrect) {
+            let progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            progress[questionNumber] = {
+                completed: true,
+                correct: isCorrect,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('examProgress', JSON.stringify(progress));
+        }
+
+        function goToPrevious() {
+            window.location.href = 'soru-173.html';
+        }
+
+        function goToNext() {
+            window.location.href = 'soru-175.html';
+        }
+
+        window.onload = function() {
+            const progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            if (progress[174] && progress[174].completed) {
+                document.querySelector('.header h1').innerHTML += ' <span class="completed-badge">Tamamlandı</span>';
+            }
+        }
+    </script>
+</body>
+</html>

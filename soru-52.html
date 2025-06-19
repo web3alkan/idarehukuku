@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 52 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>İdare Hukuku Sınav Soruları</h1>
+            <p>Kamusal Alan İdare Hukuku - Sayfa 52</p>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <div class="nav-buttons">
+            <a href="soru-51.html" class="nav-btn" id="prevBtn">← Önceki</a>
+            <span class="page-info">Soru 52 / 80</span>
+            <a href="soru-53.html" class="nav-btn" id="nextBtn">Sonraki →</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="progress-indicator">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 6.67%"></div>
+            </div>
+            <p>İlerleme: 6.67% (2/30)</p>
+        </div>
+
+        <div class="content">
+            <div class="source-image">
+                <h3>Kaynak Görseli</h3>
+                <img src="Kamusal Alan İdare Hukuku_page-0052.jpg" alt="Sayfa 52 - İdari Vesayet">
+            </div>
+
+            <div class="question-section">
+                <h2>Soru</h2>
+                <div class="question">
+                    <h3>Anayasanın 127. maddesine göre "MERKEZDEN YÖNETİM" ifadesi aşağıdaki hangi idari yapıyı tanımlar?</h3>
+                    <p><strong>Boşluğu uygun seçenekle doldurunuz:</strong></p>
+                    <p>Anayasanın 127. maddesine göre: MERKEZDEN YÖNETİM --- <input type="text" class="fill-blank-input" id="answer1" placeholder="Cevabınız"> İLİŞKİSİDİR.</p>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="btn btn-secondary" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+
+                <div id="feedback" class="feedback hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>&copy; 2025 İdare Hukuku Sınav Soruları. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = ['MAHALLİ İDARE', 'MAHALLI IDARE', 'mahalli idare', 'MAHALLİ IDARE'];
+
+        // Load completion status
+        window.onload = function() {
+            const completed = localStorage.getItem('question-52-completed');
+            if (completed === 'true') {
+                document.body.classList.add('completed');
+            }
+        };
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answer1').value.trim();
+            
+            if (!userAnswer) {
+                alert('Lütfen boşluğu doldurun!');
+                return;
+            }
+
+            const feedback = document.getElementById('feedback');
+            const isCorrect = correctAnswers.some(answer => 
+                userAnswer.toUpperCase().replace(/İ/g, 'I') === answer.toUpperCase().replace(/İ/g, 'I')
+            );
+
+            if (isCorrect) {
+                feedback.className = 'feedback correct';
+                feedback.textContent = 'Doğru! Anayasanın 127. maddesine göre "Merkezden yönetim - Mahalli idare ilişkisidir." Genel olarak merkezden yönetimin, yerinden yönetimler üzerindeki hukuki denetim yetkisini ifade eder.';
+                document.getElementById('answer1').style.borderColor = '#28a745';
+                document.getElementById('answer1').style.backgroundColor = '#d4edda';
+                localStorage.setItem('question-52-completed', 'true');
+                localStorage.setItem('question-52-correct', 'true');
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = 'Yanlış! Doğru cevap "MAHALLİ İDARE"dir. Anayasanın 127. maddesi merkezden yönetim ile mahalli idare arasındaki ilişkiyi düzenlemektedir.';
+                document.getElementById('answer1').style.borderColor = '#dc3545';
+                document.getElementById('answer1').style.backgroundColor = '#f8d7da';
+                localStorage.setItem('question-52-completed', 'true');
+                localStorage.setItem('question-52-correct', 'false');
+            }
+            
+            feedback.classList.remove('hidden');
+            document.getElementById('answer1').disabled = true;
+        }
+
+        function resetQuestion() {
+            document.getElementById('answer1').value = '';
+            document.getElementById('answer1').disabled = false;
+            document.getElementById('answer1').style.borderColor = '#e9ecef';
+            document.getElementById('answer1').style.backgroundColor = 'white';
+            document.getElementById('feedback').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

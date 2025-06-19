@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 30 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="soru-29.html" class="nav-btn">← Önceki</a>
+            <a href="index.html" class="nav-btn home-btn">Ana Sayfa</a>
+            <a href="soru-31.html" class="nav-btn">Sonraki →</a>
+        </nav>
+        
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0030.jpg" alt="Sayfa 30" class="page-image">
+            
+            <div class="question-box">
+                <h2>Soru 30</h2>
+                <p>Anayasa Md. 123'e göre idare hakkındaki tanımlama hangi önemli istisnayı vurgulamaktadır?</p>
+                
+                <div class="options">
+                    <label>
+                        <input type="radio" name="q30" value="a">
+                        a) İdarenin yalnızca merkezi yapısı
+                    </label>
+                    <label>
+                        <input type="radio" name="q30" value="b">
+                        b) İdarenin yalnızca yerel yapısı
+                    </label>
+                    <label>
+                        <input type="radio" name="q30" value="c">
+                        c) Cumhurbaşkanlığı kararnamelerinin en önemli istisnası
+                    </label>
+                    <label>
+                        <input type="radio" name="q30" value="d">
+                        d) Kanunla düzenlenmesi gerekli olan alanlar
+                    </label>
+                    <label>
+                        <input type="radio" name="q30" value="e">
+                        e) Uluslararası anlaşmaların üstünlüğü
+                    </label>
+                </div>
+                
+                <button onclick="checkAnswer30()" class="check-btn">Cevabı Kontrol Et</button>
+                <div id="result30" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function checkAnswer30() {
+            const selected = document.querySelector('input[name="q30"]:checked');
+            const result = document.getElementById('result30');
+            
+            if (!selected) {
+                result.innerHTML = '<span class="incorrect">Lütfen bir seçenek seçin!</span>';
+                return;
+            }
+            
+            if (selected.value === 'c') {
+                result.innerHTML = '<span class="correct">✓ Doğru! Görselde "Bunun en önemli istisnası Cumhurbaşkanlığı kararnameleridir" ifadesi yer almaktadır.</span>';
+                localStorage.setItem('soru30', 'completed');
+            } else {
+                result.innerHTML = '<span class="incorrect">✗ Yanlış. Metinde açıkça belirtildiği üzere, en önemli istisna Cumhurbaşkanlığı kararnameleridir.</span>';
+            }
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.onload = function() {
+            if (localStorage.getItem('soru30') === 'completed') {
+                document.getElementById('result30').innerHTML = '<span class="completed">Bu soruyu daha önce doğru cevapladınız.</span>';
+            }
+        }
+    </script>
+</body>
+</html>

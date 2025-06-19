@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 23 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="soru-22.html" class="nav-btn">← Önceki</a>
+            <a href="index.html" class="nav-btn home-btn">Ana Sayfa</a>
+            <a href="soru-24.html" class="nav-btn">Sonraki →</a>
+        </nav>
+        
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0023.jpg" alt="Sayfa 23" class="page-image">
+            
+            <div class="question-box">
+                <h2>Soru 23</h2>
+                <p>Anayasanın sosyal haklar başlığından da hatırlanacağı üzere, çeşitli maliye araçları ile desteklenen gruplar arasında aşağıdakilerden hangisi yoktur?</p>
+                
+                <div class="options">
+                    <label>
+                        <input type="radio" name="q23" value="a">
+                        a) Spor
+                    </label>
+                    <label>
+                        <input type="radio" name="q23" value="b">
+                        b) Başarı
+                    </label>
+                    <label>
+                        <input type="radio" name="q23" value="c">
+                        c) Gençlik
+                    </label>
+                    <label>
+                        <input type="radio" name="q23" value="d">
+                        d) Toprak sahipleri
+                    </label>
+                    <label>
+                        <input type="radio" name="q23" value="e">
+                        e) Yabancı yatırımcılar
+                    </label>
+                </div>
+                
+                <button onclick="checkAnswer23()" class="check-btn">Cevabı Kontrol Et</button>
+                <div id="result23" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function checkAnswer23() {
+            const selected = document.querySelector('input[name="q23"]:checked');
+            const result = document.getElementById('result23');
+            
+            if (!selected) {
+                result.innerHTML = '<span class="incorrect">Lütfen bir seçenek seçin!</span>';
+                return;
+            }
+            
+            if (selected.value === 'e') {
+                result.innerHTML = '<span class="correct">✓ Doğru! Yabancı yatırımcılar, metinde belirtilen desteklenen gruplar arasında yer almamaktadır.</span>';
+                localStorage.setItem('soru23', 'completed');
+            } else {
+                result.innerHTML = '<span class="incorrect">✗ Yanlış. Metinde spor, başarı, gençlik, çiftçiler ve toprak sahipleri desteklenen gruplar olarak belirtilmiştir.</span>';
+            }
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.onload = function() {
+            if (localStorage.getItem('soru23') === 'completed') {
+                document.getElementById('result23').innerHTML = '<span class="completed">Bu soruyu daha önce doğru cevapladınız.</span>';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru P3-25: İdari Yargı Genel Değerlendirme</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Soru P3-25: İdari Yargı Genel Değerlendirme</h1>
+        
+        <div class="question-box">
+            <div class="question">
+                <p>İdari yargı sistemi ile ilgili kapsamlı değerlendirme sorusu:</p>
+                <p><strong>Ali Bey, belediye başkanı olarak verdiği imar izni nedeniyle idare mahkemesinde dava açılmıştır. Dava sürecinde aşağıdaki durumlar yaşanmıştır:</strong></p>
+                
+                <div class="scenario">
+                    <p>1. Dava iptal davası olarak açılmış ve yürütmenin durdurulması talep edilmiştir.</p>
+                    <p>2. Mahkeme yürütmenin durdurulması kararı vermiştir.</p>
+                    <p>3. İdare mahkemesi davayı reddetmiştir.</p>
+                    <p>4. Karar istinaf edilmiş ve bölge idare mahkemesi kararı bozmuştur.</p>
+                    <p>5. Davacı ayrıca tazminat da talep etmek istemektedir.</p>
+                </div>
+                
+                <p><strong>Bu senaryoya göre aşağıdaki sorulardan hangisinin cevabı yanlıştır?</strong></p>
+                
+                <div class="options">
+                    <label><input type="radio" name="cevap" value="A"> A) Yürütmenin durdurulması kararı için telafisi güç zarar şartı aranır</label>
+                    <label><input type="radio" name="cevap" value="B"> B) İdare mahkemesi kararına karşı 30 gün içinde istinaf başvurusu yapılabilir</label>
+                    <label><input type="radio" name="cevap" value="C"> C) Bölge idare mahkemesi kararına karşı Danıştay'a temyiz yapılabilir</label>
+                    <label><input type="radio" name="cevap" value="D"> D) İptal davası ile birlikte tazminat talep edilemez</label>
+                    <label><input type="radio" name="cevap" value="E"> E) Davacının imar izni işleminde menfaat ihlali bulunmalıdır</label>
+                </div>
+            </div>
+            
+            <button onclick="gosterCozum()" class="cozum-button">Çözümü Göster</button>
+            
+            <div id="cozum" class="cozum-box" style="display: none;">
+                <h3>Çözüm:</h3>
+                <p><strong>Doğru Cevap: D) İptal davası ile birlikte tazminat talep edilemez</strong></p>
+                
+                <div class="senaryo-analizi">
+                    <h4>Senaryo Analizi:</h4>
+                    <ul>
+                        <li><strong>A Seçeneği (Doğru):</strong> Yürütmenin durdurulması için telafisi güç zarar şartı aranır.</li>
+                        <li><strong>B Seçeneği (Doğru):</strong> İdare mahkemesi kararlarına karşı 30 gün içinde istinaf yapılır.</li>
+                        <li><strong>C Seçeneği (Doğru):</strong> Bölge idare mahkemesi kararlarına karşı Danıştay'a temyiz yapılabilir.</li>
+                        <li><strong>D Seçeneği (Yanlış):</strong> İptal davası ile birlikte tazminat talep edilebilir (tam yargı davası).</li>
+                        <li><strong>E Seçeneği (Doğru):</strong> Dava açabilmek için menfaat ihlali şarttır.</li>
+                    </ul>
+                </div>
+                
+                <div class="onemli-noktalar">
+                    <h4>Bu Senaryodaki Önemli Hukuki Noktalar:</h4>
+                    <ul>
+                        <li><strong>İmar İzni:</strong> İdari işlem olup iptal davası konusu olabilir</li>
+                        <li><strong>Yürütmenin Durdurulması:</strong> Geçici tedbir, telafisi güç zarar + açık hukuka aykırılık</li>
+                        <li><strong>İstinaf Sistemi:</strong> İdare mahkemesi → Bölge idare mahkemesi</li>
+                        <li><strong>Temyiz:</strong> Bölge idare mahkemesi → Danıştay</li>
+                        <li><strong>Dava Türü Seçimi:</strong> İptal vs Tam yargı davası</li>
+                    </ul>
+                </div>
+                
+                <div class="pratik-onerilr">
+                    <h4>Pratik Çözüm Önerileri:</h4>
+                    <ul>
+                        <li><strong>Tazminat İsteği:</strong> Ayrı tam yargı davası açılmalı veya iptal davası tam yargı davasına çevrilmeli</li>
+                        <li><strong>Süre Takibi:</strong> Her aşamada 30 günlük süreler takip edilmeli</li>
+                        <li><strong>Delil Toplama:</strong> Zarar ve zarar miktarını belgeleyen deliller hazırlanmalı</li>
+                        <li><strong>Hukuki Danışmanlık:</strong> Karmaşık durumlarda uzman görüşü alınmalı</li>
+                    </ul>
+                </div>
+                
+                <div class="idari-yargi-ozeti">
+                    <h4>İdari Yargı Sistemi Özeti:</h4>
+                    <table class="summary-table">
+                        <tr>
+                            <th>Dava Türü</th>
+                            <th>Amaç</th>
+                            <th>Süre</th>
+                            <th>Mahkeme</th>
+                        </tr>
+                        <tr>
+                            <td>İptal Davası</td>
+                            <td>İşlem İptali</td>
+                            <td>60 gün</td>
+                            <td>İdare Mah.</td>
+                        </tr>
+                        <tr>
+                            <td>Tam Yargı</td>
+                            <td>İptal + Tazminat</td>
+                            <td>2-5 yıl</td>
+                            <td>İdare Mah.</td>
+                        </tr>
+                        <tr>
+                            <td>Personel</td>
+                            <td>Personel İşlemleri</td>
+                            <td>60 gün</td>
+                            <td>İdare Mah.</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="kaynak">
+                    <p><strong>Kaynak:</strong> İdare hukuku notu 2.dönem 3.part.pdf</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P3-24.html" class="nav-button">← Önceki Soru</a>
+            <a href="soru-P3-01.html" class="nav-button">İlk Soru →</a>
+        </div>
+    </div>
+    
+    <script>
+        function gosterCozum() {
+            document.getElementById('cozum').style.display = 'block';
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            cozumler['soru-P3-25'] = true;
+            localStorage.setItem('gosterilenCozumler', JSON.stringify(cozumler));
+        }
+        
+        window.onload = function() {
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            if (cozumler['soru-P3-25']) {
+                document.getElementById('cozum').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

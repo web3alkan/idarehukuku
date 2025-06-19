@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru P1-13</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku Sınavı - 2. Dönem 1. Part</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P1-12.html" class="nav-button">Önceki Soru</a>
+            <span class="page-info">Soru P1-13 / 25</span>
+            <a href="soru-P1-14.html" class="nav-button">Sonraki Soru</a>
+        </div>
+        
+        <div class="content">
+            <div class="question-section">
+                <h2 class="question-title">Soru 13: Kamu Hizmetleri</h2>
+                <p class="question-text">Aşağıdakilerden hangisi kamu hizmetinin temel ilkelerinden biri değildir?</p>
+                
+                <ul class="options">
+                    <li onclick="selectOption(this, 'A')">A) Süreklilik</li>
+                    <li onclick="selectOption(this, 'B')">B) Eşitlik</li>
+                    <li onclick="selectOption(this, 'C')">C) Değişebilirlik</li>
+                    <li onclick="selectOption(this, 'D')">D) Kâr amaçlılık</li>
+                    <li onclick="selectOption(this, 'E')">E) Tarafsızlık</li>
+                </ul>
+                
+                <button class="check-button" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <button class="show-solution-btn" onclick="showSolution()">Çözümü Göster</button>
+                
+                <div class="result-message" id="result" style="display: none;"></div>
+                
+                <div class="solution-box" id="solution">
+                    <h3>Çözüm:</h3>
+                    <div class="correct-answer">Doğru Cevap: D) Kâr amaçlılık</div>
+                    <div class="explanation-text">
+                        Kamu hizmetlerinin temel ilkeleri: Süreklilik, eşitlik, değişebilirlik ve 
+                        tarafsızlıktır. Kamu hizmetleri kâr amacı güdmez, kamu yararı için sunulur. 
+                        Süreklilik ilkesi hizmetin kesintisiz sunulmasını, eşitlik ilkesi aynı durumda 
+                        olan kişilere aynı muamelenin yapılmasını, değişebilirlik ilkesi hizmetin 
+                        değişen koşullara uyum sağlamasını, tarafsızlık ilkesi ise objektif davranılmasını gerektirir.
+                    </div>
+                    <div class="pdf-source"><strong>Kaynak:</strong> İdare Hukuku Notu 2.dönem 1.part.pdf</div>
+                </div>
+            </div>
+            
+            <div class="navigation" style="margin-top: 30px;">
+                <a href="index.html" class="nav-button">Ana Sayfaya Dön</a>
+                <a href="soru-P1-14.html" class="nav-button">Sonraki Soru</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let selectedAnswer = '';
+        const correctAnswer = 'D';
+        
+        function selectOption(element, answer) {
+            document.querySelectorAll('.options li').forEach(li => {
+                li.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            selectedAnswer = answer;
+        }
+        
+        function checkAnswer() {
+            if (!selectedAnswer) {
+                alert('Lütfen bir cevap seçiniz!');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('result');
+            const selectedElement = document.querySelector('.selected');
+            
+            if (selectedAnswer === correctAnswer) {
+                selectedElement.classList.add('correct');
+                resultDiv.className = 'result-message correct';
+                resultDiv.textContent = 'Tebrikler! Doğru cevap.';
+                markQuestionCompleted();
+            } else {
+                selectedElement.classList.add('incorrect');
+                resultDiv.className = 'result-message incorrect';
+                resultDiv.textContent = 'Yanlış cevap. Tekrar deneyiniz veya çözümü gösteriniz.';
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+        
+        function showSolution() {
+            const solutionDiv = document.getElementById('solution');
+            solutionDiv.classList.add('visible');
+            markQuestionCompleted();
+        }
+        
+        function markQuestionCompleted() {
+            localStorage.setItem('soru-P1-13', 'completed');
+        }
+        
+        window.onload = function() {
+            if (localStorage.getItem('soru-P1-13') === 'completed') {
+                const solutionDiv = document.getElementById('solution');
+                solutionDiv.classList.add('visible');
+            }
+        };
+    </script>
+</body>
+</html>

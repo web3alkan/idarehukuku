@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru 10</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="window.location.href='soru-9.html'">&larr; Önceki</button>
+            <button onclick="window.location.href='index.html'">Ana Sayfa</button>
+            <button disabled>Son Soru</button>
+        </div>
+
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0010.jpg" alt="Sayfa 10" class="source-image">
+            
+            <div class="question">
+                <h2>Soru 10</h2>
+                <p>İdari yargının oluşmasında hangi faktörler etkili olmuştur? (Birden fazla seçenek işaretleyiniz)</p>
+                
+                <div class="options">
+                    <label>
+                        <input type="checkbox" name="q10" value="a">
+                        <span>A) İdarenin hukuku öze hukuktan ayrı, üstün ve ayrıcalıklı yetkilere dayanması</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="q10" value="b">
+                        <span>B) İdarenin kendisine has bir yargı sistemi ihtiyacı</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="q10" value="c">
+                        <span>C) Eşitsiz ilişkinin çözümünde özel yöntemlerle yetkilendirilimiş yargı kolu</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="q10" value="d">
+                        <span>D) İdari yargının tamamen mevzuatlara işlem unsurlarına uygunluğunun incelenmesi</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="q10" value="e">
+                        <span>E) Hak ve nesafet penceresinden bakmaksızın değerlendirme yapılması</span>
+                    </label>
+                </div>
+                
+                <button onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <div id="feedback" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('soru10_completed') === 'true') {
+                document.getElementById('feedback').innerHTML = '<span class="correct">✓ Bu soruyu daha önce doğru cevapladınız.</span>';
+                document.querySelector('input[value="a"]').checked = true;
+                document.querySelector('input[value="b"]').checked = true;
+                document.querySelector('input[value="c"]').checked = true;
+                document.querySelector('input[value="d"]').checked = true;
+                const checkboxes = document.querySelectorAll('input[name="q10"]');
+                checkboxes.forEach(checkbox => checkbox.disabled = true);
+            }
+        });
+
+        function checkAnswer() {
+            const selectedOptions = document.querySelectorAll('input[name="q10"]:checked');
+            const selectedValues = Array.from(selectedOptions).map(option => option.value);
+            const feedback = document.getElementById('feedback');
+            
+            // Doğru cevaplar: a, b, c, d (e yanlış çünkü hak ve nesafet penceresinden bakmaz değil, bakar)
+            const correctAnswers = ['a', 'b', 'c', 'd'];
+            
+            if (selectedValues.length === 0) {
+                feedback.innerHTML = '<span class="incorrect">Lütfen en az bir seçenek işaretleyiniz.</span>';
+                return;
+            }
+            
+            const isCorrect = correctAnswers.every(answer => selectedValues.includes(answer)) && 
+                             selectedValues.every(answer => correctAnswers.includes(answer)) &&
+                             selectedValues.length === correctAnswers.length;
+            
+            if (isCorrect) {
+                feedback.innerHTML = '<span class="correct">✓ Doğru! İdari yargının oluşmasında tüm bu faktörler etkili olmuştur. E seçeneği yanlıştır çünkü idari yargı hak ve nesafet penceresinden bakar.</span>';
+                localStorage.setItem('soru10_completed', 'true');
+                const checkboxes = document.querySelectorAll('input[name="q10"]');
+                checkboxes.forEach(checkbox => checkbox.disabled = true);
+            } else {
+                feedback.innerHTML = '<span class="incorrect">✗ Yanlış. Metni dikkatlice okuyarak doğru seçenekleri işaretleyiniz.</span>';
+            }
+        }
+    </script>
+</body>
+</html>

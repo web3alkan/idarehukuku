@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 232</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku Sınavı</h1>
+            <div class="page-info">Sayfa 232 - Memur Tanımı</div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn" onclick="goToPrevious()">← Önceki</button>
+            <button class="nav-btn" onclick="goToHome()">🏠 Ana Sayfa</button>
+            <button class="nav-btn" onclick="goToNext()">Sonraki →</button>
+        </div>
+
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0232.jpg" alt="Sayfa 232 - Memur Tanımı" />
+            </div>
+
+            <div class="question-section">
+                <div class="question-title">Doğru/Yanlış Sorusu</div>
+                <div class="question-text">
+                    Aşağıdaki ifadeyi okuyup doğru mu yanlış mı olduğunu belirleyiniz:
+                </div>
+
+                <div style="margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                    <strong>İfade:</strong> "Memur tanımına göre, sadece mevcut kuruluş biçimine bakılmaksızın genel idare esaslarına göre yürütülen asli ve sürekli kamu hizmetlerini ifa ile görevlendirilen kişiler memur sayılır."
+                </div>
+                
+                <div class="true-false">
+                    <button onclick="selectTrueFalse(true)" id="trueBtn">DOĞRU</button>
+                    <button onclick="selectTrueFalse(false)" id="falseBtn">YANLIŞ</button>
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-primary" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="btn btn-secondary" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+
+                <div id="result" class="result" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>İdare Hukuku - Kamusal Alan © 2025</p>
+        </div>
+    </div>
+
+    <script>
+        let selectedAnswer = null;
+        const correctAnswer = false; // YANLIŞ - Devlet ve diğer kamu tüzel kişilikleri de dahil
+        const questionId = 'question_232';
+
+        function selectTrueFalse(answer) {
+            selectedAnswer = answer;
+            const trueBtn = document.getElementById('trueBtn');
+            const falseBtn = document.getElementById('falseBtn');
+            
+            trueBtn.classList.remove('selected');
+            falseBtn.classList.remove('selected');
+            
+            if (answer === true) {
+                trueBtn.classList.add('selected');
+            } else {
+                falseBtn.classList.add('selected');
+            }
+        }
+
+        function checkAnswer() {
+            if (selectedAnswer === null) {
+                alert('Lütfen DOĞRU veya YANLIŞ seçiniz!');
+                return;
+            }
+
+            const trueBtn = document.getElementById('trueBtn');
+            const falseBtn = document.getElementById('falseBtn');
+            const resultDiv = document.getElementById('result');
+            
+            // Renkleri temizle
+            trueBtn.classList.remove('selected', 'correct', 'incorrect');
+            falseBtn.classList.remove('selected', 'correct', 'incorrect');
+            
+            // Doğru cevabı yeşil yap
+            if (correctAnswer === true) {
+                trueBtn.classList.add('correct');
+            } else {
+                falseBtn.classList.add('correct');
+            }
+            
+            // Yanlış seçileni kırmızı yap
+            if (selectedAnswer !== correctAnswer) {
+                if (selectedAnswer === true) {
+                    trueBtn.classList.add('incorrect');
+                } else {
+                    falseBtn.classList.add('incorrect');
+                }
+            }
+
+            if (selectedAnswer === correctAnswer) {
+                resultDiv.textContent = 'Doğru! Memur tanımı eksiktir. Tanımda "Devlet ve diğer kamu tüzel kişiliklerince" ifadesi de yer almalıdır.';
+                resultDiv.className = 'result correct';
+                saveCompletion(true);
+            } else {
+                resultDiv.textContent = 'Yanlış! Memur tanımında "Devlet ve diğer kamu tüzel kişiliklerince genel idare esaslarına göre yürütülen asli ve sürekli kamu hizmetlerini ifa ile görevlendirilenleri" demektedir. Bu nedenle ifade eksiktir.';
+                resultDiv.className = 'result incorrect';
+                saveCompletion(false);
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        function resetQuestion() {
+            selectedAnswer = null;
+            const trueBtn = document.getElementById('trueBtn');
+            const falseBtn = document.getElementById('falseBtn');
+            
+            trueBtn.classList.remove('selected', 'correct', 'incorrect');
+            falseBtn.classList.remove('selected', 'correct', 'incorrect');
+            
+            document.getElementById('result').style.display = 'none';
+        }
+
+        function saveCompletion(isCorrect) {
+            const completedQuestions = JSON.parse(localStorage.getItem('completedQuestions') || '{}');
+            completedQuestions[questionId] = {
+                completed: true,
+                correct: isCorrect,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('completedQuestions', JSON.stringify(completedQuestions));
+        }
+
+        function goToPrevious() {
+            window.location.href = 'soru-230.html';
+        }
+
+        function goToNext() {
+            window.location.href = 'soru-233.html';
+        }
+
+        function goToHome() {
+            window.location.href = 'index.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const completedQuestions = JSON.parse(localStorage.getItem('completedQuestions') || '{}');
+            if (completedQuestions[questionId]) {
+                // Tamamlanmış soruyu göster ama yanıtları etkinleştir
+            }
+        });
+    </script>
+</body>
+</html>

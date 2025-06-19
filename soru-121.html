@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 121</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Sayfa 121</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-120.html" class="nav-button" id="prevBtn">← Önceki</a>
+            <div class="page-info">Sayfa 121 / 170</div>
+            <a href="soru-122.html" class="nav-button" id="nextBtn">Sonraki →</a>
+        </div>
+        
+        <div class="content">
+            <div class="completion-status" id="completionStatus">
+                <span class="not-completed">Bu soru henüz tamamlanmadı</span>
+            </div>
+            
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0121.jpg" alt="Sayfa 121 - Mali İltizam Sözleşmeleri">
+            </div>
+            
+            <div class="question-section">
+                <div class="question-title">Soru 121</div>
+                <div class="question-text">
+                    Mali iltizam sözleşmeleri ile ilgili aşağıdakilerden hangisi doğrudur?
+                </div>
+                
+                <ul class="options" id="options">
+                    <li data-value="a">Mali iltizam, kamu hizmetinin müteahhit kişilere gördürülmesi sözleşmeleridir.</li>
+                    <li data-value="b">İltizam sözleşmelerinde sadece ücret karşılığında hizmet verilir.</li>
+                    <li data-value="c">Bu sözleşmeler sadece özel hukuk kurallarına tabidir.</li>
+                    <li data-value="d">İltizam sisteminde kamu kurumu direkt olarak hizmeti yürütür.</li>
+                    <li data-value="e">Mali iltizam sözleşmeleri sadece merkezi idare tarafından yapılabilir.</li>
+                </ul>
+                
+                <div class="button-container">
+                    <button class="check-button" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="reset-button" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+                
+                <div class="result-message" id="result" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswer = 'a';
+        let answered = false;
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        document.addEventListener('DOMContentLoaded', function() {
+            const completed = localStorage.getItem('question_121_completed');
+            const completionStatus = document.getElementById('completionStatus');
+            
+            if (completed === 'true') {
+                completionStatus.innerHTML = '<span class="completed">✓ Bu soru tamamlandı</span>';
+            }
+            
+            // Önceki sayfa butonu kontrolü
+            const prevBtn = document.getElementById('prevBtn');
+            if (prevBtn) {
+                prevBtn.style.display = 'none'; // 121 ilk sayfa olduğu için önceki buton gizli
+            }
+        });
+        
+        // Seçenek tıklama olayları
+        document.getElementById('options').addEventListener('click', function(e) {
+            if (e.target.tagName === 'LI' && !answered) {
+                // Tüm seçeneklerin seçili durumunu temizle
+                document.querySelectorAll('.options li').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                
+                // Tıklanan seçeneği seçili yap
+                e.target.classList.add('selected');
+            }
+        });
+        
+        function checkAnswer() {
+            const selectedOption = document.querySelector('.options li.selected');
+            const resultDiv = document.getElementById('result');
+            const options = document.querySelectorAll('.options li');
+            
+            if (!selectedOption) {
+                alert('Lütfen bir seçenek seçin!');
+                return;
+            }
+            
+            answered = true;
+            const selectedValue = selectedOption.getAttribute('data-value');
+            
+            // Tüm seçenekleri göster
+            options.forEach(option => {
+                const value = option.getAttribute('data-value');
+                if (value === correctAnswer) {
+                    option.classList.add('correct');
+                } else if (value === selectedValue && value !== correctAnswer) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Sonucu göster
+            if (selectedValue === correctAnswer) {
+                resultDiv.innerHTML = 'Tebrikler! Doğru cevap. Mali iltizam sözleşmeleri, götürü bir ücret karşılığında kamu hizmetinin müteahhit adlı kişilere gördürülmesi sözleşmeleridir.';
+                resultDiv.className = 'result-message correct';
+                
+                // Tamamlandı olarak işaretle
+                localStorage.setItem('question_121_completed', 'true');
+                document.getElementById('completionStatus').innerHTML = '<span class="completed">✓ Bu soru tamamlandı</span>';
+            } else {
+                resultDiv.innerHTML = 'Yanlış cevap. Doğru cevap: Mali iltizam, götürü bir ücret karşılığında kamu hizmetinin müteahhit adlı kişilere gördürülmesi sözleşmeleridir. Bu sözleşmeler kefil gösterme, borcunu muacceliyet zamanlarında ödenecek şekilde üzerine alma ve icap ettirme gibi anlamlara gelir.';
+                resultDiv.className = 'result-message incorrect';
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+        
+        function resetQuestion() {
+            answered = false;
+            const options = document.querySelectorAll('.options li');
+            const resultDiv = document.getElementById('result');
+            
+            options.forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            resultDiv.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

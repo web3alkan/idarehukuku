@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 12 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="window.location.href='soru-11.html'" class="nav-btn">← Önceki</button>
+            <button onclick="window.location.href='index.html'" class="nav-btn home-btn">Ana Sayfa</button>
+            <button onclick="window.location.href='soru-13.html'" class="nav-btn">Sonraki →</button>
+        </div>
+
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0012.jpg" alt="Sayfa 12" class="page-image">
+            
+            <div class="question-box">
+                <h2>Soru 12</h2>
+                <p class="question-text">Aşağıdakilerden hangisi yasama işlemi ile ilgili olarak doğru bir ifadedir?</p>
+                
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="answer" value="A">
+                        <span>A) Yasama organı sadece 100 vekilden oluşur</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="B">
+                        <span>B) Kanun ve parlamento kararları idari işlemdir</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="C">
+                        <span>C) Organik anlamda yasama 600 vekilden oluşmaktadır</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="D">
+                        <span>D) Fonksiyonel anlamda yasama işlemleri idari işlem seklinde yapılır</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="E">
+                        <span>E) Yasama işlemleri aslilik-üstlük ilişkisi içermez</span>
+                    </label>
+                </div>
+                
+                <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <div class="result" id="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswer = 'C';
+        
+        function checkAnswer() {
+            const selected = document.querySelector('input[name="answer"]:checked');
+            const resultDiv = document.getElementById('result');
+            
+            if (!selected) {
+                resultDiv.innerHTML = '<p class="error">Lütfen bir seçenek işaretleyin!</p>';
+                return;
+            }
+            
+            if (selected.value === correctAnswer) {
+                resultDiv.innerHTML = '<p class="correct">✓ Doğru! Organik anlamda yasama 600 vekilden oluşmaktadır.</p>';
+                localStorage.setItem('soru12', 'completed');
+            } else {
+                resultDiv.innerHTML = '<p class="incorrect">✗ Yanlış! Tekrar deneyin.</p>';
+            }
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.onload = function() {
+            if (localStorage.getItem('soru12') === 'completed') {
+                document.getElementById('result').innerHTML = '<p class="completed">Bu soruyu daha önce doğru cevapladınız.</p>';
+            }
+        }
+    </script>
+</body>
+</html>

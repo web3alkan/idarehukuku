@@ -1,0 +1,80 @@
+<\!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru P3-13: Menfaat İhlali</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Soru P3-13: Menfaat İhlali</h1>
+        
+        <div class="question-box">
+            <div class="question">
+                <p>İdari yargılamada <strong>menfaat ihlali</strong> kavramı ile ilgili aşağıdakilerden hangisi yanlıştır?</p>
+                <div class="options">
+                    <label><input type="radio" name="cevap" value="A"> A) Menfaat ihlali dava açma ehliyetinin şartıdır</label>
+                    <label><input type="radio" name="cevap" value="B"> B) Menfaat maddi veya manevi olabilir</label>
+                    <label><input type="radio" name="cevap" value="C"> C) Menfaat doğrudan ve kişisel olmalıdır</label>
+                    <label><input type="radio" name="cevap" value="D"> D) Menfaat güncel ve gerçek olmalıdır</label>
+                    <label><input type="radio" name="cevap" value="E"> E) Menfaat ihlali sadece tam yargı davalarında aranır</label>
+                </div>
+            </div>
+            
+            <button onclick="gosterCozum()" class="cozum-button">Çözümü Göster</button>
+            
+            <div id="cozum" class="cozum-box" style="display: none;">
+                <h3>Çözüm:</h3>
+                <p><strong>Doğru Cevap: E) Menfaat ihlali sadece tam yargı davalarında aranır</strong></p>
+                <p><strong>Açıklama:</strong> Menfaat ihlali hem iptal davalarında hem de tam yargı davalarında aranır. Tüm idari davalarda dava açma ehliyeti için gereklidir.</p>
+                
+                <div class="menfaat-sartlari">
+                    <h4>Menfaat İhlalinin Şartları:</h4>
+                    <ul>
+                        <li><strong>Doğrudanlık:</strong> Menfaat doğrudan ihlal edilmelidir</li>
+                        <li><strong>Kişisellik:</strong> Davacının kişisel menfaati olmalıdır</li>
+                        <li><strong>Güncellik:</strong> Menfaat güncel ve gerçek olmalıdır</li>
+                        <li><strong>Hukuki Korunabilirlik:</strong> Hukuk düzenince korunabilir olmalıdır</li>
+                    </ul>
+                </div>
+                
+                <div class="menfaat-turleri">
+                    <h4>Menfaat Türleri:</h4>
+                    <ul>
+                        <li><strong>Maddi Menfaat:</strong> Ekonomik kayıp, zarara uğrama</li>
+                        <li><strong>Manevi Menfaat:</strong> Şeref, haysiyet, itibar zedelenmesi</li>
+                        <li><strong>Hukuki Menfaat:</strong> Hukuki statü, yetki, imkan kaybı</li>
+                        <li><strong>Fiili Menfaat:</strong> Fiili durumda olumsuz değişiklik</li>
+                    </ul>
+                </div>
+                
+                <div class="kaynak">
+                    <p><strong>Kaynak:</strong> İdare hukuku notu 2.dönem 3.part.pdf</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P3-12.html" class="nav-button">← Önceki Soru</a>
+            <a href="soru-P3-14.html" class="nav-button">Sonraki Soru →</a>
+        </div>
+    </div>
+    
+    <script>
+        function gosterCozum() {
+            document.getElementById('cozum').style.display = 'block';
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            cozumler['soru-P3-13'] = true;
+            localStorage.setItem('gosterilenCozumler', JSON.stringify(cozumler));
+        }
+        
+        window.onload = function() {
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            if (cozumler['soru-P3-13']) {
+                document.getElementById('cozum').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

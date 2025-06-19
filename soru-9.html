@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru 9</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="window.location.href='soru-8.html'">&larr; Önceki</button>
+            <button onclick="window.location.href='index.html'">Ana Sayfa</button>
+            <button onclick="window.location.href='soru-10.html'">Sonraki &rarr;</button>
+        </div>
+
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0009.jpg" alt="Sayfa 9" class="source-image">
+            
+            <div class="question">
+                <h2>Soru 9</h2>
+                <p>Aşağıdaki kavramları uygun tanımlarıyla eşleştiriniz:</p>
+                
+                <div class="matching-container">
+                    <div class="left-column">
+                        <div class="match-item" data-value="1">1. İdare → Muhatap</div>
+                        <div class="match-item" data-value="2">2. İdare ↔ Muhatap</div>
+                        <div class="match-item" data-value="3">3. İdare = Muhatap</div>
+                    </div>
+                    
+                    <div class="right-column">
+                        <select id="match1" class="match-select">
+                            <option value="">Seçiniz</option>
+                            <option value="a">A) İdari sözleşme</option>
+                            <option value="b">B) İdari işlem</option>
+                            <option value="c">C) İdarenin özel hukuk sözleşmeleri</option>
+                        </select>
+                        
+                        <select id="match2" class="match-select">
+                            <option value="">Seçiniz</option>
+                            <option value="a">A) İdari sözleşme</option>
+                            <option value="b">B) İdari işlem</option>
+                            <option value="c">C) İdarenin özel hukuk sözleşmeleri</option>
+                        </select>
+                        
+                        <select id="match3" class="match-select">
+                            <option value="">Seçiniz</option>
+                            <option value="a">A) İdari sözleşme</option>
+                            <option value="b">B) İdari işlem</option>
+                            <option value="c">C) İdarenin özel hukuk sözleşmeleri</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <div id="feedback" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('soru9_completed') === 'true') {
+                document.getElementById('feedback').innerHTML = '<span class="correct">✓ Bu soruyu daha önce doğru cevapladınız.</span>';
+                document.getElementById('match1').value = 'b';
+                document.getElementById('match2').value = 'a';
+                document.getElementById('match3').value = 'c';
+                document.querySelectorAll('.match-select').forEach(select => select.disabled = true);
+            }
+        });
+
+        function checkAnswer() {
+            const match1 = document.getElementById('match1').value;
+            const match2 = document.getElementById('match2').value;
+            const match3 = document.getElementById('match3').value;
+            const feedback = document.getElementById('feedback');
+            
+            if (!match1 || !match2 || !match3) {
+                feedback.innerHTML = '<span class="incorrect">Lütfen tüm eşleştirmeleri yapınız.</span>';
+                return;
+            }
+            
+            if (match1 === 'b' && match2 === 'a' && match3 === 'c') {
+                feedback.innerHTML = '<span class="correct">✓ Doğru! İdare→Muhatap: İdari işlem, İdare↔Muhatap: İdari sözleşme, İdare=Muhatap: İdarenin özel hukuk sözleşmeleri</span>';
+                localStorage.setItem('soru9_completed', 'true');
+                document.querySelectorAll('.match-select').forEach(select => select.disabled = true);
+            } else {
+                feedback.innerHTML = '<span class="incorrect">✗ Yanlış eşleştirme. Okların yönlerine dikkat ediniz.</span>';
+            }
+        }
+    </script>
+</body>
+</html>

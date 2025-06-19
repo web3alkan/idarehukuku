@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="window.location.href='index.html'">Ana Sayfa</button>
+            <button onclick="window.location.href='soru-3.html'">Sonraki &rarr;</button>
+        </div>
+
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0002.jpg" alt="Sayfa 2" class="source-image">
+            
+            <div class="question">
+                <h2>Soru 2</h2>
+                <p>İdare hukukunun tanımını tamamlayınız:</p>
+                <p>"Devlet ve onunla ilgili mekanizmaların işleyişini düzenleyen <input type="text" id="blank1" class="fill-blank"> hukuku bilimidir."</p>
+                
+                <button onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <button class="show-solution-btn" onclick="showSolution()">Çözümü Göster</button>
+                <div id="feedback" class="feedback"></div>
+                
+                <div class="solution-box" id="solution">
+                    <h3>Çözüm:</h3>
+                    <div class="correct-answer">Doğru Cevap: kamu</div>
+                    <div class="explanation-text">İdare hukuku, devlet ve onunla ilgili mekanizmaların işleyişini düzenleyen kamu hukuku bilimidir. İdare hukuku, kamu yönetiminin faaliyetlerini ve bu faaliyetlerin hukuki düzenlemelerini inceler.</div>
+                    <div class="pdf-source"><strong>Kaynak:</strong> Kamusal Alan İdare Hukuku - Sayfa 2</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('soru2_completed') === 'true') {
+                document.getElementById('feedback').innerHTML = '<span class="correct">✓ Bu soruyu daha önce doğru cevapladınız.</span>';
+                document.getElementById('blank1').value = 'kamu';
+                document.getElementById('blank1').disabled = true;
+            }
+        });
+
+        function checkAnswer() {
+            const answer = document.getElementById('blank1').value.toLowerCase().trim();
+            const feedback = document.getElementById('feedback');
+            
+            if (answer === 'kamu') {
+                feedback.innerHTML = '<span class="correct">✓ Doğru! İdare hukuku, devlet ve onunla ilgili mekanizmaların işleyişini düzenleyen kamu hukuku bilimidir.</span>';
+                localStorage.setItem('soru2_completed', 'true');
+                document.getElementById('blank1').disabled = true;
+            } else {
+                feedback.innerHTML = '<span class="incorrect">✗ Yanlış. Tekrar deneyiniz.</span>';
+            }
+        }
+
+        // Enter tuşu ile cevap kontrolü
+        document.getElementById('blank1').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkAnswer();
+            }
+        });
+
+        // Çözüm gösterme fonksiyonu
+        function showSolution() {
+            const solutionBox = document.getElementById('solution');
+            solutionBox.classList.add('visible');
+            localStorage.setItem('soru2_solution_viewed', 'true');
+        }
+
+        // Sayfa yüklendiğinde çözüm durumunu kontrol et
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('soru2_solution_viewed') === 'true') {
+                document.getElementById('solution').classList.add('visible');
+            }
+        });
+    </script>
+</body>
+</html>

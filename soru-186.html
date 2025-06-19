@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 186</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Sayfa 186</h1>
+            <div class="progress-indicator">Soru 186 / 220</div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn" onclick="goToPrevious()" >← Önceki</button>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <button class="nav-btn" onclick="goToNext()" >Sonraki →</button>
+        </div>
+        
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0186.jpg" alt="Sayfa 186" />
+            </div>
+            
+            <div class="question-section">
+                <div class="question-title">
+                    İdari davalar konusunda genel yetki hangi mahkemeye aittir?
+                </div>
+                
+                <div class="options">
+                    <div class="option" onclick="selectOption(this, false)">
+                        A) Asliye Hukuk Mahkemesi
+                    </div>
+                    <div class="option" onclick="selectOption(this, true)">
+                        B) İdare Mahkemesi
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        C) Bölge İdare Mahkemesi
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        D) Danıştay
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        E) Sulh Hukuk Mahkemesi
+                    </div>
+                </div>
+                
+                <div class="answer-section">
+                    <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <div id="result" class="result" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedOption = null;
+        let answered = false;
+
+        function selectOption(element, isCorrect) {
+            if (answered) return;
+            
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            element.classList.add('selected');
+            selectedOption = { element, isCorrect };
+        }
+
+        function checkAnswer() {
+            if (!selectedOption) {
+                alert('Lütfen bir seçenek seçiniz!');
+                return;
+            }
+            
+            if (answered) return;
+            answered = true;
+
+            const resultDiv = document.getElementById('result');
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach(opt => {
+                const isCorrect = opt.onclick.toString().includes('true');
+                if (isCorrect) {
+                    opt.classList.add('correct');
+                } else if (opt.classList.contains('selected') && !selectedOption.isCorrect) {
+                    opt.classList.add('incorrect');
+                }
+            });
+
+            if (selectedOption.isCorrect) {
+                resultDiv.innerHTML = '✅ Doğru! ' + 'İdari davalar genel olarak İdare Mahkemelerinin yetkisindedir.';
+                resultDiv.className = 'result correct';
+                updateProgress(186, true);
+            } else {
+                resultDiv.innerHTML = '❌ Yanlış! ' + 'İdari davalar genel olarak İdare Mahkemelerinin yetkisindedir.';
+                resultDiv.className = 'result incorrect';
+                updateProgress(186, false);
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        function updateProgress(questionNumber, isCorrect) {
+            let progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            progress[questionNumber] = {
+                completed: true,
+                correct: isCorrect,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('examProgress', JSON.stringify(progress));
+        }
+
+        function goToPrevious() {
+            window.location.href = "soru-185.html";
+        }
+
+        function goToNext() {
+            window.location.href = "soru-187.html";
+        }
+
+        window.onload = function() {
+            const progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            if (progress[186] && progress[186].completed) {
+                document.querySelector('.header h1').innerHTML += ' <span class="completed-badge">Tamamlandı</span>';
+            }
+        }
+    </script>
+</body>
+</html>

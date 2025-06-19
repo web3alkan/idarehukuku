@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 226</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku Sınavı</h1>
+            <div class="page-info">Sayfa 226 - İdarenin Sorumluluğunun Koşulları</div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn" onclick="goToPrevious()">← Önceki</button>
+            <button class="nav-btn" onclick="goToHome()">🏠 Ana Sayfa</button>
+            <button class="nav-btn" onclick="goToNext()">Sonraki →</button>
+        </div>
+
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0226.jpg" alt="Sayfa 226 - İdarenin Sorumluluğunun Koşulları" />
+            </div>
+
+            <div class="question-section">
+                <div class="question-title">Soru</div>
+                <div class="question-text">
+                    Sayfada belirtilen 4 koşula göre, idarenin sorumluluğunun doğması için gerekli koşulları doğru sırayla tamamlayınız:
+                </div>
+                
+                <div class="fill-blank">
+                    <p><strong>1.</strong> Ortada <input type="text" id="blank1" placeholder="idari bir fiil olmalı"> olmalı.</p>
+                    <p><strong>2.</strong> <input type="text" id="blank2" placeholder="Zarar"> meydana gelmiş olmalıdır.</p>
+                    <p><strong>3.</strong> <input type="text" id="blank3" placeholder="Nedensellik bağı"> olmalıdır.</p>
+                    <p><strong>4.</strong> <input type="text" id="blank4" placeholder="İdare kusurlu"> olabilir.</p>
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-primary" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="btn btn-secondary" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+
+                <div id="result" class="result" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>İdare Hukuku - Kamusal Alan © 2025</p>
+        </div>
+    </div>
+
+    <script>
+        const questionId = 'question_226';
+        
+        const correctAnswers = {
+            'blank1': ['idari bir fiil', 'idari fiil', 'bir idari fiil'],
+            'blank2': ['zarar', 'zarar neticesi'],
+            'blank3': ['nedensellik bağı', 'nedensellik', 'sebep sonuç ilişkisi'],
+            'blank4': ['idare kusurlu', 'kusurlu', 'idare kusurlu da kusursuz da']
+        };
+
+        function checkAnswer() {
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let correctCount = 0;
+            let totalCount = inputs.length;
+            
+            inputs.forEach(input => {
+                const userAnswer = input.value.trim().toLowerCase();
+                const correctOptions = correctAnswers[input.id];
+                
+                input.classList.remove('correct', 'incorrect');
+                
+                const isCorrect = correctOptions.some(option => 
+                    userAnswer.includes(option.toLowerCase()) || 
+                    option.toLowerCase().includes(userAnswer)
+                );
+                
+                if (isCorrect && userAnswer.length > 2) {
+                    input.classList.add('correct');
+                    correctCount++;
+                } else {
+                    input.classList.add('incorrect');
+                }
+            });
+
+            const resultDiv = document.getElementById('result');
+            const isAllCorrect = correctCount === totalCount;
+            
+            if (isAllCorrect) {
+                resultDiv.textContent = `Mükemmel! Tüm boşlukları doğru doldurdunuz. İdarenin sorumluluğunun 4 koşulunu biliyorsunuz. (${correctCount}/${totalCount})`;
+                resultDiv.className = 'result correct';
+                saveCompletion(true);
+            } else {
+                resultDiv.textContent = `${correctCount}/${totalCount} boşluk doğru dolduruldu. Doğru cevaplar: 1) İdari bir fiil olmalı, 2) Zarar neticesi oluşmuş olmalıdır, 3) Nedensellik bağı olmalıdır, 4) İdare kusurlu da kusursuz da olabilir.`;
+                resultDiv.className = 'result incorrect';
+                saveCompletion(false);
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        function resetQuestion() {
+            const inputs = document.querySelectorAll('input[type="text"]');
+            inputs.forEach(input => {
+                input.value = '';
+                input.classList.remove('correct', 'incorrect');
+            });
+            
+            document.getElementById('result').style.display = 'none';
+        }
+
+        function saveCompletion(isCorrect) {
+            const completedQuestions = JSON.parse(localStorage.getItem('completedQuestions') || '{}');
+            completedQuestions[questionId] = {
+                completed: true,
+                correct: isCorrect,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('completedQuestions', JSON.stringify(completedQuestions));
+        }
+
+        function goToPrevious() {
+            window.location.href = 'soru-225.html';
+        }
+
+        function goToNext() {
+            window.location.href = 'soru-228.html';
+        }
+
+        function goToHome() {
+            window.location.href = 'index.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const completedQuestions = JSON.parse(localStorage.getItem('completedQuestions') || '{}');
+            if (completedQuestions[questionId]) {
+                // Tamamlanmış soruyu göster ama yanıtları etkinleştir
+            }
+        });
+    </script>
+</body>
+</html>

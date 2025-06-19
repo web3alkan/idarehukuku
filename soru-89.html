@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 89 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku Sınavı</h1>
+            <p>Ağır ve Bariz Yetki Tecavüzü - Sayfa 89</p>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-88.html" class="nav-btn" id="prevBtn">← Önceki</a>
+            <div class="page-info">Soru 89 / 120</div>
+            <a href="soru-90.html" class="nav-btn" id="nextBtn">Sonraki →</a>
+        </div>
+        
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0089.jpg" alt="Sayfa 89" />
+            </div>
+            
+            <div class="question-container">
+                <div class="question-title">Çoktan Seçmeli Soru</div>
+                <div class="question-text">
+                    Aşağıdakilerden hangisi "ağır ve bariz yetki tecavüzü" örneği değildir?
+                </div>
+                
+                <ul class="options">
+                    <li class="option" data-value="A">A) Sağlık Bakanlığı tarafından bir öğretmen emekli edilmiş</li>
+                    <li class="option" data-value="B">B) Belediye meclisi kararı ile polisler bir aylığına miting alanı civarında konuşlandırılmış</li>
+                    <li class="option" data-value="C">C) Farklı idarelerin birbirleri yerine işlem yapmasıdır</li>
+                    <li class="option" data-value="D">D) Fonksiyon gaspına göz kırpmaktadır</li>
+                    <li class="option" data-value="E">E) Genelde bir bakanlığın başka bir bakanlık yerine geçmesi</li>
+                </ul>
+                
+                <div class="action-buttons">
+                    <button class="btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="btn btn-secondary" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+                
+                <div class="result" id="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswer = 'B';
+        let selectedAnswer = null;
+        
+        // Seçenek tıklama olayları
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', () => {
+                // Önceki seçimi temizle
+                document.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Yeni seçimi işaretle
+                option.classList.add('selected');
+                selectedAnswer = option.getAttribute('data-value');
+            });
+        });
+        
+        function checkAnswer() {
+            if (!selectedAnswer) {
+                alert('Lütfen bir seçenek seçin!');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('result');
+            const options = document.querySelectorAll('.option');
+            
+            // Tüm seçenekleri devre dışı bırak
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+                if (option.getAttribute('data-value') === correctAnswer) {
+                    option.classList.add('correct');
+                } else if (option.getAttribute('data-value') === selectedAnswer && selectedAnswer !== correctAnswer) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Sonucu göster
+            if (selectedAnswer === correctAnswer) {
+                resultDiv.innerHTML = '✅ Doğru! Belediye meclisi kararı ile polislerin konuşlandırılması iki farklı idare arası örneğidir ve sayfa notunda belirtildiği gibi bu tecavüz hali herkes tarafından anlaşılmaya müsaittir.';
+                resultDiv.className = 'result show correct';
+                localStorage.setItem('soru89_completed', 'true');
+            } else {
+                resultDiv.innerHTML = '❌ Yanlış! Doğru cevap B seçeneğidir. Bu durum iki farklı idare arası örneğidir ve ağır ve bariz yetki tecavüzü değildir.';
+                resultDiv.className = 'result show incorrect';
+            }
+        }
+        
+        function resetQuestion() {
+            selectedAnswer = null;
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+                option.style.pointerEvents = 'auto';
+            });
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '';
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('soru89_completed') === 'true') {
+                const completionBadge = document.createElement('div');
+                completionBadge.className = 'completion-badge';
+                completionBadge.textContent = '✓ Tamamlandı';
+                document.querySelector('.question-container').appendChild(completionBadge);
+            }
+        });
+    </script>
+</body>
+</html>

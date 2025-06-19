@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru P1-04</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku Sınavı - 2. Dönem 1. Part</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P1-03.html" class="nav-button">Önceki Soru</a>
+            <span class="page-info">Soru P1-04 / 25</span>
+            <a href="soru-P1-05.html" class="nav-button">Sonraki Soru</a>
+        </div>
+        
+        <div class="content">
+            <div class="question-section">
+                <h2 class="question-title">Soru 4: İdari İşlem Türleri</h2>
+                <p class="question-text">Aşağıdaki kavramları tanımlarıyla eşleştiriniz:</p>
+                
+                <div class="matching-container">
+                    <div class="matching-column">
+                        <h3>Kavramlar</h3>
+                        <div class="matching-item" onclick="selectItem(this, 'left', '1')">1. Birel İşlem</div>
+                        <div class="matching-item" onclick="selectItem(this, 'left', '2')">2. Düzenleyici İşlem</div>
+                        <div class="matching-item" onclick="selectItem(this, 'left', '3')">3. Şart İşlem</div>
+                        <div class="matching-item" onclick="selectItem(this, 'left', '4')">4. Sübjektif İşlem</div>
+                    </div>
+                    
+                    <div class="matching-column">
+                        <h3>Tanımlar</h3>
+                        <div class="matching-item" onclick="selectItem(this, 'right', 'A')">A. Genel, soyut ve sürekli nitelikte olan işlemler</div>
+                        <div class="matching-item" onclick="selectItem(this, 'right', 'B')">B. Belirli kişi veya kişilere yönelik olan işlemler</div>
+                        <div class="matching-item" onclick="selectItem(this, 'right', 'C')">C. Bir koşulun gerçekleşmesine bağlı olan işlemler</div>
+                        <div class="matching-item" onclick="selectItem(this, 'right', 'D')">D. Kişilerin hukuki durumlarını doğrudan etkileyen işlemler</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <p><strong>Eşleştirmeleriniz:</strong></p>
+                    <div id="matches" style="margin: 10px 0;"></div>
+                </div>
+                
+                <button class="check-button" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <button class="show-solution-btn" onclick="showSolution()">Çözümü Göster</button>
+                
+                <div class="result-message" id="result" style="display: none;"></div>
+                
+                <div class="solution-box" id="solution">
+                    <h3>Çözüm:</h3>
+                    <div class="correct-answer">
+                        Doğru Eşleştirmeler:<br>
+                        1-B (Birel İşlem - Belirli kişi veya kişilere yönelik)<br>
+                        2-A (Düzenleyici İşlem - Genel, soyut ve sürekli)<br>
+                        3-C (Şart İşlem - Koşula bağlı)<br>
+                        4-D (Sübjektif İşlem - Hukuki durumu doğrudan etkileyen)
+                    </div>
+                    <div class="explanation-text">
+                        İdari işlemler çeşitli kriterlere göre sınıflandırılır. Birel işlemler belirli 
+                        kişilere yönelikken, düzenleyici işlemler genel niteliktedir. Şart işlemler bir 
+                        koşulun gerçekleşmesine bağlıdır. Sübjektif işlemler ise kişilerin hukuki 
+                        durumlarını doğrudan etkiler ve dava açma hakkı doğurur.
+                    </div>
+                    <div class="pdf-source"><strong>Kaynak:</strong> İdare Hukuku Notu 2.dönem 1.part.pdf</div>
+                </div>
+            </div>
+            
+            <div class="navigation" style="margin-top: 30px;">
+                <a href="index.html" class="nav-button">Ana Sayfaya Dön</a>
+                <a href="soru-P1-05.html" class="nav-button">Sonraki Soru</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let selectedLeft = null;
+        let selectedRight = null;
+        let matches = {};
+        const correctMatches = {
+            '1': 'B',
+            '2': 'A',
+            '3': 'C',
+            '4': 'D'
+        };
+        
+        function selectItem(element, side, value) {
+            if (side === 'left') {
+                if (selectedLeft) {
+                    document.querySelectorAll('.matching-column:first-child .matching-item').forEach(item => {
+                        item.classList.remove('selected');
+                    });
+                }
+                element.classList.add('selected');
+                selectedLeft = value;
+            } else {
+                if (selectedRight) {
+                    document.querySelectorAll('.matching-column:last-child .matching-item').forEach(item => {
+                        item.classList.remove('selected');
+                    });
+                }
+                element.classList.add('selected');
+                selectedRight = value;
+            }
+            
+            if (selectedLeft && selectedRight) {
+                matches[selectedLeft] = selectedRight;
+                updateMatchDisplay();
+                
+                // Reset selections
+                document.querySelectorAll('.matching-item').forEach(item => {
+                    item.classList.remove('selected');
+                });
+                selectedLeft = null;
+                selectedRight = null;
+            }
+        }
+        
+        function updateMatchDisplay() {
+            const matchesDiv = document.getElementById('matches');
+            let html = '';
+            for (let key in matches) {
+                html += `${key} → ${matches[key]}<br>`;
+            }
+            matchesDiv.innerHTML = html || 'Henüz eşleştirme yapılmadı';
+        }
+        
+        function checkAnswer() {
+            const resultDiv = document.getElementById('result');
+            
+            if (Object.keys(matches).length !== 4) {
+                alert('Lütfen tüm eşleştirmeleri tamamlayınız!');
+                return;
+            }
+            
+            let correct = true;
+            for (let key in correctMatches) {
+                if (matches[key] !== correctMatches[key]) {
+                    correct = false;
+                    break;
+                }
+            }
+            
+            if (correct) {
+                resultDiv.className = 'result-message correct';
+                resultDiv.textContent = 'Tebrikler! Tüm eşleştirmeler doğru.';
+                markQuestionCompleted();
+            } else {
+                resultDiv.className = 'result-message incorrect';
+                resultDiv.textContent = 'Yanlış eşleştirmeler var. Tekrar deneyiniz veya çözümü gösteriniz.';
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+        
+        function showSolution() {
+            const solutionDiv = document.getElementById('solution');
+            solutionDiv.classList.add('visible');
+            matches = {...correctMatches};
+            updateMatchDisplay();
+            markQuestionCompleted();
+        }
+        
+        function markQuestionCompleted() {
+            localStorage.setItem('soru-P1-04', 'completed');
+            updateProgress();
+        }
+        
+        function updateProgress() {
+            const totalQuestions = 25;
+            let completedCount = 0;
+            
+            for (let i = 1; i <= totalQuestions; i++) {
+                const key = `soru-P1-${i.toString().padStart(2, '0')}`;
+                if (localStorage.getItem(key) === 'completed') {
+                    completedCount++;
+                }
+            }
+            
+            const progressPercentage = (completedCount / totalQuestions) * 100;
+            console.log(`İlerleme: ${completedCount}/${totalQuestions} (${progressPercentage.toFixed(1)}%)`);
+        }
+        
+        // Sayfa yüklendiğinde
+        window.onload = function() {
+            updateMatchDisplay();
+            if (localStorage.getItem('soru-P1-04') === 'completed') {
+                const solutionDiv = document.getElementById('solution');
+                solutionDiv.classList.add('visible');
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 50 - Hiyerarşik İlişki</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="previousQuestion()" class="nav-btn">← Önceki</button>
+            <button onclick="goHome()" class="nav-btn home">🏠 Ana Sayfa</button>
+            <button onclick="nextQuestion()" class="nav-btn">Sonraki →</button>
+        </div>
+
+        <div class="question-container">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0050.jpg" alt="Sayfa 50" class="page-image">
+            </div>
+
+            <div class="question-content">
+                <h2>Soru 50</h2>
+                <p class="question-text">
+                    "Hiyerarşi" kavramı ve bu kavramın özelliklerine ilişkin aşağıdaki soruları cevaplayınız:
+                </p>
+
+                <div class="multi-question-exercise">
+                    <div class="question-group">
+                        <div class="sub-question">
+                            <h4>1. Hiyerarşi kavramının tanımı nedir?</h4>
+                            <div class="radio-options">
+                                <label><input type="radio" name="q1" value="A"> A) Astlık üstlük ilişkisi ya da amir memur ilişkisi olarak tanımlanabilir</label>
+                                <label><input type="radio" name="q1" value="B"> B) Sadece maaş farklarını gösteren sistem</label>
+                                <label><input type="radio" name="q1" value="C"> C) Çalışanlar arasındaki arkadaşlık ilişkisi</label>
+                                <label><input type="radio" name="q1" value="D"> D) Departmanlar arası iş bölümü</label>
+                            </div>
+                        </div>
+
+                        <div class="sub-question">
+                            <h4>2. Hiyerarşik ilişkinin hangi özelliği metinde vurgulanmıştır?</h4>
+                            <div class="radio-options">
+                                <label><input type="radio" name="q2" value="A"> A) Sadece resmi günlerde geçerlidir</label>
+                                <label><input type="radio" name="q2" value="B"> B) Üst makamlar bu yetki ile idari düzeni sürdürülebilir kılmaktadır</label>
+                                <label><input type="radio" name="q2" value="C"> C) Sadece maaş konularında etkilidir</label>
+                                <label><input type="radio" name="q2" value="D"> D) Çalışanların kişisel tercihlerine bağlıdır</label>
+                            </div>
+                        </div>
+
+                        <div class="sub-question">
+                            <h4>3. Devlet tüzel kişiliği içerisindeki tüm ilişki hiyerarşisi nasıl tanımlanır?</h4>
+                            <div class="checkbox-options">
+                                <label><input type="checkbox" name="q3" value="CUMHURBASKANI"> Cumhurbaşkanı</label>
+                                <label><input type="checkbox" name="q3" value="ICISLERI_BAKANI"> İçişleri Bakanı</label>
+                                <label><input type="checkbox" name="q3" value="IL_VALISI"> İl Valisi</label>
+                                <label><input type="checkbox" name="q3" value="ILCE_KAYMAKAMI"> İlçe Kaymakamı</label>
+                            </div>
+                            <p class="hierarchy-note"><small>Doğru hiyerarşik sıralamayı işaretleyiniz</small></p>
+                        </div>
+
+                        <div class="sub-question">
+                            <h4>4. "Her KTK'nun kendi içerisindeki ilişki de hiyerarşik ilişkidir" ifadesi hangi durumu açıklar?</h4>
+                            <div class="radio-options">
+                                <label><input type="radio" name="q4" value="A"> A) Her kamu tüzel kişiliği kendi iç düzenini kurar</label>
+                                <label><input type="radio" name="q4" value="B"> B) Sadece merkezi yönetimde hiyerarşi vardır</label>
+                                <label><input type="radio" name="q4" value="C"> C) Yerel yönetimlerde hiyerarşi yoktur</label>
+                                <label><input type="radio" name="q4" value="D"> D) Hiyerarşi sadece kamu personeli için geçerlidir</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer-section">
+                    <button onclick="checkAnswer()" class="check-btn">Cevabı Kontrol Et</button>
+                    <div id="result" class="result"></div>
+                    <div id="explanation" class="explanation"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            q1: 'A', // Astlık üstlük ilişkisi ya da amir memur ilişkisi
+            q2: 'B', // Üst makamlar bu yetki ile idari düzeni sürdürülebilir kılmaktadır
+            q3: ['CUMHURBASKANI', 'ICISLERI_BAKANI', 'IL_VALISI', 'ILCE_KAYMAKAMI'], // Hiyerarşik sıralama
+            q4: 'A'  // Her kamu tüzel kişiliği kendi iç düzenini kurar
+        };
+
+        function checkAnswer() {
+            const resultDiv = document.getElementById('result');
+            const explanationDiv = document.getElementById('explanation');
+            
+            let score = 0;
+            let totalPoints = 4;
+            let feedback = [];
+            
+            // Question 1 check
+            const q1Answer = document.querySelector('input[name="q1"]:checked');
+            if (!q1Answer) {
+                feedback.push('Soru 1: Cevap seçilmedi');
+            } else if (q1Answer.value === correctAnswers.q1) {
+                score += 1;
+                feedback.push('Soru 1: ✓ Doğru');
+            } else {
+                feedback.push('Soru 1: ✗ Yanlış');
+            }
+            
+            // Question 2 check
+            const q2Answer = document.querySelector('input[name="q2"]:checked');
+            if (!q2Answer) {
+                feedback.push('Soru 2: Cevap seçilmedi');
+            } else if (q2Answer.value === correctAnswers.q2) {
+                score += 1;
+                feedback.push('Soru 2: ✓ Doğru');
+            } else {
+                feedback.push('Soru 2: ✗ Yanlış');
+            }
+            
+            // Question 3 check (hierarchy)
+            const q3Answers = Array.from(document.querySelectorAll('input[name="q3"]:checked')).map(cb => cb.value);
+            if (q3Answers.length === 0) {
+                feedback.push('Soru 3: Hiç seçenek işaretlenmedi');
+            } else {
+                const correctQ3 = correctAnswers.q3;
+                const isCorrectOrder = q3Answers.length === correctQ3.length && 
+                                     q3Answers.every(answer => correctQ3.includes(answer));
+                if (isCorrectOrder) {
+                    score += 1;
+                    feedback.push('Soru 3: ✓ Doğru hiyerarşi');
+                } else {
+                    feedback.push('Soru 3: ✗ Hiyerarşi eksik veya yanlış');
+                }
+            }
+            
+            // Question 4 check
+            const q4Answer = document.querySelector('input[name="q4"]:checked');
+            if (!q4Answer) {
+                feedback.push('Soru 4: Cevap seçilmedi');
+            } else if (q4Answer.value === correctAnswers.q4) {
+                score += 1;
+                feedback.push('Soru 4: ✓ Doğru');
+            } else {
+                feedback.push('Soru 4: ✗ Yanlış');
+            }
+            
+            const percentage = Math.round((score / totalPoints) * 100);
+            
+            if (percentage >= 75) {
+                resultDiv.innerHTML = `<p style="color: green;">✓ Başarılı! ${score}/${totalPoints} doğru cevap. (${percentage}%)</p>`;
+                localStorage.setItem('soru50_completed', 'true');
+            } else if (percentage >= 50) {
+                resultDiv.innerHTML = `<p style="color: orange;">Orta! ${score}/${totalPoints} doğru cevap. (${percentage}%)</p>`;
+            } else {
+                resultDiv.innerHTML = `<p style="color: red;">✗ ${score}/${totalPoints} doğru cevap. (${percentage}%) Tekrar deneyin.</p>`;
+            }
+            
+            const explanation = `
+                <div class="explanation-content">
+                    <strong>Hiyerarşi Konusu - Açıklama:</strong><br><br>
+                    
+                    <strong>Doğru Cevaplar:</strong><br>
+                    1. <strong>A)</strong> Astlık üstlük ilişkisi ya da amir memur ilişkisi olarak tanımlanabilir<br>
+                    2. <strong>B)</strong> Üst makamlar bu yetki ile idari düzeni sürdürülebilir kılmaktadır<br>
+                    3. <strong>Hiyerarşi:</strong> Cumhurbaşkanı → İçişleri Bakanı → İl Valisi → İlçe Kaymakamı<br>
+                    4. <strong>A)</strong> Her kamu tüzel kişiliği kendi iç düzenini kurar<br><br>
+                    
+                    <strong>Hiyerarşinin Özellikleri:</strong><br>
+                    • Astlık üstlük ilişkisi veya amir memur ilişkisidir<br>
+                    • Üst makamlar idari düzeni sürdürülebilir kılmaktadır<br>
+                    • Devlet tüzel kişiliği içerisindeki tüm ilişki hiyerarşik ilişkidir<br>
+                    • Her KTK'nun kendi içerisindeki ilişki de hiyerarşik ilişkidir<br><br>
+                    
+                    <strong>Gereri Hiyerarşisi:</strong> CUMHURBAŞKANI ← İçişleri Bakanı ← İl Valisi ← İlçe Kaymakamı
+                    
+                    <div style="margin-top: 15px; font-size: 14px;">
+                        <strong>Bireysel Geri Bildirim:</strong><br>
+                        ${feedback.join('<br>')}
+                    </div>
+                </div>
+            `;
+            
+            explanationDiv.innerHTML = explanation;
+        }
+
+        function previousQuestion() {
+            window.location.href = 'soru-49.html';
+        }
+
+        function nextQuestion() {
+            window.location.href = 'soru-51.html';
+        }
+
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+
+        // Load completion status
+        window.onload = function() {
+            if (localStorage.getItem('soru50_completed') === 'true') {
+                document.getElementById('result').innerHTML = '<p style="color: blue;">Bu soruyu daha önce doğru cevapladınız.</p>';
+            }
+        }
+
+        // CSS for multi-question styling
+        const style = document.createElement('style');
+        style.textContent = `
+            .multi-question-exercise {
+                margin: 20px 0;
+            }
+            .question-group {
+                background-color: #fafafa;
+                padding: 20px;
+                border-radius: 10px;
+                border: 1px solid #ddd;
+            }
+            .sub-question {
+                margin: 25px 0;
+                padding: 20px;
+                background-color: white;
+                border-radius: 8px;
+                border: 1px solid #e0e0e0;
+            }
+            .sub-question h4 {
+                color: #333;
+                margin-bottom: 15px;
+                font-size: 16px;
+                font-weight: 600;
+            }
+            .radio-options label,
+            .checkbox-options label {
+                display: block;
+                margin: 10px 0;
+                cursor: pointer;
+                padding: 8px;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+            }
+            .radio-options label:hover,
+            .checkbox-options label:hover {
+                background-color: #f0f8ff;
+            }
+            .radio-options input,
+            .checkbox-options input {
+                margin-right: 10px;
+            }
+            .hierarchy-note {
+                margin-top: 10px;
+                color: #666;
+                font-style: italic;
+            }
+            .checkbox-options {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+            .checkbox-options label {
+                background-color: #f9f9f9;
+                border: 1px solid #ddd;
+                padding: 10px;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

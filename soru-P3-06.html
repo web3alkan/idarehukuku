@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru P3-06: Danıştay ve İdare Mahkemeleri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Soru P3-06: Danıştay ve İdare Mahkemeleri</h1>
+        
+        <div class="question-box">
+            <div class="question">
+                <p>Danıştay ve İdare Mahkemelerinin görev dağılımı ile ilgili hangi ifade doğrudur?</p>
+                <div class="options">
+                    <label><input type="radio" name="cevap" value="A"> A) Danıştay yalnızca temyiz mahkemesi olarak görev yapar</label>
+                    <label><input type="radio" name="cevap" value="B"> B) İdare mahkemeleri yalnızca ilk derece mahkemesi olarak görev yapar</label>
+                    <label><input type="radio" name="cevap" value="C"> C) Danıştay hem ilk derece hem de temyiz mahkemesi olarak görev yapar</label>
+                    <label><input type="radio" name="cevap" value="D"> D) Bölge idare mahkemeleri yalnızca istinaf mahkemesi olarak görev yapar</label>
+                    <label><input type="radio" name="cevap" value="E"> E) Tüm idari yargı yerleri aynı görevi yapar</label>
+                </div>
+            </div>
+            
+            <button onclick="gosterCozum()" class="cozum-button">Çözümü Göster</button>
+            
+            <div id="cozum" class="cozum-box" style="display: none;">
+                <h3>Çözüm:</h3>
+                <p><strong>Doğru Cevap: C</strong></p>
+                <p><strong>Açıklama:</strong> Danıştay hem ilk derece hem de temyiz mahkemesi olarak görev yapar. Bazı konularda ilk ve son derece mahkemesi, bazı konularda ise temyiz mahkemesidir.</p>
+                
+                <div class="gorev-dagilimi">
+                    <h4>Görev Dağılımı:</h4>
+                    <ul>
+                        <li><strong>İdare Mahkemeleri:</strong> İlk derece mahkemesi (genel kural)</li>
+                        <li><strong>Bölge İdare Mahkemeleri:</strong> İstinaf mahkemesi</li>
+                        <li><strong>Danıştay:</strong> 
+                            <ul>
+                                <li>Bazı konularda ilk derece mahkemesi</li>
+                                <li>Temyiz mahkemesi</li>
+                                <li>Danışmanlık görevi</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="danistay-gorevleri">
+                    <h4>Danıştay'ın İlk Derece Görevleri:</h4>
+                    <ul>
+                        <li>Bakanlara karşı açılan davalar</li>
+                        <li>Merkezi idarenin üst düzey işlemlerine karşı davalar</li>
+                        <li>Kapsamı ülke genelini aşan işlemler</li>
+                        <li>Yönetmelik iptali davaları</li>
+                        <li>Kanun hükmünde kararname iptali davaları</li>
+                    </ul>
+                </div>
+                
+                <div class="kaynak">
+                    <p><strong>Kaynak:</strong> İdare hukuku notu 2.dönem 3.part.pdf</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P3-05.html" class="nav-button">← Önceki Soru</a>
+            <a href="soru-P3-07.html" class="nav-button">Sonraki Soru →</a>
+        </div>
+    </div>
+    
+    <script>
+        function gosterCozum() {
+            document.getElementById('cozum').style.display = 'block';
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            cozumler['soru-P3-06'] = true;
+            localStorage.setItem('gosterilenCozumler', JSON.stringify(cozumler));
+        }
+        
+        window.onload = function() {
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            if (cozumler['soru-P3-06']) {
+                document.getElementById('cozum').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

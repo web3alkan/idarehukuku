@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 28 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="soru-27.html" class="nav-btn">← Önceki</a>
+            <a href="index.html" class="nav-btn home-btn">Ana Sayfa</a>
+            <a href="soru-29.html" class="nav-btn">Sonraki →</a>
+        </nav>
+        
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0028.jpg" alt="Sayfa 28" class="page-image">
+            
+            <div class="question-box">
+                <h2>Soru 28</h2>
+                <p>Aşağıdaki devlet tiplerini tarihsel gelişim sırasına göre doğru şekilde sıralayın:</p>
+                
+                <div class="options">
+                    <label>
+                        <input type="radio" name="q28" value="a">
+                        a) Hukuk Devleti → Polis Devleti → Hazine Teorisi
+                    </label>
+                    <label>
+                        <input type="radio" name="q28" value="b">
+                        b) Hazine Teorisi → Hukuk Devleti → Polis Devleti
+                    </label>
+                    <label>
+                        <input type="radio" name="q28" value="c">
+                        c) Polis Devleti → Hazine Teorisi → Hukuk Devleti
+                    </label>
+                    <label>
+                        <input type="radio" name="q28" value="d">
+                        d) Hazine Teorisi → Polis Devleti → Hukuk Devleti
+                    </label>
+                    <label>
+                        <input type="radio" name="q28" value="e">
+                        e) Hukuk Devleti → Hazine Teorisi → Polis Devleti
+                    </label>
+                </div>
+                
+                <button onclick="checkAnswer28()" class="check-btn">Cevabı Kontrol Et</button>
+                <div id="result28" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function checkAnswer28() {
+            const selected = document.querySelector('input[name="q28"]:checked');
+            const result = document.getElementById('result28');
+            
+            if (!selected) {
+                result.innerHTML = '<span class="incorrect">Lütfen bir seçenek seçin!</span>';
+                return;
+            }
+            
+            if (selected.value === 'c') {
+                result.innerHTML = '<span class="correct">✓ Doğru! Devlet tiplerinin tarihsel gelişimi: Polis Devleti → Hazine Teorisi → Hukuk Devleti şeklinde olmuştur.</span>';
+                localStorage.setItem('soru28', 'completed');
+            } else {
+                result.innerHTML = '<span class="incorrect">✗ Yanlış. Görselde açıkça belirtildiği üzere sıralama: Polis Devleti → Hazine Teorisi → Hukuk Devleti şeklindedir.</span>';
+            }
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.onload = function() {
+            if (localStorage.getItem('soru28') === 'completed') {
+                document.getElementById('result28').innerHTML = '<span class="completed">Bu soruyu daha önce doğru cevapladınız.</span>';
+            }
+        }
+    </script>
+</body>
+</html>

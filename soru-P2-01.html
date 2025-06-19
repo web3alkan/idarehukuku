@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Sorusu - P2-01</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - İdari Yargı</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="index.html" class="nav-button">Ana Sayfa</a>
+            <span class="page-info">Soru P2-01</span>
+            <a href="soru-P2-02.html" class="nav-button">Sonraki</a>
+        </div>
+        
+        <div class="content">
+            <div class="question-section">
+                <div class="question-title">Soru 1: İdari Yargının Görev Alanı</div>
+                <div class="question-text">
+                    İdari yargının görev alanına giren uyuşmazlıklarla ilgili aşağıdakilerden hangisi yanlıştır?
+                </div>
+                
+                <ul class="options">
+                    <li onclick="selectOption(this, 'A')">A) İdari işlemlerden kaynaklanan uyuşmazlıklar</li>
+                    <li onclick="selectOption(this, 'B')">B) İdari eylemlerden kaynaklanan tam yargı davaları</li>
+                    <li onclick="selectOption(this, 'C')">C) Kamu görevlilerinin kişisel kusurlarından doğan tazminat davaları</li>
+                    <li onclick="selectOption(this, 'D')">D) İdari sözleşmelerden kaynaklanan uyuşmazlıklar</li>
+                    <li onclick="selectOption(this, 'E')">E) Vergi uyuşmazlıkları</li>
+                </ul>
+                
+                <button class="show-solution-btn" onclick="showSolution()">Çözümü Göster</button>
+                
+                <div class="solution-box" id="solution">
+                    <h3>Çözüm:</h3>
+                    <div class="correct-answer">Doğru Cevap: C) Kamu görevlilerinin kişisel kusurlarından doğan tazminat davaları</div>
+                    <div class="explanation-text">
+                        Kamu görevlilerinin kişisel kusurlarından doğan tazminat davaları adli yargının görev alanına girer. 
+                        İdari yargı, idari işlem ve eylemlerden, idari sözleşmelerden ve vergi uyuşmazlıklarından kaynaklanan 
+                        davaları görür. Ancak kamu görevlisinin görevi ile ilgisi olmayan, tamamen kişisel kusuruna dayanan 
+                        eylemlerden doğan tazminat talepleri adli yargıda görülür.
+                    </div>
+                    <div class="pdf-source"><strong>Kaynak:</strong> İdare Hukuku notu 2.dönem 2.part.pdf</div>
+                </div>
+            </div>
+            
+            <div class="result-message" id="result" style="display: none;"></div>
+        </div>
+    </div>
+    
+    <script>
+        let selectedOption = null;
+        
+        function selectOption(element, option) {
+            // Önceki seçimi temizle
+            const allOptions = document.querySelectorAll('.options li');
+            allOptions.forEach(opt => opt.classList.remove('selected'));
+            
+            // Yeni seçimi işaretle
+            element.classList.add('selected');
+            selectedOption = option;
+        }
+        
+        function showSolution() {
+            const solutionBox = document.getElementById('solution');
+            solutionBox.classList.add('visible');
+            
+            // Doğru cevabı işaretle
+            const allOptions = document.querySelectorAll('.options li');
+            allOptions[2].classList.add('correct'); // C şıkkı
+            
+            // Yanlış seçimi işaretle
+            if (selectedOption && selectedOption !== 'C') {
+                allOptions.forEach((opt, index) => {
+                    if (opt.classList.contains('selected') && index !== 2) {
+                        opt.classList.add('incorrect');
+                    }
+                });
+            }
+            
+            // Soruyu tamamlandı olarak işaretle
+            localStorage.setItem('soru-P2-01', 'completed');
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.onload = function() {
+            const isCompleted = localStorage.getItem('soru-P2-01');
+            if (isCompleted === 'completed') {
+                document.querySelector('.completion-status')?.classList.add('completed');
+            }
+        }
+    </script>
+</body>
+</html>

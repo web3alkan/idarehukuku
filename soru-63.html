@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 63 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>İdare Hukuku Sınav Soruları</h1>
+            <p>Kamusal Alan İdare Hukuku - Sayfa 63</p>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <div class="nav-buttons">
+            <a href="soru-62.html" class="nav-btn" id="prevBtn">← Önceki</a>
+            <span class="page-info">Soru 63 / 80</span>
+            <a href="soru-65.html" class="nav-btn" id="nextBtn">Sonraki →</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="progress-indicator">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 36.67%"></div>
+            </div>
+            <p>İlerleme: 36.67% (11/30)</p>
+        </div>
+
+        <div class="content">
+            <div class="source-image">
+                <h3>Kaynak Görseli</h3>
+                <img src="Kamusal Alan İdare Hukuku_page-0063.jpg" alt="Sayfa 63 - İdari İşlemlerin Özellikleri">
+            </div>
+
+            <div class="question-section">
+                <h2>Soru</h2>
+                <div class="question">
+                    <h3>İdari işlemlerin özelliklerini doğru açıklamalarıyla eşleştiriniz:</h3>
+                    
+                    <div class="matching-container">
+                        <div class="matching-column">
+                            <h4>Özellikler</h4>
+                            <div class="matching-item" data-group="left" data-id="1">1. TEK YANLILIK</div>
+                            <div class="matching-item" data-group="left" data-id="2">2. İCRAİLİK</div>
+                            <div class="matching-item" data-group="left" data-id="3">3. HUKUKİLİK KARİNESİ</div>
+                            <div class="matching-item" data-group="left" data-id="4">4. RESEN İCRA EDİLEBİLİRLİK</div>
+                        </div>
+                        
+                        <div class="matching-column">
+                            <h4>Açıklamalar</h4>
+                            <div class="matching-item" data-group="right" data-id="A">A. Başka hiçbir ek tasarrufa gerek olmadan işlemlerin hukuk aleminde sonuç doğurması</div>
+                            <div class="matching-item" data-group="right" data-id="B">B. Yöneldiği kişilerin rızalarının aranmadan işlemin etki etmesi</div>
+                            <div class="matching-item" data-group="right" data-id="C">C. Bu işlemler yapıldıkları an hukuka uygun kabul edilirler (aykırı olsalar bile)</div>
+                            <div class="matching-item" data-group="right" data-id="D">D. Aldığı kararları gerektiğinde doğrudan kendisi uygular (ceza kesme, yıkım yapma)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="btn btn-secondary" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+
+                <div id="feedback" class="feedback hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>&copy; 2025 İdare Hukuku Sınav Soruları. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+
+    <script>
+        let selectedItems = [];
+        let matches = [];
+        
+        const correctMatches = {
+            '1': 'B', // TEK YANLILIK - Rızalarının aranmadan etki etmesi
+            '2': 'A', // İCRAİLİK - Ek tasarrufa gerek olmadan sonuç doğurması
+            '3': 'C', // HUKUKİLİK KARİNESİ - Hukuka uygun kabul edilmesi
+            '4': 'D'  // RESEN İCRA EDİLEBİLİRLİK - Doğrudan kendisi uygulaması
+        };
+
+        // Load completion status
+        window.onload = function() {
+            const completed = localStorage.getItem('question-63-completed');
+            if (completed === 'true') {
+                document.body.classList.add('completed');
+            }
+        };
+
+        // Matching functionality
+        document.querySelectorAll('.matching-item').forEach(item => {
+            item.addEventListener('click', function() {
+                if (this.classList.contains('matched')) return;
+                
+                if (this.classList.contains('selected')) {
+                    this.classList.remove('selected');
+                    selectedItems = selectedItems.filter(id => id !== this.getAttribute('data-id'));
+                } else {
+                    // Clear other selections in the same group
+                    const group = this.getAttribute('data-group');
+                    document.querySelectorAll(`[data-group="${group}"]`).forEach(el => {
+                        el.classList.remove('selected');
+                    });
+                    selectedItems = selectedItems.filter(id => {
+                        const element = document.querySelector(`[data-id="${id}"]`);
+                        return element && element.getAttribute('data-group') !== group;
+                    });
+                    
+                    this.classList.add('selected');
+                    selectedItems.push(this.getAttribute('data-id'));
+                }
+                
+                // Check if we have a pair selected
+                if (selectedItems.length === 2) {
+                    const leftItem = selectedItems.find(id => {
+                        const element = document.querySelector(`[data-id="${id}"]`);
+                        return element && element.getAttribute('data-group') === 'left';
+                    });
+                    const rightItem = selectedItems.find(id => {
+                        const element = document.querySelector(`[data-id="${id}"]`);
+                        return element && element.getAttribute('data-group') === 'right';
+                    });
+                    
+                    if (leftItem && rightItem) {
+                        matches.push({left: leftItem, right: rightItem});
+                        
+                        // Mark as matched
+                        document.querySelector(`[data-id="${leftItem}"]`).classList.add('matched');
+                        document.querySelector(`[data-id="${rightItem}"]`).classList.add('matched');
+                        document.querySelector(`[data-id="${leftItem}"]`).classList.remove('selected');
+                        document.querySelector(`[data-id="${rightItem}"]`).classList.remove('selected');
+                        
+                        selectedItems = [];
+                    }
+                }
+            });
+        });
+
+        function checkAnswer() {
+            if (matches.length < 4) {
+                alert('Lütfen tüm eşleştirmeleri yapın!');
+                return;
+            }
+
+            const feedback = document.getElementById('feedback');
+            let correctCount = 0;
+            
+            matches.forEach(match => {
+                if (correctMatches[match.left] === match.right) {
+                    correctCount++;
+                }
+            });
+
+            if (correctCount === 4) {
+                feedback.className = 'feedback correct';
+                feedback.textContent = 'Mükemmel! Tüm eşleştirmeleri doğru yaptınız. İdari işlemlerin özelliklerini ve açıklamalarını doğru şekilde eşleştirdiniz.';
+                localStorage.setItem('question-63-completed', 'true');
+                localStorage.setItem('question-63-correct', 'true');
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `Kısmen doğru! ${correctCount}/4 eşleştirme doğru. Doğru eşleştirmeler:<br>
+                1. TEK YANLILIK → Rızalarının aranmadan etki etmesi<br>
+                2. İCRAİLİK → Ek tasarrufa gerek olmadan sonuç doğurması<br>
+                3. HUKUKİLİK KARİNESİ → Hukuka uygun kabul edilmesi<br>
+                4. RESEN İCRA EDİLEBİLİRLİK → Doğrudan kendisi uygulaması`;
+                localStorage.setItem('question-63-completed', 'true');
+                localStorage.setItem('question-63-correct', correctCount === 4 ? 'true' : 'false');
+            }
+            
+            feedback.classList.remove('hidden');
+        }
+
+        function resetQuestion() {
+            matches = [];
+            selectedItems = [];
+            document.querySelectorAll('.matching-item').forEach(item => {
+                item.classList.remove('selected', 'matched');
+            });
+            document.getElementById('feedback').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

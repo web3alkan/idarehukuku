@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 129</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Sayfa 129</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-128.html" class="nav-button" id="prevBtn">← Önceki</a>
+            <div class="page-info">Sayfa 129 / 170</div>
+            <a href="soru-130.html" class="nav-button" id="nextBtn">Sonraki →</a>
+        </div>
+        
+        <div class="content">
+            <div class="completion-status" id="completionStatus">
+                <span class="not-completed">Bu soru henüz tamamlanmadı</span>
+            </div>
+            
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0129.jpg" alt="Sayfa 129 - İdarenin Hakları ve Yükümlülükleri">
+            </div>
+            
+            <div class="question-section">
+                <div class="question-title">Soru 129</div>
+                <div class="question-text">
+                    İmtiyaz sözleşmelerinde idarenin yükümlülükleri ile ilgili aşağıdaki eşleştirmeyi yapınız:
+                </div>
+                
+                <div class="matching-container">
+                    <div class="matching-column">
+                        <h4>İdarenin Yükümlülükleri</h4>
+                        <div class="matching-item" data-left="1">Sözleşmeye riayet etmek</div>
+                        <div class="matching-item" data-left="2">İmtiyazcının mali dengesini gözetmek</div>
+                        <div class="matching-item" data-left="3">Ücret tarifelerini özel hukuk kişisinin beklentilerine uygun düzenlemek</div>
+                        <div class="matching-item" data-left="4">İmtiyazcıyı denetlemek (hak ve yük)</div>
+                    </div>
+                    
+                    <div class="matching-column">
+                        <h4>Durum</h4>
+                        <div class="matching-item" data-right="A">İdarenin Yükümlülüğü</div>
+                        <div class="matching-item" data-right="B">İdarenin Hakkı</div>
+                        <div class="matching-item" data-right="C">Her İkisi de</div>
+                    </div>
+                </div>
+                
+                <div class="button-container">
+                    <button class="check-button" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="reset-button" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+                
+                <div class="result-message" id="result" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctMatches = {
+            '1': 'A', // Sözleşmeye riayet etmek - İdarenin Yükümlülüğü
+            '2': 'A', // İmtiyazcının mali dengesini gözetmek - İdarenin Yükümlülüğü  
+            '3': 'A', // Ücret tarifelerini düzenlemek - İdarenin Yükümlülüğü
+            '4': 'C'  // İmtiyazcıyı denetlemek - Her İkisi de (hak ve yük)
+        };
+        
+        let userMatches = {};
+        let selectedLeft = null;
+        let selectedRight = null;
+        let answered = false;
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        document.addEventListener('DOMContentLoaded', function() {
+            const completed = localStorage.getItem('question_129_completed');
+            const completionStatus = document.getElementById('completionStatus');
+            
+            if (completed === 'true') {
+                completionStatus.innerHTML = '<span class="completed">✓ Bu soru tamamlandı</span>';
+            }
+        });
+        
+        // Matching item tıklama olayları
+        document.querySelectorAll('.matching-item').forEach(item => {
+            item.addEventListener('click', function() {
+                if (answered) return;
+                
+                if (this.hasAttribute('data-left')) {
+                    // Sol taraf seçimi
+                    document.querySelectorAll('[data-left]').forEach(el => el.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedLeft = this.getAttribute('data-left');
+                } else if (this.hasAttribute('data-right')) {
+                    // Sağ taraf seçimi
+                    document.querySelectorAll('[data-right]').forEach(el => el.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedRight = this.getAttribute('data-right');
+                }
+                
+                // Eşleştirme yap
+                if (selectedLeft && selectedRight) {
+                    userMatches[selectedLeft] = selectedRight;
+                    
+                    // Seçimleri temizle
+                    document.querySelectorAll('.matching-item').forEach(el => el.classList.remove('selected'));
+                    selectedLeft = null;
+                    selectedRight = null;
+                    
+                    // Eşleştirilen öğeleri işaretle
+                    updateMatchDisplay();
+                }
+            });
+        });
+        
+        function updateMatchDisplay() {
+            // Tüm eşleştirmeleri göster
+            Object.keys(userMatches).forEach(leftKey => {
+                const rightValue = userMatches[leftKey];
+                const leftElement = document.querySelector(`[data-left="${leftKey}"]`);
+                const rightElement = document.querySelector(`[data-right="${rightValue}"]`);
+                
+                leftElement.style.backgroundColor = '#EDE9FE';
+                rightElement.style.backgroundColor = '#EDE9FE';
+                leftElement.innerHTML += ` → ${rightValue}`;
+            });
+        }
+        
+        function checkAnswer() {
+            if (Object.keys(userMatches).length < 4) {
+                alert('Lütfen tüm eşleştirmeleri tamamlayın!');
+                return;
+            }
+            
+            answered = true;
+            let correctCount = 0;
+            
+            // Cevapları kontrol et
+            Object.keys(correctMatches).forEach(leftKey => {
+                const userAnswer = userMatches[leftKey];
+                const correctAnswer = correctMatches[leftKey];
+                const leftElement = document.querySelector(`[data-left="${leftKey}"]`);
+                const rightElement = document.querySelector(`[data-right="${userAnswer}"]`);
+                
+                if (userAnswer === correctAnswer) {
+                    correctCount++;
+                    leftElement.style.backgroundColor = '#D1FAE5';
+                    leftElement.style.borderColor = '#10B981';
+                    if (rightElement) {
+                        rightElement.style.backgroundColor = '#D1FAE5';
+                        rightElement.style.borderColor = '#10B981';
+                    }
+                } else {
+                    leftElement.style.backgroundColor = '#FEE2E2';
+                    leftElement.style.borderColor = '#EF4444';
+                    if (rightElement) {
+                        rightElement.style.backgroundColor = '#FEE2E2';
+                        rightElement.style.borderColor = '#EF4444';
+                    }
+                }
+            });
+            
+            // Sonucu göster
+            const resultDiv = document.getElementById('result');
+            if (correctCount === 4) {
+                resultDiv.innerHTML = 'Tebrikler! Doğru cevap. İdarenin yükümlülükleri arasında sözleşmeye riayet etmek, imtiyazcının mali dengesini gözetmek ve ücret tarifelerini özel hukuk kişisinin beklentilerine uygun düzenlemek yer alır. İmtiyazcıyı denetlemek ise hem hak hem de yüktür.';
+                resultDiv.className = 'result-message correct';
+                
+                // Tamamlandı olarak işaretle
+                localStorage.setItem('question_129_completed', 'true');
+                document.getElementById('completionStatus').innerHTML = '<span class="completed">✓ Bu soru tamamlandı</span>';
+            } else {
+                resultDiv.innerHTML = `Yanlış cevap. ${correctCount}/4 doğru eşleştirme yaptınız. İdarenin başlıca yükümlülükleri sözleşmeye riayet, mali dengeyi gözetme ve ücret tarifelerini düzenlemektir. Denetim ise hem hak hem yüktür.`;
+                resultDiv.className = 'result-message incorrect';
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+        
+        function resetQuestion() {
+            answered = false;
+            userMatches = {};
+            selectedLeft = null;
+            selectedRight = null;
+            
+            // Tüm eşleştirmeleri temizle
+            document.querySelectorAll('.matching-item').forEach(item => {
+                item.classList.remove('selected');
+                item.style.backgroundColor = '#f8f9fa';
+                item.style.borderColor = '#dee2e6';
+                
+                // Metin içeriğini orijinal haline getir
+                if (item.hasAttribute('data-left')) {
+                    const leftKey = item.getAttribute('data-left');
+                    const originalTexts = {
+                        '1': 'Sözleşmeye riayet etmek',
+                        '2': 'İmtiyazcının mali dengesini gözetmek',
+                        '3': 'Ücret tarifelerini özel hukuk kişisinin beklentilerine uygun düzenlemek',
+                        '4': 'İmtiyazcıyı denetlemek (hak ve yük)'
+                    };
+                    item.innerHTML = originalTexts[leftKey];
+                }
+            });
+            
+            document.getElementById('result').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

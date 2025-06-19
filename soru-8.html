@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru 8</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="window.location.href='soru-7.html'">&larr; Önceki</button>
+            <button onclick="window.location.href='index.html'">Ana Sayfa</button>
+            <button onclick="window.location.href='soru-9.html'">Sonraki &rarr;</button>
+        </div>
+
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0008.jpg" alt="Sayfa 8" class="source-image">
+            
+            <div class="question">
+                <h2>Soru 8</h2>
+                <p>İdari nitelikli sözleşmelerde idareye verilen üstün ve ayrıcalıklı yetkiler ile ilgili aşağıdakilerden hangisi doğrudur?</p>
+                
+                <div class="options">
+                    <label>
+                        <input type="radio" name="q8" value="a">
+                        <span>A) Özel hukuk sözleşmelerinde taraflar tüm koşullarda birbirleri ile eşittir</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="q8" value="b">
+                        <span>B) İdari nitelikli sözleşmelerde idareye kamu hukukundan verilmiş üstün ve ayrıcalıklı yetkiler devam eder</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="q8" value="c">
+                        <span>C) İdari sözleşmelerde taraflar her zaman eşittir</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="q8" value="d">
+                        <span>D) İdare sözleşme yaparken tüm yetkilerini kaybeder</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="q8" value="e">
+                        <span>E) Sözleşmelerde idari yetki kullanılamaz</span>
+                    </label>
+                </div>
+                
+                <button onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <div id="feedback" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('soru8_completed') === 'true') {
+                document.getElementById('feedback').innerHTML = '<span class="correct">✓ Bu soruyu daha önce doğru cevapladınız.</span>';
+                document.querySelector('input[value="b"]').checked = true;
+                const radios = document.querySelectorAll('input[name="q8"]');
+                radios.forEach(radio => radio.disabled = true);
+            }
+        });
+
+        function checkAnswer() {
+            const selectedOption = document.querySelector('input[name="q8"]:checked');
+            const feedback = document.getElementById('feedback');
+            
+            if (!selectedOption) {
+                feedback.innerHTML = '<span class="incorrect">Lütfen bir seçenek seçiniz.</span>';
+                return;
+            }
+            
+            if (selectedOption.value === 'b') {
+                feedback.innerHTML = '<span class="correct">✓ Doğru! İdari nitelikli sözleşmelerde idareye kamu hukukundan verilmiş üstün ve ayrıcalıklı yetkiler devam eder.</span>';
+                localStorage.setItem('soru8_completed', 'true');
+                const radios = document.querySelectorAll('input[name="q8"]');
+                radios.forEach(radio => radio.disabled = true);
+            } else {
+                feedback.innerHTML = '<span class="incorrect">✗ Yanlış. İdari sözleşmelerde idareye verilen kamu hukuku yetkileri devam eder.</span>';
+            }
+        }
+    </script>
+</body>
+</html>

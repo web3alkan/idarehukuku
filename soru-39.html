@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 39 - Anayasada Yer Alan Kamu Tüzel Kişileri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="previousQuestion()" class="nav-btn">← Önceki</button>
+            <button onclick="goHome()" class="nav-btn home">🏠 Ana Sayfa</button>
+            <button onclick="nextQuestion()" class="nav-btn">Sonraki →</button>
+        </div>
+
+        <div class="question-container">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0039.jpg" alt="Sayfa 39" class="page-image">
+            </div>
+
+            <div class="question-content">
+                <h2>Soru 39</h2>
+                <p class="question-text">
+                    Aşağıdaki kurumları, Anayasa'da ismi bulunan ve bulunmayan KTK'lar olarak doğru şekilde kategorize ediniz:
+                </p>
+
+                <div class="categorization-exercise">
+                    <div class="items-to-categorize">
+                        <h4>Kurumlar:</h4>
+                        <div class="drag-items">
+                            <div class="drag-item" draggable="true" data-item="devlet">Devlet</div>
+                            <div class="drag-item" draggable="true" data-item="il-ozel">İl Özel İdaresi</div>
+                            <div class="drag-item" draggable="true" data-item="belediye">Belediye</div>
+                            <div class="drag-item" draggable="true" data-item="koy">Köy</div>
+                            <div class="drag-item" draggable="true" data-item="universiteler">Üniversiteler</div>
+                            <div class="drag-item" draggable="true" data-item="trt">TRT</div>
+                            <div class="drag-item" draggable="true" data-item="rtuk">RTÜK</div>
+                            <div class="drag-item" draggable="true" data-item="hdk">HDK</div>
+                            <div class="drag-item" draggable="true" data-item="yok">YÖK</div>
+                        </div>
+                    </div>
+
+                    <div class="categories">
+                        <div class="category-column">
+                            <h4>Anayasa'da BELİRTİLMİŞ KTK'lar</h4>
+                            <div class="drop-zone" id="constitutional" data-category="constitutional">
+                                <p class="drop-hint">Kurumları buraya sürükleyin</p>
+                            </div>
+                        </div>
+
+                        <div class="category-column">
+                            <h4>Anayasa'da BELİRTİLMEMİŞ KTK'lar</h4>
+                            <div class="drop-zone" id="non-constitutional" data-category="non-constitutional">
+                                <p class="drop-hint">Kurumları buraya sürükleyin</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer-section">
+                    <button onclick="checkAnswer()" class="check-btn">Cevabı Kontrol Et</button>
+                    <div id="result" class="result"></div>
+                    <div id="explanation" class="explanation"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctCategories = {
+            // Anayasa'da belirtilmiş KTK'lar
+            constitutional: ['devlet', 'il-ozel', 'belediye', 'koy', 'universiteler'],
+            // Anayasa'da belirtilmemiş KTK'lar  
+            'non-constitutional': ['rtuk', 'hdk', 'yok', 'trt']
+        };
+
+        let userCategories = {
+            constitutional: [],
+            'non-constitutional': []
+        };
+
+        // Drag and drop functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dragItems = document.querySelectorAll('.drag-item');
+            const dropZones = document.querySelectorAll('.drop-zone');
+
+            dragItems.forEach(item => {
+                item.addEventListener('dragstart', handleDragStart);
+                item.addEventListener('click', handleClick); // For mobile/touch support
+            });
+
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', handleDragOver);
+                zone.addEventListener('drop', handleDrop);
+                zone.addEventListener('click', handleZoneClick);
+            });
+
+            let selectedItem = null;
+
+            function handleDragStart(e) {
+                e.dataTransfer.setData('text/plain', e.target.dataset.item);
+            }
+
+            function handleClick(e) {
+                // Remove previous selections
+                document.querySelectorAll('.drag-item').forEach(item => item.classList.remove('selected'));
+                e.target.classList.add('selected');
+                selectedItem = e.target;
+            }
+
+            function handleZoneClick(e) {
+                if (selectedItem && e.target.classList.contains('drop-zone')) {
+                    const itemData = selectedItem.dataset.item;
+                    const category = e.target.dataset.category;
+                    
+                    // Remove from current category
+                    removeFromAllCategories(itemData);
+                    
+                    // Add to new category
+                    userCategories[category].push(itemData);
+                    
+                    // Move item visually
+                    e.target.appendChild(selectedItem);
+                    selectedItem.classList.remove('selected');
+                    selectedItem = null;
+                    
+                    updateDropZoneHints();
+                }
+            }
+
+            function handleDragOver(e) {
+                e.preventDefault();
+            }
+
+            function handleDrop(e) {
+                e.preventDefault();
+                const itemData = e.dataTransfer.getData('text/plain');
+                const category = e.target.dataset.category;
+                
+                if (itemData && category) {
+                    // Remove from current category
+                    removeFromAllCategories(itemData);
+                    
+                    // Add to new category
+                    userCategories[category].push(itemData);
+                    
+                    // Move item visually
+                    const draggedItem = document.querySelector(`[data-item="${itemData}"]`);
+                    e.target.appendChild(draggedItem);
+                    
+                    updateDropZoneHints();
+                }
+            }
+
+            function removeFromAllCategories(itemData) {
+                for (let category in userCategories) {
+                    const index = userCategories[category].indexOf(itemData);
+                    if (index > -1) {
+                        userCategories[category].splice(index, 1);
+                    }
+                }
+            }
+
+            function updateDropZoneHints() {
+                dropZones.forEach(zone => {
+                    const hint = zone.querySelector('.drop-hint');
+                    const hasItems = zone.querySelectorAll('.drag-item').length > 0;
+                    hint.style.display = hasItems ? 'none' : 'block';
+                });
+            }
+        });
+
+        function checkAnswer() {
+            const resultDiv = document.getElementById('result');
+            const explanationDiv = document.getElementById('explanation');
+            
+            // Check if all items are categorized
+            const totalItems = Object.values(correctCategories).flat().length;
+            const categorizedItems = Object.values(userCategories).flat().length;
+            
+            if (categorizedItems < totalItems) {
+                resultDiv.innerHTML = '<p style="color: orange;">Lütfen tüm kurumları kategorilere yerleştiriniz.</p>';
+                return;
+            }
+            
+            let correctCount = 0;
+            let totalCorrect = 0;
+            
+            // Count correct placements
+            for (let category in correctCategories) {
+                correctCategories[category].forEach(item => {
+                    totalCorrect++;
+                    if (userCategories[category] && userCategories[category].includes(item)) {
+                        correctCount++;
+                    }
+                });
+            }
+            
+            const percentage = Math.round((correctCount / totalCorrect) * 100);
+            
+            if (percentage >= 90) {
+                resultDiv.innerHTML = `<p style="color: green;">✓ Mükemmel! ${correctCount}/${totalCorrect} doğru yerleştirme. (${percentage}%)</p>`;
+                localStorage.setItem('soru39_completed', 'true');
+            } else if (percentage >= 70) {
+                resultDiv.innerHTML = `<p style="color: orange;">İyi! ${correctCount}/${totalCorrect} doğru yerleştirme. (${percentage}%)</p>`;
+            } else {
+                resultDiv.innerHTML = `<p style="color: red;">✗ ${correctCount}/${totalCorrect} doğru yerleştirme. (${percentage}%) Tekrar deneyin.</p>`;
+            }
+            
+            const explanation = `
+                <div class="explanation-content">
+                    <strong>Doğru Kategoriler:</strong><br><br>
+                    
+                    <strong>Anayasa'da BELİRTİLMİŞ KTK'lar:</strong><br>
+                    • Devlet<br>
+                    • İl Özel İdaresi<br>
+                    • Belediye<br>
+                    • Köy<br>
+                    • Üniversiteler<br><br>
+                    
+                    <strong>Anayasa'da BELİRTİLMEMİŞ KTK'lar:</strong><br>
+                    • RTÜK<br>
+                    • HDK<br>
+                    • YÖK<br>
+                    • TRT<br><br>
+                    
+                    <strong>Açıklama:</strong> Anayasa'da açıkça adı geçen kamu tüzel kişileri ile 
+                    sadece kanunla kurulabilen ancak Anayasa'da ismi bulunmayan KTK'lar arasında 
+                    temel ayrım vardır. Atatürk Kültür, Dil ve Tarih Yüksek Kurumu, Kamu Kurumu 
+                    Niteliğindeki Meslek Kuruluşları, Üniversiteler ve TRT gibi kurumlar da 
+                    bu kategorilere girmektedir.
+                </div>
+            `;
+            
+            explanationDiv.innerHTML = explanation;
+        }
+
+        function previousQuestion() {
+            window.location.href = 'soru-38.html';
+        }
+
+        function nextQuestion() {
+            window.location.href = 'soru-40.html';
+        }
+
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+
+        // Load completion status
+        window.onload = function() {
+            if (localStorage.getItem('soru39_completed') === 'true') {
+                document.getElementById('result').innerHTML = '<p style="color: blue;">Bu soruyu daha önce doğru cevapladınız.</p>';
+            }
+        }
+
+        // CSS for drag and drop styling
+        const style = document.createElement('style');
+        style.textContent = `
+            .categorization-exercise {
+                margin: 20px 0;
+            }
+            .items-to-categorize {
+                margin-bottom: 30px;
+            }
+            .drag-items {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 10px;
+            }
+            .drag-item {
+                padding: 8px 12px;
+                background-color: #e3f2fd;
+                border: 2px solid #2196F3;
+                border-radius: 5px;
+                cursor: move;
+                user-select: none;
+                transition: all 0.3s;
+            }
+            .drag-item:hover {
+                background-color: #bbdefb;
+            }
+            .drag-item.selected {
+                background-color: #1976d2;
+                color: white;
+            }
+            .categories {
+                display: flex;
+                gap: 20px;
+            }
+            .category-column {
+                flex: 1;
+            }
+            .category-column h4 {
+                text-align: center;
+                margin-bottom: 10px;
+                color: #333;
+            }
+            .drop-zone {
+                min-height: 200px;
+                border: 2px dashed #ccc;
+                border-radius: 10px;
+                padding: 15px;
+                background-color: #fafafa;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                transition: all 0.3s;
+            }
+            .drop-zone:hover {
+                border-color: #2196F3;
+                background-color: #f0f8ff;
+            }
+            .drop-hint {
+                color: #666;
+                text-align: center;
+                font-style: italic;
+                margin: auto;
+            }
+            .drop-zone .drag-item {
+                margin: 0;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

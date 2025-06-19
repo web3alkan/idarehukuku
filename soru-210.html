@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Soru 210</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Sayfa 210</h1>
+            <div class="progress-indicator">Soru 210 / 220</div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn" onclick="goToPrevious()" >← Önceki</button>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <button class="nav-btn" onclick="goToNext()" >Sonraki →</button>
+        </div>
+        
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0210.jpg" alt="Sayfa 210" />
+            </div>
+            
+            <div class="question-section">
+                <div class="question-title">
+                    Kamu hizmeti kavramı ile ilgili aşağıdakilerden hangisi yanlıştır?
+                </div>
+                
+                <div class="options">
+                    <div class="option" onclick="selectOption(this, false)">
+                        A) Kamu yararı güder
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        B) Süreklilik ilkesi geçerlidir
+                    </div>
+                    <div class="option" onclick="selectOption(this, true)">
+                        C) Sadece devlet yapabilir
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        D) Düzenlilik ilkesi vardır
+                    </div>
+                    <div class="option" onclick="selectOption(this, false)">
+                        E) Eşitlik ilkesi uygulanır
+                    </div>
+                </div>
+                
+                <div class="answer-section">
+                    <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <div id="result" class="result" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedOption = null;
+        let answered = false;
+
+        function selectOption(element, isCorrect) {
+            if (answered) return;
+            
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            element.classList.add('selected');
+            selectedOption = { element, isCorrect };
+        }
+
+        function checkAnswer() {
+            if (!selectedOption) {
+                alert('Lütfen bir seçenek seçiniz!');
+                return;
+            }
+            
+            if (answered) return;
+            answered = true;
+
+            const resultDiv = document.getElementById('result');
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach(opt => {
+                const isCorrect = opt.onclick.toString().includes('true');
+                if (isCorrect) {
+                    opt.classList.add('correct');
+                } else if (opt.classList.contains('selected') && !selectedOption.isCorrect) {
+                    opt.classList.add('incorrect');
+                }
+            });
+
+            if (selectedOption.isCorrect) {
+                resultDiv.innerHTML = '✅ Doğru! ' + 'Kamu hizmeti sadece devlet tarafından değil, özel kişiler tarafından da yapılabilir.';
+                resultDiv.className = 'result correct';
+                updateProgress(210, true);
+            } else {
+                resultDiv.innerHTML = '❌ Yanlış! ' + 'Kamu hizmeti sadece devlet tarafından değil, özel kişiler tarafından da yapılabilir.';
+                resultDiv.className = 'result incorrect';
+                updateProgress(210, false);
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        function updateProgress(questionNumber, isCorrect) {
+            let progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            progress[questionNumber] = {
+                completed: true,
+                correct: isCorrect,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('examProgress', JSON.stringify(progress));
+        }
+
+        function goToPrevious() {
+            window.location.href = "soru-209.html";
+        }
+
+        function goToNext() {
+            window.location.href = "soru-211.html";
+        }
+
+        window.onload = function() {
+            const progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            if (progress[210] && progress[210].completed) {
+                document.querySelector('.header h1').innerHTML += ' <span class="completed-badge">Tamamlandı</span>';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Sorusu - P2-22</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - Kamu Hizmetleri</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P2-21.html" class="nav-button">Önceki</a>
+            <span class="page-info">Soru P2-22</span>
+            <a href="soru-P2-23.html" class="nav-button">Sonraki</a>
+        </div>
+        
+        <div class="content">
+            <div class="question-section">
+                <div class="question-title">Soru 22: Kamu Hizmetinin İlkeleri</div>
+                <div class="question-text">
+                    Kamu hizmetinin temel ilkeleri olan <span class="fill-blank"><input type="text" id="answer1" placeholder="1. ilke"></span>, 
+                    <span class="fill-blank"><input type="text" id="answer2" placeholder="2. ilke"></span> ve 
+                    <span class="fill-blank"><input type="text" id="answer3" placeholder="3. ilke"></span> ilkeleridir.
+                </div>
+                
+                <button class="check-button" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <button class="show-solution-btn" onclick="showSolution()">Çözümü Göster</button>
+                
+                <div class="solution-box" id="solution">
+                    <h3>Çözüm:</h3>
+                    <div class="correct-answer">Doğru Cevaplar: Süreklilik, Eşitlik, Uyarlama (Değişebilirlik)</div>
+                    <div class="explanation-text">
+                        Kamu hizmetinin 3 temel ilkesi vardır:
+                        
+                        1. <strong>Süreklilik İlkesi</strong>: Kamu hizmetleri kesintisiz yürütülmelidir. 
+                           Kamu görevlilerinin grev hakkının sınırlandırılması bu ilkenin sonucudur.
+                        
+                        2. <strong>Eşitlik İlkesi</strong>: Kamu hizmetlerinden yararlanmada aynı durumda olan 
+                           herkes eşit muamele görmelidir.
+                        
+                        3. <strong>Uyarlama (Değişebilirlik) İlkesi</strong>: Kamu hizmetleri, toplumun değişen 
+                           ihtiyaçlarına göre sürekli güncellenmelidir.
+                        
+                        Bu ilkeler, Fransız idare hukuku öğretisinden gelir ve modern kamu yönetiminin temelini oluşturur.
+                    </div>
+                    <div class="pdf-source"><strong>Kaynak:</strong> İdare Hukuku notu 2.dönem 2.part.pdf</div>
+                </div>
+            </div>
+            
+            <div class="result-message" id="result" style="display: none;"></div>
+        </div>
+    </div>
+    
+    <script>
+        function checkAnswer() {
+            const answer1 = document.getElementById('answer1').value.trim().toLowerCase();
+            const answer2 = document.getElementById('answer2').value.trim().toLowerCase();
+            const answer3 = document.getElementById('answer3').value.trim().toLowerCase();
+            const resultDiv = document.getElementById('result');
+            
+            const validAnswers = [
+                ['süreklilik', 'devamlılık'],
+                ['eşitlik', 'eşit'],
+                ['uyarlama', 'değişebilirlik', 'adaptasyon', 'değişken']
+            ];
+            
+            const answers = [answer1, answer2, answer3];
+            let correctCount = 0;
+            
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < validAnswers.length; j++) {
+                    if (validAnswers[j].some(valid => answers[i].includes(valid))) {
+                        correctCount++;
+                        break;
+                    }
+                }
+            }
+            
+            if (correctCount >= 2) {
+                resultDiv.textContent = 'Tebrikler! Doğru cevap.';
+                resultDiv.className = 'result-message correct';
+            } else {
+                resultDiv.textContent = 'Yanlış cevap. Doğru cevaplar: Süreklilik, Eşitlik, Uyarlama';
+                resultDiv.className = 'result-message incorrect';
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+        
+        function showSolution() {
+            const solutionBox = document.getElementById('solution');
+            solutionBox.classList.add('visible');
+            
+            localStorage.setItem('soru-P2-22', 'completed');
+        }
+    </script>
+</body>
+</html>

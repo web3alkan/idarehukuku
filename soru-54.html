@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 54 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>İdare Hukuku Sınav Soruları</h1>
+            <p>Kamusal Alan İdare Hukuku - Sayfa 54</p>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <div class="nav-buttons">
+            <a href="soru-53.html" class="nav-btn" id="prevBtn">← Önceki</a>
+            <span class="page-info">Soru 54 / 80</span>
+            <a href="soru-55.html" class="nav-btn" id="nextBtn">Sonraki →</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="progress-indicator">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 13.33%"></div>
+            </div>
+            <p>İlerleme: 13.33% (4/30)</p>
+        </div>
+
+        <div class="content">
+            <div class="source-image">
+                <h3>Kaynak Görseli</h3>
+                <img src="Kamusal Alan İdare Hukuku_page-0054.jpg" alt="Sayfa 54 - Belediye Hizmetleri">
+            </div>
+
+            <div class="question-section">
+                <h2>Soru</h2>
+                <div class="question">
+                    <h3>Verilen metne göre, belediye hizmeti aksaması durumunda İçişleri Bakanlığının yetkili sulh hukuk hâkimi tarafından belirtilen süre hakkında aşağıdaki ifade doğru mudur?</h3>
+                    
+                    <p><strong>İfade:</strong> "Belediye hizmetlerinin ciddi bir biçimde aksatıldığı durumlarda, İçişleri Bakanlığının talebi üzerine yetkili sulh hukuk hâkimi, aksama giderilemezse hizmetin yerine getirilmesini o ilin valisinden ister ve bu durumda vali en fazla kırkdokuz yıl süreyle belediye başkanından görevini devredebilir."</p>
+                    
+                    <div class="true-false">
+                        <div class="tf-option" data-value="true">DOĞRU</div>
+                        <div class="tf-option" data-value="false">YANLIŞ</div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="btn btn-secondary" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+
+                <div id="feedback" class="feedback hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>&copy; 2025 İdare Hukuku Sınav Soruları. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+
+    <script>
+        let selectedAnswer = null;
+        const correctAnswer = 'false';
+
+        // Load completion status
+        window.onload = function() {
+            const completed = localStorage.getItem('question-54-completed');
+            if (completed === 'true') {
+                document.body.classList.add('completed');
+            }
+        };
+
+        // True/False selection
+        document.querySelectorAll('.tf-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.tf-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedAnswer = this.getAttribute('data-value');
+            });
+        });
+
+        function checkAnswer() {
+            if (!selectedAnswer) {
+                alert('Lütfen Doğru veya Yanlış seçin!');
+                return;
+            }
+
+            const feedback = document.getElementById('feedback');
+            const options = document.querySelectorAll('.tf-option');
+            
+            // Disable further selection
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+                if (option.getAttribute('data-value') === correctAnswer) {
+                    option.classList.add('correct');
+                } else if (option.getAttribute('data-value') === selectedAnswer && selectedAnswer !== correctAnswer) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            if (selectedAnswer === correctAnswer) {
+                feedback.className = 'feedback correct';
+                feedback.textContent = 'Doğru! İfade yanlıştır. Metinde "kırkdokuz yıl" yazılı olması hatalıdır. Gerçekte bu süre çok daha kısadır ve pratik bir uygulama süresidir. Ayrıca vali belediye başkanından değil, belediye başkanına bu konuda görev verir.';
+                localStorage.setItem('question-54-completed', 'true');
+                localStorage.setItem('question-54-correct', 'true');
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = 'Yanlış! İfade gerçekten yanlıştır. "Kırkdokuz yıl" ifadesi hatalıdır ve pratik olmayan bir süredir. Ayrıca süreç ve yetki devri konusunda da hata bulunmaktadır. Doğru cevap "YANLIŞ" olmalıydı.';
+                localStorage.setItem('question-54-completed', 'true');
+                localStorage.setItem('question-54-correct', 'false');
+            }
+            
+            feedback.classList.remove('hidden');
+        }
+
+        function resetQuestion() {
+            selectedAnswer = null;
+            document.querySelectorAll('.tf-option').forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+                option.style.pointerEvents = 'auto';
+            });
+            document.getElementById('feedback').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

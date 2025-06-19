@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 13 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="window.location.href='soru-12.html'" class="nav-btn">← Önceki</button>
+            <button onclick="window.location.href='index.html'" class="nav-btn home-btn">Ana Sayfa</button>
+            <button onclick="window.location.href='soru-14.html'" class="nav-btn">Sonraki →</button>
+        </div>
+
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0013.jpg" alt="Sayfa 13" class="page-image">
+            
+            <div class="question-box">
+                <h2>Soru 13</h2>
+                <p class="question-text">Yargı organı ile ilgili aşağıdaki ifadeyi tamamlayın:</p>
+                
+                <div class="fill-blank">
+                    <p>Organik anlamda yargı ____________ ve ____________ mahkemelerden oluşmaktadır.</p>
+                    
+                    <div class="fill-inputs">
+                        <input type="text" id="blank1" placeholder="Birinci boşluk" class="fill-input">
+                        <input type="text" id="blank2" placeholder="İkinci boşluk" class="fill-input">
+                    </div>
+                </div>
+                
+                <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <div class="result" id="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            blank1: ['bağımsız'],
+            blank2: ['tarafsız']
+        };
+        
+        function normalizeText(text) {
+            return text.toLowerCase().trim().replace(/[ğ]/g, 'g').replace(/[ü]/g, 'u').replace(/[ş]/g, 's').replace(/[ı]/g, 'i').replace(/[ö]/g, 'o').replace(/[ç]/g, 'c');
+        }
+        
+        function checkAnswer() {
+            const answer1 = document.getElementById('blank1').value;
+            const answer2 = document.getElementById('blank2').value;
+            const resultDiv = document.getElementById('result');
+            
+            if (!answer1 || !answer2) {
+                resultDiv.innerHTML = '<p class="error">Lütfen her iki boşluğu da doldurun!</p>';
+                return;
+            }
+            
+            const isCorrect1 = correctAnswers.blank1.some(ans => normalizeText(answer1) === normalizeText(ans));
+            const isCorrect2 = correctAnswers.blank2.some(ans => normalizeText(answer2) === normalizeText(ans));
+            
+            if (isCorrect1 && isCorrect2) {
+                resultDiv.innerHTML = '<p class="correct">✓ Doğru! Organik anlamda yargı bağımsız ve tarafsız mahkemelerden oluşmaktadır.</p>';
+                localStorage.setItem('soru13', 'completed');
+            } else {
+                resultDiv.innerHTML = '<p class="incorrect">✗ Yanlış! Tekrar deneyin.</p>';
+            }
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.onload = function() {
+            if (localStorage.getItem('soru13') === 'completed') {
+                document.getElementById('result').innerHTML = '<p class="completed">Bu soruyu daha önce doğru cevapladınız.</p>';
+            }
+        }
+    </script>
+</body>
+</html>

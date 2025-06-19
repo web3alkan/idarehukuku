@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 29 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="soru-28.html" class="nav-btn">← Önceki</a>
+            <a href="index.html" class="nav-btn home-btn">Ana Sayfa</a>
+            <a href="soru-30.html" class="nav-btn">Sonraki →</a>
+        </nav>
+        
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0029.jpg" alt="Sayfa 29" class="page-image">
+            
+            <div class="question-box">
+                <h2>Soru 29</h2>
+                <p>Hukuk devleti ile idare arasındaki ilişki ile ilgili aşağıdaki ifadelerden hangisi yanlıştır?</p>
+                
+                <div class="options">
+                    <label>
+                        <input type="radio" name="q29" value="a">
+                        a) İdarenin faaliyetlerinden sorumlu olması mali sorumluluğu beraberinde getirir
+                    </label>
+                    <label>
+                        <input type="radio" name="q29" value="b">
+                        b) İdari işlemler yasama ve yargı organlarının işlemleri gibi ileri etkili olmalıdır
+                    </label>
+                    <label>
+                        <input type="radio" name="q29" value="c">
+                        c) Faaliyetlerinin bilinebilirlik arz etmesi gerekmektedir
+                    </label>
+                    <label>
+                        <input type="radio" name="q29" value="d">
+                        d) Yapılan eylem ve işlemlerin sonuçları sorgulanabilir olmalıdır
+                    </label>
+                    <label>
+                        <input type="radio" name="q29" value="e">
+                        e) Adil yargılanma hak arama hürriyeti hukuk devletinin idare ile ilişkili ilkeleridir
+                    </label>
+                </div>
+                
+                <button onclick="checkAnswer29()" class="check-btn">Cevabı Kontrol Et</button>
+                <div id="result29" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function checkAnswer29() {
+            const selected = document.querySelector('input[name="q29"]:checked');
+            const result = document.getElementById('result29');
+            
+            if (!selected) {
+                result.innerHTML = '<span class="incorrect">Lütfen bir seçenek seçin!</span>';
+                return;
+            }
+            
+            if (selected.value === 'b') {
+                result.innerHTML = '<span class="correct">✓ Doğru! İdari işlemlerin yasama ve yargı organlarının işlemleri gibi ileri etkili olması gerektiği ifadesi yanlıştır. Metinde idari işlemlerin geriye yürümez nitelikte olması gerektiği belirtilmektedir.</span>';
+                localStorage.setItem('soru29', 'completed');
+            } else {
+                result.innerHTML = '<span class="incorrect">✗ Yanlış. Metinde idari işlemlerin "geriye yürümez nitelikte" olması gerektiği belirtilirken, seçenekte "ileri etkili" denilmektedir ki bu yanlış bir ifadedir.</span>';
+            }
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.onload = function() {
+            if (localStorage.getItem('soru29') === 'completed') {
+                document.getElementById('result29').innerHTML = '<span class="completed">Bu soruyu daha önce doğru cevapladınız.</span>';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 17 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="window.location.href='soru-16.html'" class="nav-btn">← Önceki</button>
+            <button onclick="window.location.href='index.html'" class="nav-btn home-btn">Ana Sayfa</button>
+            <button onclick="window.location.href='soru-19.html'" class="nav-btn">Sonraki →</button>
+        </div>
+
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0017.jpg" alt="Sayfa 17" class="page-image">
+            
+            <div class="question-box">
+                <h2>Soru 17</h2>
+                <p class="question-text">İdarenin hükümet tasarrufu adındaki siyasi tasarrufları ile ilgili aşağıdakilerden hangisi yanlıştır?</p>
+                
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="answer" value="A">
+                        <span>A) Cumhurbaşkanınca yürütülen siyasi tasarruflar bulunur</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="B">
+                        <span>B) Bu işlemler nitelik itibari ile idari işlem gerektirmeyen diplomatik fiillerdir</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="C">
+                        <span>C) Cumhurbaşkanınca yürütülen resmi karşılama törenleri teamüli fiillerdir</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="D">
+                        <span>D) Hükümet tasarrufları idari işlem niteliğindedir ve idari yargıya tabidir</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="E">
+                        <span>E) Bu işlemler diplomatik nitelik taşır</span>
+                    </label>
+                </div>
+                
+                <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <div class="result" id="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswer = 'D';
+        
+        function checkAnswer() {
+            const selected = document.querySelector('input[name="answer"]:checked');
+            const resultDiv = document.getElementById('result');
+            
+            if (!selected) {
+                resultDiv.innerHTML = '<p class="error">Lütfen bir seçenek işaretleyin!</p>';
+                return;
+            }
+            
+            if (selected.value === correctAnswer) {
+                resultDiv.innerHTML = '<p class="correct">✓ Doğru! Hükümet tasarrufları idari işlem gerektirmeyen diplomatik fiillerdir, idari işlem değildir ve idari yargıya tabi değildir.</p>';
+                localStorage.setItem('soru17', 'completed');
+            } else {
+                resultDiv.innerHTML = '<p class="incorrect">✗ Yanlış! Tekrar deneyin.</p>';
+            }
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.onload = function() {
+            if (localStorage.getItem('soru17') === 'completed') {
+                document.getElementById('result').innerHTML = '<p class="completed">Bu soruyu daha önce doğru cevapladınız.</p>';
+            }
+        }
+    </script>
+</body>
+</html>

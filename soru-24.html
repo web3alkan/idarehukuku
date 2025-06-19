@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 24 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="soru-23.html" class="nav-btn">← Önceki</a>
+            <a href="index.html" class="nav-btn home-btn">Ana Sayfa</a>
+            <a href="soru-26.html" class="nav-btn">Sonraki →</a>
+        </nav>
+        
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0024.jpg" alt="Sayfa 24" class="page-image">
+            
+            <div class="question-box">
+                <h2>Soru 24</h2>
+                <p>İç düzen faaliyetleri ile ilgili aşağıdaki ifadelerden hangisi doğrudur?</p>
+                
+                <div class="true-false">
+                    <label>
+                        <input type="radio" name="q24" value="true">
+                        Doğru: İç düzen faaliyetleri, idarenin doğrudan kamuya dönük faaliyetleridir.
+                    </label>
+                    <label>
+                        <input type="radio" name="q24" value="false">
+                        Yanlış: İç düzen faaliyetleri, idarenin dışa (kamuya) dönük olmayan tek faaliyetidir.
+                    </label>
+                </div>
+                
+                <button onclick="checkAnswer24()" class="check-btn">Cevabı Kontrol Et</button>
+                <div id="result24" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function checkAnswer24() {
+            const selected = document.querySelector('input[name="q24"]:checked');
+            const result = document.getElementById('result24');
+            
+            if (!selected) {
+                result.innerHTML = '<span class="incorrect">Lütfen bir seçenek seçin!</span>';
+                return;
+            }
+            
+            if (selected.value === 'false') {
+                result.innerHTML = '<span class="correct">✓ Doğru! İç düzen faaliyetleri gerçekten idarenin dışa (kamuya) dönük olmayan tek faaliyetidir. Personel istihdamı, büro ihtiyaçları, makine teçhizat alımı ve personel eğitimleri gibi faaliyetleri kapsar.</span>';
+                localStorage.setItem('soru24', 'completed');
+            } else {
+                result.innerHTML = '<span class="incorrect">✗ Yanlış. Metinde açıkça belirtildiği üzere, iç düzen faaliyetleri idarenin dışa (kamuya) dönük olmayan tek faaliyetidir.</span>';
+            }
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.onload = function() {
+            if (localStorage.getItem('soru24') === 'completed') {
+                document.getElementById('result24').innerHTML = '<span class="completed">Bu soruyu daha önce doğru cevapladınız.</span>';
+            }
+        }
+    </script>
+</body>
+</html>

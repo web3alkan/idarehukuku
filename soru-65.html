@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 65 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>İdare Hukuku Sınav Soruları</h1>
+            <p>Kamusal Alan İdare Hukuku - Sayfa 65</p>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <div class="nav-buttons">
+            <a href="soru-63.html" class="nav-btn" id="prevBtn">← Önceki</a>
+            <span class="page-info">Soru 65 / 80</span>
+            <a href="soru-66.html" class="nav-btn" id="nextBtn">Sonraki →</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="progress-indicator">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 40%"></div>
+            </div>
+            <p>İlerleme: 40% (12/30)</p>
+        </div>
+
+        <div class="content">
+            <div class="source-image">
+                <h3>Kaynak Görseli</h3>
+                <img src="Kamusal Alan İdare Hukuku_page-0065.jpg" alt="Sayfa 65 - Tek Taraflı ve İki Taraflı İşlem">
+            </div>
+
+            <div class="question-section">
+                <h2>Soru</h2>
+                <div class="question">
+                    <h3>Tek taraflı işlem ile iki taraflı işlem arasındaki fark hakkında aşağıdakilerden hangisi doğrudur?</h3>
+                    
+                    <ul class="options">
+                        <li class="option" data-value="A">A) Tek taraflı işlemlerde muhatapların yazılı rızası alınmalıdır</li>
+                        <li class="option" data-value="B">B) İki taraflı işlemlerde idarenin tek başına karar vermesi yeterlidir</li>
+                        <li class="option" data-value="C">C) Tek taraflı işlemlerde muhatapın yazılı veya sözlü rızasını almadan idare karar verebilir</li>
+                        <li class="option" data-value="D">D) İki taraflı işlemler sadece kamu hukuku sözleşmeleri olarak yapılır</li>
+                        <li class="option" data-value="E">E) Tek taraflı işlemler hiçbir zaman iki taraflı hale getirilemez</li>
+                    </ul>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="btn btn-secondary" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+
+                <div id="feedback" class="feedback hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>&copy; 2025 İdare Hukuku Sınav Soruları. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+
+    <script>
+        let selectedOption = null;
+        const correctAnswer = 'C';
+
+        // Load completion status
+        window.onload = function() {
+            const completed = localStorage.getItem('question-65-completed');
+            if (completed === 'true') {
+                document.body.classList.add('completed');
+            }
+        };
+
+        // Option selection
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedOption = this.getAttribute('data-value');
+            });
+        });
+
+        function checkAnswer() {
+            if (!selectedOption) {
+                alert('Lütfen bir seçenek seçin!');
+                return;
+            }
+
+            const feedback = document.getElementById('feedback');
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach(option => {
+                const value = option.getAttribute('data-value');
+                if (value === correctAnswer) {
+                    option.classList.add('correct');
+                } else if (value === selectedOption && value !== correctAnswer) {
+                    option.classList.add('incorrect');
+                }
+                option.style.pointerEvents = 'none';
+            });
+
+            if (selectedOption === correctAnswer) {
+                feedback.className = 'feedback correct';
+                feedback.textContent = 'Doğru! Metne göre tek taraflı işlemlerde muhatapın yazılı veya sözlü rızasını almadan idarenin yapmış olduğu işlemler tek taraflılık arz eder. Kamulaştırma, vergi işlemleri gibi durumlar buna örnektir. İki taraflı işlemlerde ise "özel hukuk" ve "kamu hukuku" sözleşmeleri olarak ikiye ayrılmaktadır.';
+                localStorage.setItem('question-65-completed', 'true');
+                localStorage.setItem('question-65-correct', 'true');
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = 'Yanlış! Doğru cevap C seçeneğidir. Tek taraflı işlemlerde idare, muhatapın yazılı veya sözlü rızasını almadan karar verebilir. Bu, tek taraflı işlemlerin en temel özelliğidir.';
+                localStorage.setItem('question-65-completed', 'true');
+                localStorage.setItem('question-65-correct', 'false');
+            }
+            
+            feedback.classList.remove('hidden');
+        }
+
+        function resetQuestion() {
+            selectedOption = null;
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+                option.style.pointerEvents = 'auto';
+            });
+            document.getElementById('feedback').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

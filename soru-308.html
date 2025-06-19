@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru 308</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>İdare Hukuku Soruları</h1>
+            <div class="question-number">Soru 308 - TAMAMLANDI</div>
+        </header>
+
+        <nav class="navigation">
+            <a href="soru-307.html" class="nav-btn">← Önceki</a>
+            <a href="index.html" class="nav-btn">🏠 Ana Sayfa</a>
+            <span class="nav-btn disabled">Son Sayfa</span>
+        </nav>
+
+        <div class="content">
+            <div class="image-container">
+                <img src="Kamusal Alan İdare Hukuku_page-0308.jpg" alt="Sayfa 308" class="page-image">
+            </div>
+
+            <div class="question-container">
+                <h2>Tebrikler!</h2>
+                <p class="question-text">
+                    🎉 İdare Hukuku çalışmanızı tamamladınız! Bu sayfa kitabın son sayfasını temsil ediyor.
+                    <br><br>
+                    Toplam 308 sayfadan oluşan bu kapsamlı çalışmada İdare Hukuku'nun temel konularını öğrendiniz.
+                    <br><br>
+                    ✅ Başarılı bir şekilde tüm konuları tamamladınız!
+                </p>
+
+                <div class="completion-message">
+                    <h3>🎯 Çalışma Tamamlandı</h3>
+                    <p>Bu noktaya kadar geldiğiniz için tebrikler! İdare Hukuku bilginizi pekiştirmek için istediğiniz zaman ana sayfadan diğer sorulara geri dönebilirsiniz.</p>
+                    
+                    <div class="final-stats" id="finalStats">
+                        <h4>📊 Genel İstatistikleriniz</h4>
+                        <p id="completionStats">İstatistikler yükleniyor...</p>
+                    </div>
+                </div>
+
+                <button onclick="goToHome()" class="submit-btn">🏠 Ana Sayfaya Dön</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goToHome() {
+            window.location.href = 'index.html';
+        }
+
+        function calculateStats() {
+            let completed = 0;
+            let total = 308;
+            
+            for (let i = 1; i <= total; i++) {
+                if (localStorage.getItem(`soru${i}`) === 'completed') {
+                    completed++;
+                }
+            }
+            
+            const percentage = Math.round((completed / total) * 100);
+            
+            document.getElementById('completionStats').innerHTML = `
+                <div class="stats-item">✅ Tamamlanan Sorular: ${completed}</div>
+                <div class="stats-item">📚 Toplam Soru: ${total}</div>
+                <div class="stats-item">📈 Tamamlanma Oranı: %${percentage}</div>
+            `;
+        }
+
+        window.onload = function() {
+            localStorage.setItem('soru308', 'completed');
+            calculateStats();
+            document.body.classList.add('completed');
+        }
+    </script>
+
+    <style>
+        .completion-message {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .final-stats {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        
+        .stats-item {
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</body>
+</html>

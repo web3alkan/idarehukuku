@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Sorusu - P2-04</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - İdari Yargı Türleri</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P2-03.html" class="nav-button">Önceki</a>
+            <span class="page-info">Soru P2-04</span>
+            <a href="soru-P2-05.html" class="nav-button">Sonraki</a>
+        </div>
+        
+        <div class="content">
+            <div class="question-section">
+                <div class="question-title">Soru 4: İdari Yargı Yerleri Eşleştirme</div>
+                <div class="question-text">
+                    Aşağıdaki idari yargı yerleri ile görev alanlarını eşleştiriniz.
+                </div>
+                
+                <div class="matching-container">
+                    <div class="matching-column">
+                        <h4>Yargı Yerleri</h4>
+                        <div class="matching-item" data-id="1" onclick="selectItem(this, 'left')">1. İdare Mahkemeleri</div>
+                        <div class="matching-item" data-id="2" onclick="selectItem(this, 'left')">2. Vergi Mahkemeleri</div>
+                        <div class="matching-item" data-id="3" onclick="selectItem(this, 'left')">3. Bölge İdare Mahkemeleri</div>
+                        <div class="matching-item" data-id="4" onclick="selectItem(this, 'left')">4. Danıştay</div>
+                    </div>
+                    <div class="matching-column">
+                        <h4>Görev Alanları</h4>
+                        <div class="matching-item" data-id="A" onclick="selectItem(this, 'right')">A. İlk derece mahkemelerinin kararlarına karşı istinaf incelemesi</div>
+                        <div class="matching-item" data-id="B" onclick="selectItem(this, 'right')">B. Vergi, resim, harç ve benzeri mali yükümlülükler ile bunların zam ve cezalarına ilişkin davalar</div>
+                        <div class="matching-item" data-id="C" onclick="selectItem(this, 'right')">C. İdari işlem ve eylemlerden doğan uyuşmazlıkların ilk derece yargılaması</div>
+                        <div class="matching-item" data-id="D" onclick="selectItem(this, 'right')">D. İdari yargının en yüksek organı, temyiz mercii</div>
+                    </div>
+                </div>
+                
+                <div class="match-result" id="matchResult"></div>
+                
+                <button class="check-button" onclick="checkMatches()">Eşleştirmeleri Kontrol Et</button>
+                <button class="show-solution-btn" onclick="showSolution()">Çözümü Göster</button>
+                
+                <div class="solution-box" id="solution">
+                    <h3>Çözüm:</h3>
+                    <div class="correct-answer">
+                        Doğru Eşleştirmeler:<br>
+                        1 - C (İdare Mahkemeleri - İdari işlem ve eylemlerden doğan uyuşmazlıkların ilk derece yargılaması)<br>
+                        2 - B (Vergi Mahkemeleri - Vergi, resim, harç ve benzeri mali yükümlülükler)<br>
+                        3 - A (Bölge İdare Mahkemeleri - İstinaf incelemesi)<br>
+                        4 - D (Danıştay - İdari yargının en yüksek organı, temyiz mercii)
+                    </div>
+                    <div class="explanation-text">
+                        İdari yargı sistemimiz üç dereceli bir yapıya sahiptir. İlk derece mahkemeleri olarak idare ve 
+                        vergi mahkemeleri görev yapar. Bölge idare mahkemeleri istinaf mercii olarak, Danıştay ise 
+                        temyiz mercii ve bazı davalarda ilk derece mahkemesi olarak görev yapmaktadır.
+                    </div>
+                    <div class="pdf-source"><strong>Kaynak:</strong> İdare Hukuku notu 2.dönem 2.part.pdf</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let selectedLeft = null;
+        let selectedRight = null;
+        let matches = {};
+        
+        function selectItem(element, side) {
+            const items = document.querySelectorAll(`.matching-column .matching-item`);
+            
+            if (side === 'left') {
+                // Sol taraftan seçim
+                items.forEach(item => {
+                    if (item.parentElement.querySelector('h4').textContent === 'Yargı Yerleri') {
+                        item.classList.remove('selected');
+                    }
+                });
+                element.classList.add('selected');
+                selectedLeft = element.dataset.id;
+                
+                // Eğer sağ taraftan da seçim varsa eşleştir
+                if (selectedRight) {
+                    matches[selectedLeft] = selectedRight;
+                    selectedLeft = null;
+                    selectedRight = null;
+                    
+                    // Seçimleri temizle
+                    items.forEach(item => item.classList.remove('selected'));
+                }
+            } else {
+                // Sağ taraftan seçim
+                items.forEach(item => {
+                    if (item.parentElement.querySelector('h4').textContent === 'Görev Alanları') {
+                        item.classList.remove('selected');
+                    }
+                });
+                element.classList.add('selected');
+                selectedRight = element.dataset.id;
+                
+                // Eğer sol taraftan da seçim varsa eşleştir
+                if (selectedLeft) {
+                    matches[selectedLeft] = selectedRight;
+                    selectedLeft = null;
+                    selectedRight = null;
+                    
+                    // Seçimleri temizle
+                    items.forEach(item => item.classList.remove('selected'));
+                }
+            }
+            
+            updateMatchDisplay();
+        }
+        
+        function updateMatchDisplay() {
+            const resultDiv = document.getElementById('matchResult');
+            let html = '<h4>Yapılan Eşleştirmeler:</h4>';
+            
+            for (let left in matches) {
+                html += `<p>${left} → ${matches[left]}</p>`;
+            }
+            
+            resultDiv.innerHTML = html;
+        }
+        
+        function checkMatches() {
+            const correctMatches = {
+                '1': 'C',
+                '2': 'B',
+                '3': 'A',
+                '4': 'D'
+            };
+            
+            let allCorrect = true;
+            for (let key in correctMatches) {
+                if (matches[key] !== correctMatches[key]) {
+                    allCorrect = false;
+                    break;
+                }
+            }
+            
+            const resultDiv = document.getElementById('matchResult');
+            if (allCorrect && Object.keys(matches).length === 4) {
+                resultDiv.innerHTML += '<p class="result-message correct">Tebrikler! Tüm eşleştirmeler doğru!</p>';
+            } else {
+                resultDiv.innerHTML += '<p class="result-message incorrect">Bazı eşleştirmeler yanlış. Tekrar deneyin.</p>';
+            }
+        }
+        
+        function showSolution() {
+            const solutionBox = document.getElementById('solution');
+            solutionBox.classList.add('visible');
+            
+            // Soruyu tamamlandı olarak işaretle
+            localStorage.setItem('soru-P2-04', 'completed');
+        }
+    </script>
+</body>
+</html>

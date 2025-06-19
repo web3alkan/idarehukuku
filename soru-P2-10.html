@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Sorusu - P2-10</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - İdari Dava Türleri</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P2-09.html" class="nav-button">Önceki</a>
+            <span class="page-info">Soru P2-10</span>
+            <a href="soru-P2-11.html" class="nav-button">Sonraki</a>
+        </div>
+        
+        <div class="content">
+            <div class="question-section">
+                <div class="question-title">Soru 10: İdari Dava Türleri Eşleştirme</div>
+                <div class="question-text">
+                    Aşağıdaki dava türleri ile açıklamalarını eşleştiriniz.
+                </div>
+                
+                <div class="matching-container">
+                    <div class="matching-column">
+                        <h4>Dava Türleri</h4>
+                        <div class="matching-item" data-id="1" onclick="selectItem(this, 'left')">1. İptal Davası</div>
+                        <div class="matching-item" data-id="2" onclick="selectItem(this, 'left')">2. Tam Yargı Davası</div>
+                        <div class="matching-item" data-id="3" onclick="selectItem(this, 'left')">3. Tahkim Yolu</div>
+                        <div class="matching-item" data-id="4" onclick="selectItem(this, 'left')">4. Tespit Davası</div>
+                    </div>
+                    <div class="matching-column">
+                        <h4>Açıklamalar</h4>
+                        <div class="matching-item" data-id="A" onclick="selectItem(this, 'right')">A. İdarenin eylem veya işlemlerinden doğan zararın tazmini</div>
+                        <div class="matching-item" data-id="B" onclick="selectItem(this, 'right')">B. İdari işlemin hukuka aykırılığının tespiti ve ortadan kaldırılması</div>
+                        <div class="matching-item" data-id="C" onclick="selectItem(this, 'right')">C. Belirli hukuki durumların varlığı veya yokluğunun tespiti</div>
+                        <div class="matching-item" data-id="D" onclick="selectItem(this, 'right')">D. İmtiyaz sözleşmelerinden doğan uyuşmazlıkların özel usullerle çözümü</div>
+                    </div>
+                </div>
+                
+                <div class="match-result" id="matchResult"></div>
+                
+                <button class="check-button" onclick="checkMatches()">Eşleştirmeleri Kontrol Et</button>
+                <button class="show-solution-btn" onclick="showSolution()">Çözümü Göster</button>
+                
+                <div class="solution-box" id="solution">
+                    <h3>Çözüm:</h3>
+                    <div class="correct-answer">
+                        Doğru Eşleştirmeler:<br>
+                        1 - B (İptal Davası - İdari işlemin hukuka aykırılığının tespiti ve ortadan kaldırılması)<br>
+                        2 - A (Tam Yargı Davası - İdarenin eylem veya işlemlerinden doğan zararın tazmini)<br>
+                        3 - D (Tahkim Yolu - İmtiyaz sözleşmelerinden doğan uyuşmazlıkların özel usullerle çözümü)<br>
+                        4 - C (Tespit Davası - Belirli hukuki durumların varlığı veya yokluğunun tespiti)
+                    </div>
+                    <div class="explanation-text">
+                        İdari yargıda başlıca dava türleri iptal ve tam yargı davalarıdır. İptal davası objektif 
+                        nitelikte olup işlemin hukuka uygunluğunu denetler. Tam yargı davası ise sübjektif nitelikte 
+                        olup kişisel hakların korunmasını ve zararın tazminini amaçlar. Tahkim ve tespit davaları 
+                        ise özel nitelikli davalardır.
+                    </div>
+                    <div class="pdf-source"><strong>Kaynak:</strong> İdare Hukuku notu 2.dönem 2.part.pdf</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let selectedLeft = null;
+        let selectedRight = null;
+        let matches = {};
+        
+        function selectItem(element, side) {
+            const items = document.querySelectorAll(`.matching-column .matching-item`);
+            
+            if (side === 'left') {
+                items.forEach(item => {
+                    if (item.parentElement.querySelector('h4').textContent === 'Dava Türleri') {
+                        item.classList.remove('selected');
+                    }
+                });
+                element.classList.add('selected');
+                selectedLeft = element.dataset.id;
+                
+                if (selectedRight) {
+                    matches[selectedLeft] = selectedRight;
+                    selectedLeft = null;
+                    selectedRight = null;
+                    items.forEach(item => item.classList.remove('selected'));
+                }
+            } else {
+                items.forEach(item => {
+                    if (item.parentElement.querySelector('h4').textContent === 'Açıklamalar') {
+                        item.classList.remove('selected');
+                    }
+                });
+                element.classList.add('selected');
+                selectedRight = element.dataset.id;
+                
+                if (selectedLeft) {
+                    matches[selectedLeft] = selectedRight;
+                    selectedLeft = null;
+                    selectedRight = null;
+                    items.forEach(item => item.classList.remove('selected'));
+                }
+            }
+            
+            updateMatchDisplay();
+        }
+        
+        function updateMatchDisplay() {
+            const resultDiv = document.getElementById('matchResult');
+            let html = '<h4>Yapılan Eşleştirmeler:</h4>';
+            
+            for (let left in matches) {
+                html += `<p>${left} → ${matches[left]}</p>`;
+            }
+            
+            resultDiv.innerHTML = html;
+        }
+        
+        function checkMatches() {
+            const correctMatches = {
+                '1': 'B',
+                '2': 'A',
+                '3': 'D',
+                '4': 'C'
+            };
+            
+            let allCorrect = true;
+            for (let key in correctMatches) {
+                if (matches[key] !== correctMatches[key]) {
+                    allCorrect = false;
+                    break;
+                }
+            }
+            
+            const resultDiv = document.getElementById('matchResult');
+            if (allCorrect && Object.keys(matches).length === 4) {
+                resultDiv.innerHTML += '<p class="result-message correct">Tebrikler! Tüm eşleştirmeler doğru!</p>';
+            } else {
+                resultDiv.innerHTML += '<p class="result-message incorrect">Bazı eşleştirmeler yanlış. Tekrar deneyin.</p>';
+            }
+        }
+        
+        function showSolution() {
+            const solutionBox = document.getElementById('solution');
+            solutionBox.classList.add('visible');
+            
+            localStorage.setItem('soru-P2-10', 'completed');
+        }
+    </script>
+</body>
+</html>

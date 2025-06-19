@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru P3-03: İptal Davası Özellikleri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Soru P3-03: İptal Davası Özellikleri</h1>
+        
+        <div class="question-box">
+            <div class="question">
+                <p>İptal davasının özellikleri ile ilgili aşağıdaki ifadelerin doğru (D) veya yanlış (Y) olduğunu işaretleyiniz:</p>
+                
+                <div class="true-false-container">
+                    <div class="tf-item">
+                        <label>İptal davası objektif bir davadır ve kamu yararını korumayı amaçlar.</label>
+                        <div class="tf-options">
+                            <label><input type="radio" name="soru1" value="D"> Doğru</label>
+                            <label><input type="radio" name="soru1" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+                    
+                    <div class="tf-item">
+                        <label>İptal davasında davacı maddi ve manevi tazminat talep edebilir.</label>
+                        <div class="tf-options">
+                            <label><input type="radio" name="soru2" value="D"> Doğru</label>
+                            <label><input type="radio" name="soru2" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+                    
+                    <div class="tf-item">
+                        <label>İptal davası açabilmek için dava konusu idari işlemde menfaat ihlali gereklidir.</label>
+                        <div class="tf-options">
+                            <label><input type="radio" name="soru3" value="D"> Doğru</label>
+                            <label><input type="radio" name="soru3" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+                    
+                    <div class="tf-item">
+                        <label>İptal kararı yazılı bildirim tarihinden itibaren 30 gün içinde temyiz edilebilir.</label>
+                        <div class="tf-options">
+                            <label><input type="radio" name="soru4" value="D"> Doğru</label>
+                            <label><input type="radio" name="soru4" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+                    
+                    <div class="tf-item">
+                        <label>İptal davası sonuçsuz kalabilir, bu durumda işlem hukuki varlığını sürdürür.</label>
+                        <div class="tf-options">
+                            <label><input type="radio" name="soru5" value="D"> Doğru</label>
+                            <label><input type="radio" name="soru5" value="Y"> Yanlış</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button onclick="gosterCozum()" class="cozum-button">Çözümü Göster</button>
+            
+            <div id="cozum" class="cozum-box" style="display: none;">
+                <h3>Çözüm:</h3>
+                <div class="cevap-listesi">
+                    <p><strong>1. İfade:</strong> <span class="dogru">DOĞRU</span></p>
+                    <p>İptal davası objektif bir davadır. Amacı hukuk düzenini korumak ve kamu yararını sağlamaktır. Kişisel çıkarlardan ziyade hukukun üstünlüğünü hedefler.</p>
+                    
+                    <p><strong>2. İfade:</strong> <span class="yanlis">YANLIŞ</span></p>
+                    <p>İptal davasında yalnızca iptal talep edilir, tazminat talep edilemez. Tazminat talebi tam yargı davasının konusudur.</p>
+                    
+                    <p><strong>3. İfade:</strong> <span class="dogru">DOĞRU</span></p>
+                    <p>İptal davası açabilmek için davacının dava konusu idari işlemde menfaatinin ihlal edilmiş olması gerekir. Bu, dava açma eğilimine (menfaat) sahip olma koşuludur.</p>
+                    
+                    <p><strong>4. İfade:</strong> <span class="dogru">DOĞRU</span></p>
+                    <p>İdari yargılamada ilk derece mahkeme kararları yazılı bildirim tarihinden itibaren 30 gün içinde üst mahkemeye (istinaf/temyiz) götürülebilir.</p>
+                    
+                    <p><strong>5. İfade:</strong> <span class="dogru">DOĞRU</span></p>
+                    <p>İptal davası çeşitli nedenlerle (dava şartlarının eksikliği, süre aşımı gibi) sonuçsuz kalabilir. Bu durumda işlem iptal edilmemiş olduğu için hukuki varlığını sürdürür.</p>
+                </div>
+                
+                <div class="onemli-notlar">
+                    <h4>Önemli Notlar:</h4>
+                    <ul>
+                        <li>İptal davası = Objektif dava (hukuk düzenini koruma)</li>
+                        <li>Tam yargı davası = Sübjektif dava (kişisel hak koruma)</li>
+                        <li>İptal davasında yalnızca iptal, tam yargı davasında iptal + tazminat</li>
+                        <li>Her ikisinde de menfaat ihlali şartı aranır</li>
+                    </ul>
+                </div>
+                
+                <div class="kaynak">
+                    <p><strong>Kaynak:</strong> İdare hukuku notu 2.dönem 3.part.pdf</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P3-02.html" class="nav-button">← Önceki Soru</a>
+            <a href="soru-P3-04.html" class="nav-button">Sonraki Soru →</a>
+        </div>
+    </div>
+    
+    <script>
+        function gosterCozum() {
+            document.getElementById('cozum').style.display = 'block';
+            
+            // LocalStorage'a çözümün görüntülendiğini kaydet
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            cozumler['soru-P3-03'] = true;
+            localStorage.setItem('gosterilenCozumler', JSON.stringify(cozumler));
+        }
+        
+        // Sayfa yüklendiğinde çözüm daha önce görüntülenmişse otomatik göster
+        window.onload = function() {
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            if (cozumler['soru-P3-03']) {
+                document.getElementById('cozum').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 53 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>İdare Hukuku Sınav Soruları</h1>
+            <p>Kamusal Alan İdare Hukuku - Sayfa 53</p>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <div class="nav-buttons">
+            <a href="soru-52.html" class="nav-btn" id="prevBtn">← Önceki</a>
+            <span class="page-info">Soru 53 / 80</span>
+            <a href="soru-54.html" class="nav-btn" id="nextBtn">Sonraki →</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="progress-indicator">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 10%"></div>
+            </div>
+            <p>İlerleme: 10% (3/30)</p>
+        </div>
+
+        <div class="content">
+            <div class="source-image">
+                <h3>Kaynak Görseli</h3>
+                <img src="Kamusal Alan İdare Hukuku_page-0053.jpg" alt="Sayfa 53 - Vesayet Yetkisi">
+            </div>
+
+            <div class="question-section">
+                <h2>Soru</h2>
+                <div class="question">
+                    <h3>Aşağıdaki kavramları doğru şekilde eşleştiriniz:</h3>
+                    
+                    <div class="matching-container">
+                        <div class="matching-column">
+                            <h4>Vesayet Yetkisi Türleri</h4>
+                            <div class="matching-item" data-group="left" data-id="1">1. ONAMA</div>
+                            <div class="matching-item" data-group="left" data-id="2">2. ONAMAMA</div>
+                            <div class="matching-item" data-group="left" data-id="3">3. İZİN</div>
+                            <div class="matching-item" data-group="left" data-id="4">4. GERİ GÖNDERME</div>
+                            <div class="matching-item" data-group="left" data-id="5">5. ERTELEME</div>
+                            <div class="matching-item" data-group="left" data-id="6">6. DEĞİŞTİRME</div>
+                        </div>
+                        
+                        <div class="matching-column">
+                            <h4>Açıklamalar</h4>
+                            <div class="matching-item" data-group="right" data-id="A">A. Kararın yürürlüğe girmesini geciktirme</div>
+                            <div class="matching-item" data-group="right" data-id="B">B. Kararı kabul etmeme yetkisi</div>
+                            <div class="matching-item" data-group="right" data-id="C">C. Karar alınmadan önce izin alma</div>
+                            <div class="matching-item" data-group="right" data-id="D">D. Kararı onaylama yetkisi</div>
+                            <div class="matching-item" data-group="right" data-id="E">E. Kararı değiştirme yetkisi</div>
+                            <div class="matching-item" data-group="right" data-id="F">F. Kararı yeniden inceleme için gönderme</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="btn btn-secondary" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+
+                <div id="feedback" class="feedback hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>&copy; 2025 İdare Hukuku Sınav Soruları. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+
+    <script>
+        let selectedItems = [];
+        let matches = [];
+        
+        const correctMatches = {
+            '1': 'D', // ONAMA - Kararı onaylama yetkisi
+            '2': 'B', // ONAMAMA - Kararı kabul etmeme yetkisi
+            '3': 'C', // İZİN - Karar alınmadan önce izin alma
+            '4': 'F', // GERİ GÖNDERME - Kararı yeniden inceleme için gönderme
+            '5': 'A', // ERTELEME - Kararın yürürlüğe girmesini geciktirme
+            '6': 'E'  // DEĞİŞTİRME - Kararı değiştirme yetkisi
+        };
+
+        // Load completion status
+        window.onload = function() {
+            const completed = localStorage.getItem('question-53-completed');
+            if (completed === 'true') {
+                document.body.classList.add('completed');
+            }
+        };
+
+        // Matching functionality
+        document.querySelectorAll('.matching-item').forEach(item => {
+            item.addEventListener('click', function() {
+                if (this.classList.contains('matched')) return;
+                
+                if (this.classList.contains('selected')) {
+                    this.classList.remove('selected');
+                    selectedItems = selectedItems.filter(id => id !== this.getAttribute('data-id'));
+                } else {
+                    // Clear other selections in the same group
+                    const group = this.getAttribute('data-group');
+                    document.querySelectorAll(`[data-group="${group}"]`).forEach(el => {
+                        el.classList.remove('selected');
+                    });
+                    selectedItems = selectedItems.filter(id => {
+                        const element = document.querySelector(`[data-id="${id}"]`);
+                        return element && element.getAttribute('data-group') !== group;
+                    });
+                    
+                    this.classList.add('selected');
+                    selectedItems.push(this.getAttribute('data-id'));
+                }
+                
+                // Check if we have a pair selected
+                if (selectedItems.length === 2) {
+                    const leftItem = selectedItems.find(id => {
+                        const element = document.querySelector(`[data-id="${id}"]`);
+                        return element && element.getAttribute('data-group') === 'left';
+                    });
+                    const rightItem = selectedItems.find(id => {
+                        const element = document.querySelector(`[data-id="${id}"]`);
+                        return element && element.getAttribute('data-group') === 'right';
+                    });
+                    
+                    if (leftItem && rightItem) {
+                        matches.push({left: leftItem, right: rightItem});
+                        
+                        // Mark as matched
+                        document.querySelector(`[data-id="${leftItem}"]`).classList.add('matched');
+                        document.querySelector(`[data-id="${rightItem}"]`).classList.add('matched');
+                        document.querySelector(`[data-id="${leftItem}"]`).classList.remove('selected');
+                        document.querySelector(`[data-id="${rightItem}"]`).classList.remove('selected');
+                        
+                        selectedItems = [];
+                    }
+                }
+            });
+        });
+
+        function checkAnswer() {
+            if (matches.length < 6) {
+                alert('Lütfen tüm eşleştirmeleri yapın!');
+                return;
+            }
+
+            const feedback = document.getElementById('feedback');
+            let correctCount = 0;
+            
+            matches.forEach(match => {
+                if (correctMatches[match.left] === match.right) {
+                    correctCount++;
+                }
+            });
+
+            if (correctCount === 6) {
+                feedback.className = 'feedback correct';
+                feedback.textContent = 'Mükemmel! Tüm eşleştirmeleri doğru yaptınız. Vesayet yetkisi türlerini ve açıklamalarını doğru şekilde eşleştirdiniz.';
+                localStorage.setItem('question-53-completed', 'true');
+                localStorage.setItem('question-53-correct', 'true');
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `Kısmen doğru! ${correctCount}/6 eşleştirme doğru. Doğru eşleştirmeler:<br>
+                1. ONAMA → Kararı onaylama yetkisi<br>
+                2. ONAMAMA → Kararı kabul etmeme yetkisi<br>
+                3. İZİN → Karar alınmadan önce izin alma<br>
+                4. GERİ GÖNDERME → Kararı yeniden inceleme için gönderme<br>
+                5. ERTELEME → Kararın yürürlüğe girmesini geciktirme<br>
+                6. DEĞİŞTİRME → Kararı değiştirme yetkisi`;
+                localStorage.setItem('question-53-completed', 'true');
+                localStorage.setItem('question-53-correct', correctCount === 6 ? 'true' : 'false');
+            }
+            
+            feedback.classList.remove('hidden');
+        }
+
+        function resetQuestion() {
+            matches = [];
+            selectedItems = [];
+            document.querySelectorAll('.matching-item').forEach(item => {
+                item.classList.remove('selected', 'matched');
+            });
+            document.getElementById('feedback').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru 3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="window.location.href='soru-2.html'">&larr; Önceki</button>
+            <button onclick="window.location.href='index.html'">Ana Sayfa</button>
+            <button onclick="window.location.href='soru-4.html'">Sonraki &rarr;</button>
+        </div>
+
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0003.jpg" alt="Sayfa 3" class="source-image">
+            
+            <div class="question">
+                <h2>Soru 3</h2>
+                <p>İdare hukukunun özellikleri ile ilgili aşağıdakilerden hangisi YANLIŞTIR?</p>
+                
+                <div class="options">
+                    <label>
+                        <input type="radio" name="q3" value="a">
+                        <span>A) Kurumlar ile muhatap kişiler arasında eşitsiz bir ilişkiyi esas alır</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="q3" value="b">
+                        <span>B) Kamu yararı amacı çerçevesinde düzenleme bulan hukuk dalıdır</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="q3" value="c">
+                        <span>C) Kuralları kişiler arası ilişkileri esas alır</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="q3" value="d">
+                        <span>D) En genç ve dinamik hukuk dalıdır</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="q3" value="e">
+                        <span>E) Çeşitli başlıklarda kamu hizmetlerinin düzenler</span>
+                    </label>
+                </div>
+                
+                <button onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <div id="feedback" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('soru3_completed') === 'true') {
+                document.getElementById('feedback').innerHTML = '<span class="correct">✓ Bu soruyu daha önce doğru cevapladınız.</span>';
+                document.querySelector('input[value="c"]').checked = true;
+                const radios = document.querySelectorAll('input[name="q3"]');
+                radios.forEach(radio => radio.disabled = true);
+            }
+        });
+
+        function checkAnswer() {
+            const selectedOption = document.querySelector('input[name="q3"]:checked');
+            const feedback = document.getElementById('feedback');
+            
+            if (!selectedOption) {
+                feedback.innerHTML = '<span class="incorrect">Lütfen bir seçenek seçiniz.</span>';
+                return;
+            }
+            
+            if (selectedOption.value === 'c') {
+                feedback.innerHTML = '<span class="correct">✓ Doğru! İdare hukuku kuralları kamu yönetimini ilgilendirir, kişiler arası ilişkileri esas almaz.</span>';
+                localStorage.setItem('soru3_completed', 'true');
+                const radios = document.querySelectorAll('input[name="q3"]');
+                radios.forEach(radio => radio.disabled = true);
+            } else {
+                feedback.innerHTML = '<span class="incorrect">✗ Yanlış. İdare hukuku kişiler arası ilişkileri değil, kamu yönetimini esas alır.</span>';
+            }
+        }
+    </script>
+</body>
+</html>

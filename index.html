@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Sınav Sistemi</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .question-card {
+            padding: 15px;
+            background-color: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #333;
+        }
+        
+        .question-card:hover {
+            border-color: #007bff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .question-card.completed {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .question-card.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .question-card.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #007bff;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+        
+        .reset-btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        .reset-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku Sınav Sistemi</h1>
+            <p>Kamusal Alan İdare Hukuku (308 Soru) + 2. Dönem PDF Notları (75 Soru)</p>
+        </div>
+        
+        <div class="content">
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalQuestions">383</div>
+                    <div class="stat-label">Toplam Soru</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="completedQuestions">0</div>
+                    <div class="stat-label">Tamamlanan</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="correctAnswers">0</div>
+                    <div class="stat-label">Doğru Cevap</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="successRate">0%</div>
+                    <div class="stat-label">Başarı Oranı</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <button class="reset-btn" onclick="resetProgress()">İlerleyişi Sıfırla</button>
+                <button class="nav-btn" onclick="startRandomQuiz()">Rastgele Sınav Başlat</button>
+            </div>
+            
+            <div class="question-grid" id="questionGrid">
+                <!-- Questions will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loadProgress() {
+            const progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            const grid = document.getElementById('questionGrid');
+            
+            let completed = 0;
+            let correct = 0;
+            
+            // Create question cards for all 308 JPG-based questions
+            for (let i = 1; i <= 308; i++) {
+                const card = document.createElement('a');
+                card.href = `soru-${i}.html`;
+                card.className = 'question-card';
+                card.innerHTML = `
+                    <div style="font-weight: bold;">Soru ${i}</div>
+                    <div style="font-size: 0.8em;">Sayfa ${i}</div>
+                `;
+                
+                const questionSolved = localStorage.getItem(`question-${i}-solved`);
+                if (questionSolved === 'true') {
+                    completed++;
+                    correct++;
+                    card.classList.add('correct');
+                    card.innerHTML += '<div style="color: #28a745; font-size: 0.8em;">✓ Çözüldü</div>';
+                }
+                
+                grid.appendChild(card);
+            }
+            
+            // Create question cards for P1 series (P1-01 to P1-25)
+            for (let i = 1; i <= 25; i++) {
+                const card = document.createElement('a');
+                const questionId = `P1-${i.toString().padStart(2, '0')}`;
+                card.href = `soru-${questionId}.html`;
+                card.className = 'question-card';
+                card.innerHTML = `
+                    <div style="font-weight: bold;">Soru ${questionId}</div>
+                    <div style="font-size: 0.8em;">2.Dönem 1.Part</div>
+                `;
+                
+                const storedProgress = localStorage.getItem(`soru-${questionId}`);
+                if (storedProgress === 'completed') {
+                    completed++;
+                    card.classList.add('completed');
+                    card.innerHTML += '<div style="color: #28a745; font-size: 0.8em;">✓ Tamamlandı</div>';
+                }
+                
+                grid.appendChild(card);
+            }
+
+            // Create question cards for P2 series (P2-01 to P2-25)
+            for (let i = 1; i <= 25; i++) {
+                const card = document.createElement('a');
+                const questionId = `P2-${i.toString().padStart(2, '0')}`;
+                card.href = `soru-${questionId}.html`;
+                card.className = 'question-card';
+                card.innerHTML = `
+                    <div style="font-weight: bold;">Soru ${questionId}</div>
+                    <div style="font-size: 0.8em;">2.Dönem 2.Part</div>
+                `;
+                
+                const storedProgress = localStorage.getItem(`soru-${questionId}`);
+                if (storedProgress === 'completed') {
+                    completed++;
+                    card.classList.add('completed');
+                    card.innerHTML += '<div style="color: #28a745; font-size: 0.8em;">✓ Tamamlandı</div>';
+                }
+                
+                grid.appendChild(card);
+            }
+
+            // Create question cards for P3 series (P3-01 to P3-25)
+            for (let i = 1; i <= 25; i++) {
+                const card = document.createElement('a');
+                const questionId = `P3-${i.toString().padStart(2, '0')}`;
+                card.href = `soru-${questionId}.html`;
+                card.className = 'question-card';
+                card.innerHTML = `
+                    <div style="font-weight: bold;">Soru ${questionId}</div>
+                    <div style="font-size: 0.8em;">2.Dönem 3.Part</div>
+                `;
+                
+                const storedProgress = localStorage.getItem(`soru-${questionId}`);
+                if (storedProgress === 'completed') {
+                    completed++;
+                    card.classList.add('completed');
+                    card.innerHTML += '<div style="color: #28a745; font-size: 0.8em;">✓ Tamamlandı</div>';
+                }
+                
+                grid.appendChild(card);
+            }
+            
+            // Update statistics
+            document.getElementById('completedQuestions').textContent = completed;
+            document.getElementById('correctAnswers').textContent = correct;
+            document.getElementById('successRate').textContent = 
+                completed > 0 ? Math.round((correct / completed) * 100) + '%' : '0%';
+        }
+        
+        function resetProgress() {
+            if (confirm('Tüm ilerleme sıfırlanacak. Emin misiniz?')) {
+                localStorage.removeItem('examProgress');
+                location.reload();
+            }
+        }
+        
+        function startRandomQuiz() {
+            const availableQuestions = [];
+            const progress = JSON.parse(localStorage.getItem('examProgress') || '{}');
+            
+            // Find unanswered questions from pages 171-220
+            for (let i = 171; i <= 220; i++) {
+                if (!progress[i]) {
+                    availableQuestions.push(`soru-${i}.html`);
+                }
+            }
+            
+            // Find unanswered P2 questions
+            for (let i = 1; i <= 25; i++) {
+                const questionId = `P2-${i.toString().padStart(2, '0')}`;
+                const storedProgress = localStorage.getItem(`soru-${questionId}`);
+                if (storedProgress !== 'completed') {
+                    availableQuestions.push(`soru-${questionId}.html`);
+                }
+            }
+            
+            if (availableQuestions.length === 0) {
+                alert('Tüm soruları tamamladınız! Tebrikler!');
+                return;
+            }
+            
+            // Pick a random question
+            const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+            const randomQuestion = availableQuestions[randomIndex];
+            
+            window.location.href = randomQuestion;
+        }
+        
+        // Load progress when page loads
+        window.onload = loadProgress;
+    </script>
+</body>
+</html>

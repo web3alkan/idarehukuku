@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 34 - Kamu İdareleri Organizasyonu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="previousQuestion()" class="nav-btn">← Önceki</button>
+            <button onclick="goHome()" class="nav-btn home">🏠 Ana Sayfa</button>
+            <button onclick="nextQuestion()" class="nav-btn">Sonraki →</button>
+        </div>
+
+        <div class="question-container">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0034.jpg" alt="Sayfa 34" class="page-image">
+            </div>
+
+            <div class="question-content">
+                <h2>Soru 34</h2>
+                <p class="question-text">
+                    Aşağıdaki eşleştirmelerden hangisi kamu idarelerinin organizasyon yapısına göre doğru olarak verilmiştir?
+                </p>
+
+                <div class="matching-exercise">
+                    <div class="matching-columns">
+                        <div class="left-column">
+                            <h4>İdare Türleri</h4>
+                            <div class="match-item" data-id="1">1. Cumhurbaşkanlığı, Bakanlıklar</div>
+                            <div class="match-item" data-id="2">2. İl Özel İdaresi</div>
+                            <div class="match-item" data-id="3">3. TCDD, KÖY</div>
+                            <div class="match-item" data-id="4">4. BLD, TRT, SGK</div>
+                        </div>
+                        
+                        <div class="right-column">
+                            <h4>Kategoriler</h4>
+                            <div class="match-target" data-match="1">A) Merkezi İdare</div>
+                            <div class="match-target" data-match="3">B) Hizmetsel Kuruluşlar</div>
+                            <div class="match-target" data-match="2">C) Mahalli İdareler</div>
+                            <div class="match-target" data-match="4">D) Düzenleyici ve Denetleyici Kurumlar</div>
+                        </div>
+                    </div>
+                    
+                    <div class="user-answers">
+                        <h4>Cevaplarınız:</h4>
+                        <div id="userMatches"></div>
+                    </div>
+                </div>
+
+                <div class="answer-section">
+                    <button onclick="checkAnswer()" class="check-btn">Cevabı Kontrol Et</button>
+                    <div id="result" class="result"></div>
+                    <div id="explanation" class="explanation"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctMatches = {
+            1: 'A', // Cumhurbaşkanlığı, Bakanlıklar -> Merkezi İdare
+            2: 'C', // İl Özel İdaresi -> Mahalli İdareler  
+            3: 'B', // TCDD, KÖY -> Hizmetsel Kuruluşlar
+            4: 'D'  // BLD, TRT, SGK -> Düzenleyici ve Denetleyici Kurumlar
+        };
+        
+        let userMatches = {};
+
+        // Simple matching system
+        document.addEventListener('DOMContentLoaded', function() {
+            const matchItems = document.querySelectorAll('.match-item');
+            const matchTargets = document.querySelectorAll('.match-target');
+            
+            matchItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    if (this.classList.contains('selected')) {
+                        this.classList.remove('selected');
+                    } else {
+                        // Remove selection from other items
+                        matchItems.forEach(i => i.classList.remove('selected'));
+                        this.classList.add('selected');
+                    }
+                });
+            });
+            
+            matchTargets.forEach(target => {
+                target.addEventListener('click', function() {
+                    const selectedItem = document.querySelector('.match-item.selected');
+                    if (selectedItem) {
+                        const itemId = selectedItem.getAttribute('data-id');
+                        const targetMatch = this.getAttribute('data-match');
+                        
+                        userMatches[itemId] = this.textContent;
+                        selectedItem.classList.remove('selected');
+                        
+                        updateUserAnswers();
+                    }
+                });
+            });
+        });
+
+        function updateUserAnswers() {
+            const userAnswersDiv = document.getElementById('userMatches');
+            let html = '';
+            for (let id in userMatches) {
+                const itemText = document.querySelector(`[data-id="${id}"]`).textContent;
+                html += `<div>${itemText} → ${userMatches[id]}</div>`;
+            }
+            userAnswersDiv.innerHTML = html;
+        }
+
+        function checkAnswer() {
+            const resultDiv = document.getElementById('result');
+            const explanationDiv = document.getElementById('explanation');
+            
+            if (Object.keys(userMatches).length < 4) {
+                resultDiv.innerHTML = '<p style="color: orange;">Lütfen tüm eşleştirmeleri yapınız.</p>';
+                return;
+            }
+            
+            let correct = 0;
+            for (let id in correctMatches) {
+                if (userMatches[id] && userMatches[id].includes(correctMatches[id])) {
+                    correct++;
+                }
+            }
+            
+            if (correct === 4) {
+                resultDiv.innerHTML = '<p style="color: green;">✓ Tüm eşleştirmeler doğru!</p>';
+                localStorage.setItem('soru34_completed', 'true');
+            } else {
+                resultDiv.innerHTML = `<p style="color: red;">✗ ${correct}/4 doğru eşleştirme.</p>`;
+            }
+            
+            explanationDiv.innerHTML = `
+                <div class="explanation-content">
+                    <strong>Doğru Eşleştirmeler:</strong><br>
+                    1. Cumhurbaşkanlığı, Bakanlıklar → A) Merkezi İdare<br>
+                    2. İl Özel İdaresi → C) Mahalli İdareler<br>
+                    3. TCDD, KÖY → B) Hizmetsel Kuruluşlar<br>
+                    4. BLD, TRT, SGK → D) Düzenleyici ve Denetleyici Kurumlar<br><br>
+                    <strong>Açıklama:</strong> Türk kamu yönetimi yapısında merkezi idare (Cumhurbaşkanlığı ve bakanlıklar), 
+                    mahalli idareler (il özel idaresi, belediye, köy), düzenleyici kurumlar (BLD, TRT, SGK gibi) ve 
+                    hizmetsel kuruluşlar (TCDD, KÖY gibi) şeklinde organize olmuştur.
+                </div>
+            `;
+        }
+
+        function previousQuestion() {
+            window.location.href = 'soru-33.html';
+        }
+
+        function nextQuestion() {
+            window.location.href = 'soru-35.html';
+        }
+
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+
+        // Load completion status
+        window.onload = function() {
+            if (localStorage.getItem('soru34_completed') === 'true') {
+                document.getElementById('result').innerHTML = '<p style="color: blue;">Bu soruyu daha önce doğru cevapladınız.</p>';
+            }
+        }
+
+        // CSS for matching exercise
+        const style = document.createElement('style');
+        style.textContent = `
+            .matching-exercise {
+                margin: 20px 0;
+            }
+            .matching-columns {
+                display: flex;
+                gap: 30px;
+                margin-bottom: 20px;
+            }
+            .left-column, .right-column {
+                flex: 1;
+            }
+            .match-item, .match-target {
+                padding: 10px;
+                margin: 5px 0;
+                border: 2px solid #ccc;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+            .match-item:hover, .match-target:hover {
+                background-color: #f0f0f0;
+            }
+            .match-item.selected {
+                background-color: #e3f2fd;
+                border-color: #2196F3;
+            }
+            .user-answers {
+                margin-top: 20px;
+                padding: 15px;
+                background-color: #f9f9f9;
+                border-radius: 5px;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

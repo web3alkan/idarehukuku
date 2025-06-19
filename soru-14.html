@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 14 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="window.location.href='soru-13.html'" class="nav-btn">← Önceki</button>
+            <button onclick="window.location.href='index.html'" class="nav-btn home-btn">Ana Sayfa</button>
+            <button onclick="window.location.href='soru-16.html'" class="nav-btn">Sonraki →</button>
+        </div>
+
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0014.jpg" alt="Sayfa 14" class="page-image">
+            
+            <div class="question-box">
+                <h2>Soru 14</h2>
+                <p class="question-text">Aşağıdaki ifade doğru mu yanlış mı?</p>
+                
+                <div class="true-false">
+                    <p class="statement">"1982 Anayasası'na göre yürütme organı sadece Cumhurbaşkanı'ndan oluşur ve idare yürütme organı içinde yer alır."</p>
+                    
+                    <div class="tf-options">
+                        <label class="option">
+                            <input type="radio" name="answer" value="true">
+                            <span>Doğru</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="answer" value="false">
+                            <span>Yanlış</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <div class="result" id="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswer = 'true';
+        
+        function checkAnswer() {
+            const selected = document.querySelector('input[name="answer"]:checked');
+            const resultDiv = document.getElementById('result');
+            
+            if (!selected) {
+                resultDiv.innerHTML = '<p class="error">Lütfen bir seçenek işaretleyin!</p>';
+                return;
+            }
+            
+            if (selected.value === correctAnswer) {
+                resultDiv.innerHTML = '<p class="correct">✓ Doğru! Organik anlamda yürütme 1982 Anayasası\'na göre Cumhurbaşkanı ve idare\'den oluşur. İdare yürütme organı içinde yer alır.</p>';
+                localStorage.setItem('soru14', 'completed');
+            } else {
+                resultDiv.innerHTML = '<p class="incorrect">✗ Yanlış! İfade doğrudur. Tekrar okuyun.</p>';
+            }
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.onload = function() {
+            if (localStorage.getItem('soru14') === 'completed') {
+                document.getElementById('result').innerHTML = '<p class="completed">Bu soruyu daha önce doğru cevapladınız.</p>';
+            }
+        }
+    </script>
+</body>
+</html>

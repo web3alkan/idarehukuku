@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 42 - Merkezi Yönetimin Özellikleri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="previousQuestion()" class="nav-btn">← Önceki</button>
+            <button onclick="goHome()" class="nav-btn home">🏠 Ana Sayfa</button>
+            <button onclick="nextQuestion()" class="nav-btn">Sonraki →</button>
+        </div>
+
+        <div class="question-container">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0042.jpg" alt="Sayfa 42" class="page-image">
+            </div>
+
+            <div class="question-content">
+                <h2>Soru 42</h2>
+                <p class="question-text">
+                    "Merkezi Yönetimin Özellikleri" konusunda verilen bilgilerin doğruluk durumunu değerlendirip, 
+                    aşağıdaki ifadeleri AVANTAJ veya DEZAVANTAJ olarak sınıflandırınız:
+                </p>
+
+                <div class="classification-exercise">
+                    <div class="statements-list">
+                        <div class="statement-item" data-statement="1">
+                            <div class="statement-text">Tek bir KTK ile temsil söz konusudur.</div>
+                            <div class="classification-buttons">
+                                <button class="classify-btn advantage" onclick="classify(1, 'advantage')">AVANTAJ</button>
+                                <button class="classify-btn disadvantage" onclick="classify(1, 'disadvantage')">DEZAVANTAJ</button>
+                            </div>
+                            <div class="user-choice" id="choice1"></div>
+                        </div>
+
+                        <div class="statement-item" data-statement="2">
+                            <div class="statement-text">Tek bir bütçesi olduğundan denetimi de kolaydır.</div>
+                            <div class="classification-buttons">
+                                <button class="classify-btn advantage" onclick="classify(2, 'advantage')">AVANTAJ</button>
+                                <button class="classify-btn disadvantage" onclick="classify(2, 'disadvantage')">DEZAVANTAJ</button>
+                            </div>
+                            <div class="user-choice" id="choice2"></div>
+                        </div>
+
+                        <div class="statement-item" data-statement="3">
+                            <div class="statement-text">İdari hizmetlerde tarafsızlık açısından daha etkindir.</div>
+                            <div class="classification-buttons">
+                                <button class="classify-btn advantage" onclick="classify(3, 'advantage')">AVANTAJ</button>
+                                <button class="classify-btn disadvantage" onclick="classify(3, 'disadvantage')">DEZAVANTAJ</button>
+                            </div>
+                            <div class="user-choice" id="choice3"></div>
+                        </div>
+
+                        <div class="statement-item" data-statement="4">
+                            <div class="statement-text">Kötü yanlarından biri yerel gereksinimleri fazlasıyla dikkate alınmamaktadır.</div>
+                            <div class="classification-buttons">
+                                <button class="classify-btn advantage" onclick="classify(4, 'advantage')">AVANTAJ</button>
+                                <button class="classify-btn disadvantage" onclick="classify(4, 'disadvantage')">DEZAVANTAJ</button>
+                            </div>
+                            <div class="user-choice" id="choice4"></div>
+                        </div>
+
+                        <div class="statement-item" data-statement="5">
+                            <div class="statement-text">Katı bürokrasi söz konusu olursa partizan ve blok tutumlar görülebilir.</div>
+                            <div class="classification-buttons">
+                                <button class="classify-btn advantage" onclick="classify(5, 'advantage')">AVANTAJ</button>
+                                <button class="classify-btn disadvantage" onclick="classify(5, 'disadvantage')">DEZAVANTAJ</button>
+                            </div>
+                            <div class="user-choice" id="choice5"></div>
+                        </div>
+
+                        <div class="statement-item" data-statement="6">
+                            <div class="statement-text">Güçlü bir yönetim modelidir, otoriter bir tutum vardır, birlik teması güçlüdür.</div>
+                            <div class="classification-buttons">
+                                <button class="classify-btn advantage" onclick="classify(6, 'advantage')">AVANTAJ</button>
+                                <button class="classify-btn disadvantage" onclick="classify(6, 'disadvantage')">DEZAVANTAJ</button>
+                            </div>
+                            <div class="user-choice" id="choice6"></div>
+                        </div>
+
+                        <div class="statement-item" data-statement="7">
+                            <div class="statement-text">Az masrafla etkin hizmet söz konusudur.</div>
+                            <div class="classification-buttons">
+                                <button class="classify-btn advantage" onclick="classify(7, 'advantage')">AVANTAJ</button>
+                                <button class="classify-btn disadvantage" onclick="classify(7, 'disadvantage')">DEZAVANTAJ</button>
+                            </div>
+                            <div class="user-choice" id="choice7"></div>
+                        </div>
+
+                        <div class="statement-item" data-statement="8">
+                            <div class="statement-text">Bölgelere eşit hizmet sunar ancak bölgelerin ihtiyaçları kendi özelinde dikkate alınmaz.</div>
+                            <div class="classification-buttons">
+                                <button class="classify-btn advantage" onclick="classify(8, 'advantage')">AVANTAJ</button>
+                                <button class="classify-btn disadvantage" onclick="classify(8, 'disadvantage')">DEZAVANTAJ</button>
+                            </div>
+                            <div class="user-choice" id="choice8"></div>
+                        </div>
+
+                        <div class="statement-item" data-statement="9">
+                            <div class="statement-text">Kırtasiyecilik fazladır, hantallışma ve yabancıllaşma problemleri görülebilir (Taşra yönetimi ile bu durum kırılabilir).</div>
+                            <div class="classification-buttons">
+                                <button class="classify-btn advantage" onclick="classify(9, 'advantage')">AVANTAJ</button>
+                                <button class="classify-btn disadvantage" onclick="classify(9, 'disadvantage')">DEZAVANTAJ</button>
+                            </div>
+                            <div class="user-choice" id="choice9"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer-section">
+                    <button onclick="checkAnswer()" class="check-btn">Cevabı Kontrol Et</button>
+                    <div id="result" class="result"></div>
+                    <div id="explanation" class="explanation"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctClassifications = {
+            1: 'advantage',    // Tek bir KTK ile temsil söz konusudur - AVANTAJ
+            2: 'advantage',    // Tek bir bütçesi olduğundan denetimi de kolaydır - AVANTAJ
+            3: 'advantage',    // İdari hizmetlerde tarafsızlık açısından daha etkindir - AVANTAJ
+            4: 'disadvantage', // Yerel gereksinimleri fazlasıyla dikkate alınmamaktadır - DEZAVANTAJ
+            5: 'disadvantage', // Katı bürokrasi söz konusu olursa partizan ve blok tutumlar - DEZAVANTAJ
+            6: 'advantage',    // Güçlü bir yönetim modelidir, otoriter bir tutum vardır - AVANTAJ
+            7: 'advantage',    // Az masrafla etkin hizmet söz konusudur - AVANTAJ
+            8: 'disadvantage', // Bölgelerin ihtiyaçları kendi özelinde dikkate alınmaz - DEZAVANTAJ
+            9: 'disadvantage'  // Kırtasiyecilik fazladır, hantallışma ve yabancıllaşma - DEZAVANTAJ
+        };
+
+        let userClassifications = {};
+
+        function classify(statementNum, classification) {
+            userClassifications[statementNum] = classification;
+            
+            // Update visual feedback
+            const choiceDiv = document.getElementById(`choice${statementNum}`);
+            choiceDiv.textContent = classification === 'advantage' ? '✓ AVANTAJ' : '✗ DEZAVANTAJ';
+            choiceDiv.className = `user-choice ${classification}`;
+            
+            // Update button states
+            const buttons = document.querySelector(`[data-statement="${statementNum}"] .classification-buttons`).children;
+            Array.from(buttons).forEach(btn => btn.classList.remove('selected'));
+            event.target.classList.add('selected');
+        }
+
+        function checkAnswer() {
+            const resultDiv = document.getElementById('result');
+            const explanationDiv = document.getElementById('explanation');
+            
+            const totalStatements = Object.keys(correctClassifications).length;
+            const classifiedStatements = Object.keys(userClassifications).length;
+            
+            if (classifiedStatements < totalStatements) {
+                resultDiv.innerHTML = '<p style="color: orange;">Lütfen tüm ifadeleri sınıflandırınız.</p>';
+                return;
+            }
+            
+            let correctCount = 0;
+            for (let statementNum in correctClassifications) {
+                if (userClassifications[statementNum] === correctClassifications[statementNum]) {
+                    correctCount++;
+                }
+            }
+            
+            const percentage = Math.round((correctCount / totalStatements) * 100);
+            
+            if (percentage >= 80) {
+                resultDiv.innerHTML = `<p style="color: green;">✓ Mükemmel! ${correctCount}/${totalStatements} doğru sınıflandırma. (${percentage}%)</p>`;
+                localStorage.setItem('soru42_completed', 'true');
+            } else if (percentage >= 70) {
+                resultDiv.innerHTML = `<p style="color: orange;">İyi! ${correctCount}/${totalStatements} doğru sınıflandırma. (${percentage}%)</p>`;
+            } else {
+                resultDiv.innerHTML = `<p style="color: red;">✗ ${correctCount}/${totalStatements} doğru sınıflandırma. (${percentage}%) Tekrar deneyin.</p>`;
+            }
+            
+            const explanation = `
+                <div class="explanation-content">
+                    <strong>Merkezi Yönetimin Avantaj ve Dezavantajları:</strong><br><br>
+                    
+                    <strong>AVANTAJLAR:</strong><br>
+                    ✓ Tek bir KTK ile temsil söz konusudur<br>
+                    ✓ Tek bir bütçesi olduğundan denetimi de kolaydır<br>
+                    ✓ İdari hizmetlerde tarafsızlık açısından daha etkindir<br>
+                    ✓ Güçlü bir yönetim modelidir, otoriter bir tutum vardır, birlik teması güçlüdür<br>
+                    ✓ Az masrafla etkin hizmet söz konusudur<br><br>
+                    
+                    <strong>DEZAVANTAJLAR:</strong><br>
+                    ✗ Yerel gereksinimleri fazlasıyla dikkate alınmamaktadır<br>
+                    ✗ Katı bürokrasi söz konusu olursa partizan ve blok tutumlar görülebilir<br>
+                    ✗ Bölgelerin ihtiyaçları kendi özelinde dikkate alınmaz<br>
+                    ✗ Kırtasiyecilik fazladır, hantallışma ve yabancıllaşma problemleri görülebilir<br><br>
+                    
+                    <strong>Not:</strong> Merkezi yönetim güçlü kontrol ve koordinasyon sağlar ancak 
+                    yerel ihtiyaçlara cevap vermede yetersiz kalabilir.
+                </div>
+            `;
+            
+            explanationDiv.innerHTML = explanation;
+        }
+
+        function previousQuestion() {
+            window.location.href = 'soru-41.html';
+        }
+
+        function nextQuestion() {
+            window.location.href = 'soru-43.html';
+        }
+
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+
+        // Load completion status
+        window.onload = function() {
+            if (localStorage.getItem('soru42_completed') === 'true') {
+                document.getElementById('result').innerHTML = '<p style="color: blue;">Bu soruyu daha önce doğru cevapladınız.</p>';
+            }
+        }
+
+        // CSS for classification styling
+        const style = document.createElement('style');
+        style.textContent = `
+            .classification-exercise {
+                margin: 20px 0;
+            }
+            .statement-item {
+                margin: 20px 0;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                background-color: #fafafa;
+            }
+            .statement-text {
+                margin-bottom: 15px;
+                font-size: 16px;
+                line-height: 1.5;
+                color: #333;
+            }
+            .classification-buttons {
+                display: flex;
+                gap: 15px;
+                margin-bottom: 10px;
+            }
+            .classify-btn {
+                padding: 10px 20px;
+                border: 2px solid;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: bold;
+                transition: all 0.3s;
+                background-color: white;
+            }
+            .classify-btn.advantage {
+                border-color: #4CAF50;
+                color: #4CAF50;
+            }
+            .classify-btn.advantage:hover,
+            .classify-btn.advantage.selected {
+                background-color: #4CAF50;
+                color: white;
+            }
+            .classify-btn.disadvantage {
+                border-color: #f44336;
+                color: #f44336;
+            }
+            .classify-btn.disadvantage:hover,
+            .classify-btn.disadvantage.selected {
+                background-color: #f44336;
+                color: white;
+            }
+            .user-choice {
+                font-weight: bold;
+                padding: 8px 12px;
+                border-radius: 5px;
+                display: inline-block;
+                margin-top: 10px;
+            }
+            .user-choice.advantage {
+                background-color: #e8f5e8;
+                color: #2e7d32;
+            }
+            .user-choice.disadvantage {
+                background-color: #ffebee;
+                color: #c62828;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

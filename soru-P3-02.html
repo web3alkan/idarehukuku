@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru P3-02: İdari Dava Türleri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Soru P3-02: İdari Dava Türleri</h1>
+        
+        <div class="question-box">
+            <div class="question">
+                <p>Aşağıdaki dava türleri ile açıklamalarını eşleştiriniz:</p>
+                
+                <div class="matching-container">
+                    <div class="matching-left">
+                        <h4>Dava Türleri:</h4>
+                        <div class="matching-item" data-id="1">1. İptal Davası</div>
+                        <div class="matching-item" data-id="2">2. Tam Yargı Davası</div>
+                        <div class="matching-item" data-id="3">3. Personel Davası</div>
+                        <div class="matching-item" data-id="4">4. İtisaf Davası</div>
+                    </div>
+                    
+                    <div class="matching-right">
+                        <h4>Açıklamalar:</h4>
+                        <div class="matching-target" data-target="A">A) İdari işlemin hukuka aykırılığı nedeniyle yokluk derecesinde geçersiz sayılmasını talep eden dava</div>
+                        <div class="matching-target" data-target="B">B) İdari işlemin iptal edilmesi ile birlikte maddi ve manevi tazminat talep edilen dava</div>
+                        <div class="matching-target" data-target="C">C) İdari işlemin hukuka aykırılığı nedeniyle iptal edilmesini talep eden dava</div>
+                        <div class="matching-target" data-target="D">D) Kamu personeline ilişkin özel usul kurallarının uygulandığı dava</div>
+                    </div>
+                </div>
+                
+                <div class="user-matches">
+                    <h4>Eşleştirmeleriniz:</h4>
+                    <div id="matches"></div>
+                </div>
+            </div>
+            
+            <button onclick="gosterCozum()" class="cozum-button">Çözümü Göster</button>
+            
+            <div id="cozum" class="cozum-box" style="display: none;">
+                <h3>Çözüm:</h3>
+                <p><strong>Doğru Eşleştirmeler:</strong></p>
+                <ul>
+                    <li><strong>1 - C:</strong> İptal Davası → İdari işlemin hukuka aykırılığı nedeniyle iptal edilmesini talep eden davadır.</li>
+                    <li><strong>2 - B:</strong> Tam Yargı Davası → İdari işlemin iptal edilmesi ile birlikte maddi ve manevi tazminat talep edilen davadır.</li>
+                    <li><strong>3 - D:</strong> Personel Davası → Kamu personeline ilişkin özel usul kurallarının uygulandığı davadır.</li>
+                    <li><strong>4 - A:</strong> İtisaf Davası → İdari işlemin hukuka aykırılığı nedeniyle yokluk derecesinde geçersiz sayılmasını talep eden davadır.</li>
+                </ul>
+                <p><strong>Açıklama:</strong></p>
+                <ul>
+                    <li><strong>İptal Davası:</strong> Yalnızca iptal talep edilir, tazminat talep edilmez. Objektif davadır.</li>
+                    <li><strong>Tam Yargı Davası:</sübjektif dava olup, hem iptal hem de tazminat talep edilebilir.</li>
+                    <li><strong>Personel Davası:</strong> Kamu görevlilerine ilişkin özel usul kuralları vardır (2577 sayılı Kanun md. 24-33).</li>
+                    <li><strong>İtisaf Davası:</strong> İşlemin varlığının inkarı anlamına gelir, yokluk derecesinde geçersizlik iddiasıdır.</li>
+                </ul>
+                <div class="kaynak">
+                    <p><strong>Kaynak:</strong> İdare hukuku notu 2.dönem 3.part.pdf</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P3-01.html" class="nav-button">← Önceki Soru</a>
+            <a href="soru-P3-03.html" class="nav-button">Sonraki Soru →</a>
+        </div>
+    </div>
+    
+    <script>
+        let matches = {};
+        
+        function gosterCozum() {
+            document.getElementById('cozum').style.display = 'block';
+            
+            // LocalStorage'a çözümün görüntülendiğini kaydet
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            cozumler['soru-P3-02'] = true;
+            localStorage.setItem('gosterilenCozumler', JSON.stringify(cozumler));
+        }
+        
+        // Basit eşleştirme için click event'leri
+        document.addEventListener('DOMContentLoaded', function() {
+            const items = document.querySelectorAll('.matching-item');
+            const targets = document.querySelectorAll('.matching-target');
+            
+            items.forEach(item => {
+                item.addEventListener('click', function() {
+                    document.querySelectorAll('.matching-item').forEach(i => i.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+            
+            targets.forEach(target => {
+                target.addEventListener('click', function() {
+                    const selected = document.querySelector('.matching-item.selected');
+                    if (selected) {
+                        const itemId = selected.dataset.id;
+                        const targetId = this.dataset.target;
+                        matches[itemId] = targetId;
+                        updateMatches();
+                        selected.classList.remove('selected');
+                    }
+                });
+            });
+        });
+        
+        function updateMatches() {
+            const matchesDiv = document.getElementById('matches');
+            matchesDiv.innerHTML = '';
+            for (let key in matches) {
+                matchesDiv.innerHTML += `<p>${key} → ${matches[key]}</p>`;
+            }
+        }
+        
+        // Sayfa yüklendiğinde çözüm daha önce görüntülenmişse otomatik göster
+        window.onload = function() {
+            let cozumler = JSON.parse(localStorage.getItem('gosterilenCozumler') || '{}');
+            if (cozumler['soru-P3-02']) {
+                document.getElementById('cozum').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

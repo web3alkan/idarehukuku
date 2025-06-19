@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku Sorusu - P2-07</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku - İdari İşlemin Unsurları</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P2-06.html" class="nav-button">Önceki</a>
+            <span class="page-info">Soru P2-07</span>
+            <a href="soru-P2-08.html" class="nav-button">Sonraki</a>
+        </div>
+        
+        <div class="content">
+            <div class="question-section">
+                <div class="question-title">Soru 7: İdari İşlemin Unsurları</div>
+                <div class="question-text">
+                    İdari işlemin beş unsuru vardır: Yetki, Şekil, <span class="fill-blank"><input type="text" id="answer1" placeholder="3. unsur"></span>, 
+                    <span class="fill-blank"><input type="text" id="answer2" placeholder="4. unsur"></span> ve Amaç.
+                </div>
+                
+                <button class="check-button" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <button class="show-solution-btn" onclick="showSolution()">Çözümü Göster</button>
+                
+                <div class="solution-box" id="solution">
+                    <h3>Çözüm:</h3>
+                    <div class="correct-answer">Doğru Cevaplar: Sebep ve Konu</div>
+                    <div class="explanation-text">
+                        İdari işlemin 5 unsuru şunlardır:
+                        1. <strong>Yetki</strong>: İşlemi yapan makamın yetkili olması
+                        2. <strong>Şekil</strong>: İşlemin kanunda öngörülen şekilde yapılması
+                        3. <strong>Sebep</strong>: İşlemin dayanağı olan hukuki ve fiili nedenler
+                        4. <strong>Konu</strong>: İşlemin içeriği, ne hakkında olduğu
+                        5. <strong>Amaç</strong>: İşlemle güdülen gaye (kamu yararı olmalı)
+                        
+                        Bu unsurlardan herhangi birinin eksikliği veya hukuka aykırılığı, idari işlemin iptal 
+                        edilmesi sonucunu doğurur.
+                    </div>
+                    <div class="pdf-source"><strong>Kaynak:</strong> İdare Hukuku notu 2.dönem 2.part.pdf</div>
+                </div>
+            </div>
+            
+            <div class="result-message" id="result" style="display: none;"></div>
+        </div>
+    </div>
+    
+    <script>
+        function checkAnswer() {
+            const answer1 = document.getElementById('answer1').value.trim().toLowerCase();
+            const answer2 = document.getElementById('answer2').value.trim().toLowerCase();
+            const resultDiv = document.getElementById('result');
+            
+            const correct1 = ['sebep', 'neden'];
+            const correct2 = ['konu', 'içerik'];
+            
+            if ((correct1.includes(answer1) && correct2.includes(answer2)) || 
+                (correct1.includes(answer2) && correct2.includes(answer1))) {
+                resultDiv.textContent = 'Tebrikler! Doğru cevap.';
+                resultDiv.className = 'result-message correct';
+            } else {
+                resultDiv.textContent = 'Yanlış cevap. İdari işlemin unsurları: Yetki, Şekil, Sebep, Konu ve Amaç\'tır.';
+                resultDiv.className = 'result-message incorrect';
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+        
+        function showSolution() {
+            const solutionBox = document.getElementById('solution');
+            solutionBox.classList.add('visible');
+            
+            localStorage.setItem('soru-P2-07', 'completed');
+        }
+    </script>
+</body>
+</html>

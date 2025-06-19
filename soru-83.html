@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 83 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku Sınavı</h1>
+            <p>Unsurların Tahlili - Sayfa 83</p>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-82.html" class="nav-btn" id="prevBtn">← Önceki</a>
+            <div class="page-info">Soru 83 / 120</div>
+            <a href="soru-84.html" class="nav-btn" id="nextBtn">Sonraki →</a>
+        </div>
+        
+        <div class="content">
+            <div class="source-image">
+                <img src="Kamusal Alan İdare Hukuku_page-0083.jpg" alt="Sayfa 83" />
+            </div>
+            
+            <div class="question-container">
+                <div class="question-title">Boşluk Doldurma Sorusu</div>
+                <div class="question-text">
+                    Bu unsurlar yasanın açıkça emrine tabiidir. İdare bu unsurlarda takdiri bir hareket kabiliyetine sahip olamaz. Misal bir işlemi kimin yapacağı (________) yasada açıkça atanmıştır, bunu keyfi olarak bir başkası yapamaz.
+                </div>
+                
+                <input type="text" class="input-field" id="answerInput" placeholder="Cevabınızı buraya yazın..." />
+                
+                <div class="action-buttons">
+                    <button class="btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                    <button class="btn btn-secondary" onclick="resetQuestion()">Sıfırla</button>
+                </div>
+                
+                <div class="result" id="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = ['yetkili', 'YETKİLİ', 'Yetkili'];
+        
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answerInput').value.trim();
+            
+            if (!userAnswer) {
+                alert('Lütfen boşluğu doldurun!');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('result');
+            const inputField = document.getElementById('answerInput');
+            
+            // Input alanını devre dışı bırak
+            inputField.disabled = true;
+            
+            // Cevabı kontrol et
+            const isCorrect = correctAnswers.some(answer => 
+                userAnswer.toLowerCase().includes(answer.toLowerCase())
+            );
+            
+            if (isCorrect) {
+                resultDiv.innerHTML = '✅ Doğru! "Yetkili" kelimesi doğru cevaptır. Yasa kısıtlamaları sürece idare takdiri uygulama haklarına sahiptir.';
+                resultDiv.className = 'result show correct';
+                inputField.style.borderColor = '#27ae60';
+                inputField.style.background = '#d5f4e6';
+                localStorage.setItem('soru83_completed', 'true');
+            } else {
+                resultDiv.innerHTML = '❌ Yanlış! Doğru cevap "yetkili" kelimesidir. Kimin yapacağı yasada açıkça atanmıştır.';
+                resultDiv.className = 'result show incorrect';
+                inputField.style.borderColor = '#e74c3c';
+                inputField.style.background = '#ffeaa7';
+            }
+        }
+        
+        function resetQuestion() {
+            const inputField = document.getElementById('answerInput');
+            inputField.value = '';
+            inputField.disabled = false;
+            inputField.style.borderColor = '#ecf0f1';
+            inputField.style.background = 'white';
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '';
+        }
+        
+        // Enter tuşuyla cevap kontrolü
+        document.getElementById('answerInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkAnswer();
+            }
+        });
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('soru83_completed') === 'true') {
+                const completionBadge = document.createElement('div');
+                completionBadge.className = 'completion-badge';
+                completionBadge.textContent = '✓ Tamamlandı';
+                document.querySelector('.question-container').appendChild(completionBadge);
+            }
+        });
+    </script>
+</body>
+</html>

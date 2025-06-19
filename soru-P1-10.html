@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdare Hukuku - Soru P1-10</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>İdare Hukuku Sınavı - 2. Dönem 1. Part</h1>
+        </div>
+        
+        <div class="navigation">
+            <a href="soru-P1-09.html" class="nav-button">Önceki Soru</a>
+            <span class="page-info">Soru P1-10 / 25</span>
+            <a href="soru-P1-11.html" class="nav-button">Sonraki Soru</a>
+        </div>
+        
+        <div class="content">
+            <div class="question-section">
+                <h2 class="question-title">Soru 10: İdari Yargı Türleri</h2>
+                <p class="question-text">Aşağıdaki dava türlerini açıklamalarıyla eşleştiriniz:</p>
+                
+                <div class="matching-container">
+                    <div class="matching-column">
+                        <h3>Dava Türleri</h3>
+                        <div class="matching-item" onclick="selectItem(this, 'left', '1')">1. İptal Davası</div>
+                        <div class="matching-item" onclick="selectItem(this, 'left', '2')">2. Tam Yargı Davası</div>
+                        <div class="matching-item" onclick="selectItem(this, 'left', '3')">3. İdari Sözleşmelerden Doğan Davalar</div>
+                        <div class="matching-item" onclick="selectItem(this, 'left', '4')">4. Vergi Davaları</div>
+                    </div>
+                    
+                    <div class="matching-column">
+                        <h3>Açıklamalar</h3>
+                        <div class="matching-item" onclick="selectItem(this, 'right', 'A')">A. İdarenin eylem ve işlemlerinden doğan zararların tazmini</div>
+                        <div class="matching-item" onclick="selectItem(this, 'right', 'B')">B. İdari işlemin hukuka aykırılığı nedeniyle iptali</div>
+                        <div class="matching-item" onclick="selectItem(this, 'right', 'C')">C. Vergi, resim, harç ve benzeri mali yükümlülüklerle ilgili uyuşmazlıklar</div>
+                        <div class="matching-item" onclick="selectItem(this, 'right', 'D')">D. İmtiyaz sözleşmeleri ve kamu hizmeti sözleşmelerinden doğan uyuşmazlıklar</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <p><strong>Eşleştirmeleriniz:</strong></p>
+                    <div id="matches" style="margin: 10px 0;"></div>
+                </div>
+                
+                <button class="check-button" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <button class="show-solution-btn" onclick="showSolution()">Çözümü Göster</button>
+                
+                <div class="result-message" id="result" style="display: none;"></div>
+                
+                <div class="solution-box" id="solution">
+                    <h3>Çözüm:</h3>
+                    <div class="correct-answer">
+                        Doğru Eşleştirmeler:<br>
+                        1-B (İptal Davası - İdari işlemin hukuka aykırılığı nedeniyle iptali)<br>
+                        2-A (Tam Yargı Davası - Zararların tazmini)<br>
+                        3-D (İdari Sözleşme Davaları - İmtiyaz ve kamu hizmeti sözleşmeleri)<br>
+                        4-C (Vergi Davaları - Mali yükümlülükler)
+                    </div>
+                    <div class="explanation-text">
+                        İdari yargıda dört temel dava türü bulunur. İptal davası, idari işlemlerin 
+                        hukuka aykırılığı nedeniyle iptalini sağlar. Tam yargı davası, idarenin 
+                        sebep olduğu zararların tazminini amaçlar. İdari sözleşmelerden doğan davalar 
+                        ve vergi davaları da idari yargının görev alanındadır.
+                    </div>
+                    <div class="pdf-source"><strong>Kaynak:</strong> İdare Hukuku Notu 2.dönem 1.part.pdf</div>
+                </div>
+            </div>
+            
+            <div class="navigation" style="margin-top: 30px;">
+                <a href="index.html" class="nav-button">Ana Sayfaya Dön</a>
+                <a href="soru-P1-11.html" class="nav-button">Sonraki Soru</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let selectedLeft = null;
+        let selectedRight = null;
+        let matches = {};
+        const correctMatches = {
+            '1': 'B',
+            '2': 'A',
+            '3': 'D',
+            '4': 'C'
+        };
+        
+        function selectItem(element, side, value) {
+            if (side === 'left') {
+                if (selectedLeft) {
+                    document.querySelectorAll('.matching-column:first-child .matching-item').forEach(item => {
+                        item.classList.remove('selected');
+                    });
+                }
+                element.classList.add('selected');
+                selectedLeft = value;
+            } else {
+                if (selectedRight) {
+                    document.querySelectorAll('.matching-column:last-child .matching-item').forEach(item => {
+                        item.classList.remove('selected');
+                    });
+                }
+                element.classList.add('selected');
+                selectedRight = value;
+            }
+            
+            if (selectedLeft && selectedRight) {
+                matches[selectedLeft] = selectedRight;
+                updateMatchDisplay();
+                
+                // Reset selections
+                document.querySelectorAll('.matching-item').forEach(item => {
+                    item.classList.remove('selected');
+                });
+                selectedLeft = null;
+                selectedRight = null;
+            }
+        }
+        
+        function updateMatchDisplay() {
+            const matchesDiv = document.getElementById('matches');
+            let html = '';
+            for (let key in matches) {
+                html += `${key} → ${matches[key]}<br>`;
+            }
+            matchesDiv.innerHTML = html || 'Henüz eşleştirme yapılmadı';
+        }
+        
+        function checkAnswer() {
+            const resultDiv = document.getElementById('result');
+            
+            if (Object.keys(matches).length !== 4) {
+                alert('Lütfen tüm eşleştirmeleri tamamlayınız!');
+                return;
+            }
+            
+            let correct = true;
+            for (let key in correctMatches) {
+                if (matches[key] !== correctMatches[key]) {
+                    correct = false;
+                    break;
+                }
+            }
+            
+            if (correct) {
+                resultDiv.className = 'result-message correct';
+                resultDiv.textContent = 'Tebrikler! Tüm eşleştirmeler doğru.';
+                markQuestionCompleted();
+            } else {
+                resultDiv.className = 'result-message incorrect';
+                resultDiv.textContent = 'Yanlış eşleştirmeler var. Tekrar deneyiniz veya çözümü gösteriniz.';
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+        
+        function showSolution() {
+            const solutionDiv = document.getElementById('solution');
+            solutionDiv.classList.add('visible');
+            matches = {...correctMatches};
+            updateMatchDisplay();
+            markQuestionCompleted();
+        }
+        
+        function markQuestionCompleted() {
+            localStorage.setItem('soru-P1-10', 'completed');
+            updateProgress();
+        }
+        
+        function updateProgress() {
+            const totalQuestions = 25;
+            let completedCount = 0;
+            
+            for (let i = 1; i <= totalQuestions; i++) {
+                const key = `soru-P1-${i.toString().padStart(2, '0')}`;
+                if (localStorage.getItem(key) === 'completed') {
+                    completedCount++;
+                }
+            }
+            
+            const progressPercentage = (completedCount / totalQuestions) * 100;
+            console.log(`İlerleme: ${completedCount}/${totalQuestions} (${progressPercentage.toFixed(1)}%)`);
+        }
+        
+        // Sayfa yüklendiğinde
+        window.onload = function() {
+            updateMatchDisplay();
+            if (localStorage.getItem('soru-P1-10') === 'completed') {
+                const solutionDiv = document.getElementById('solution');
+                solutionDiv.classList.add('visible');
+            }
+        };
+    </script>
+</body>
+</html>

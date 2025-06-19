@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru 16 - İdare Hukuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button onclick="window.location.href='soru-14.html'" class="nav-btn">← Önceki</button>
+            <button onclick="window.location.href='index.html'" class="nav-btn home-btn">Ana Sayfa</button>
+            <button onclick="window.location.href='soru-17.html'" class="nav-btn">Sonraki →</button>
+        </div>
+
+        <div class="question-container">
+            <img src="Kamusal Alan İdare Hukuku_page-0016.jpg" alt="Sayfa 16" class="page-image">
+            
+            <div class="question-box">
+                <h2>Soru 16</h2>
+                <p class="question-text">Aşağıdaki işlemleri ilgili oldukları erklerle eşleştirin:</p>
+                
+                <div class="matching">
+                    <div class="matching-left">
+                        <div class="match-item" data-id="1">1. Kaymakanın ziyafete tecavüz kararı vermesi</div>
+                        <div class="match-item" data-id="2">2. Cumhurbaşkanının birden fazla ili kapsayan kamulaştırma kararı alması</div>
+                        <div class="match-item" data-id="3">3. X adlı verginin konulması</div>
+                        <div class="match-item" data-id="4">4. Yargıtay Ceza Dairesinin bir Asliye Ceza veya Bölge Adliye kararını bozması</div>
+                    </div>
+                    
+                    <div class="matching-right">
+                        <select id="match1" class="match-select">
+                            <option value="">Seçiniz</option>
+                            <option value="yasama">Yasama İşlemi</option>
+                            <option value="yargi">Yargı İşlemi</option>
+                            <option value="idari">İdari İşlem</option>
+                        </select>
+                        <select id="match2" class="match-select">
+                            <option value="">Seçiniz</option>
+                            <option value="yasama">Yasama İşlemi</option>
+                            <option value="yargi">Yargı İşlemi</option>
+                            <option value="idari">İdari İşlem</option>
+                        </select>
+                        <select id="match3" class="match-select">
+                            <option value="">Seçiniz</option>
+                            <option value="yasama">Yasama İşlemi</option>
+                            <option value="yargi">Yargı İşlemi</option>
+                            <option value="idari">İdari İşlem</option>
+                        </select>
+                        <select id="match4" class="match-select">
+                            <option value="">Seçiniz</option>
+                            <option value="yasama">Yasama İşlemi</option>
+                            <option value="yargi">Yargı İşlemi</option>
+                            <option value="idari">İdari İşlem</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="check-btn" onclick="checkAnswer()">Cevabı Kontrol Et</button>
+                <div class="result" id="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            match1: 'idari',
+            match2: 'idari',
+            match3: 'yasama',
+            match4: 'yargi'
+        };
+        
+        function checkAnswer() {
+            const resultDiv = document.getElementById('result');
+            let allCorrect = true;
+            let emptyAnswer = false;
+            
+            for (let i = 1; i <= 4; i++) {
+                const selected = document.getElementById('match' + i).value;
+                if (!selected) {
+                    emptyAnswer = true;
+                    break;
+                }
+                if (selected !== correctAnswers['match' + i]) {
+                    allCorrect = false;
+                }
+            }
+            
+            if (emptyAnswer) {
+                resultDiv.innerHTML = '<p class="error">Lütfen tüm eşleştirmeleri yapın!</p>';
+                return;
+            }
+            
+            if (allCorrect) {
+                resultDiv.innerHTML = '<p class="correct">✓ Doğru! Tüm eşleştirmeler doğru.</p>';
+                localStorage.setItem('soru16', 'completed');
+            } else {
+                resultDiv.innerHTML = '<p class="incorrect">✗ Yanlış! Tekrar deneyin. İpucu: Kaymakan ve Cumhurbaşkanı idari organ, vergi konulması yasama işlemi, Yargıtay kararı ise yargı işlemidir.</p>';
+            }
+        }
+        
+        // Sayfa yüklendiğinde tamamlanma durumunu kontrol et
+        window.onload = function() {
+            if (localStorage.getItem('soru16') === 'completed') {
+                document.getElementById('result').innerHTML = '<p class="completed">Bu soruyu daha önce doğru cevapladınız.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
